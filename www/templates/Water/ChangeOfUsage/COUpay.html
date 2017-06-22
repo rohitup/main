@@ -1,0 +1,46 @@
+<ion-view>
+   
+  <ion-nav-title>
+ 	 <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet<sup>&reg;</sup></h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="COUpaymentCTRL" class="animated zoomIn">
+<h3 class="heading"  translate="PAYMENT"></h3>
+<form name="COUPayForm">
+	<div class="list">
+	             <label class="item item-input item-floating-label"> 
+					<span class="input-label required" translate="TOTAL_AMOUNT"></span>
+					<input type="number" placeholder="{{'TOTAL_AMOUNT' | translate}}" name="COUFlatRate" ng-model="COUFlatRate" id="pincodelim"
+					ng-keyup="onlyNumericSixLimitInput()" ng-trim="false" ng-pattern="/^[0-9]{1,6}$/" disabled/>
+					<span class="errorMessage" ng-show="COUPayForm.COUFlatRate.$error.pattern">Please Enter Valid Total Amount</span>
+				</label>
+			
+				<!-- <label class="item item-input item-floating-label"> 
+					<span class="input-label required" translate="ENTAMT"></span>
+					<input type="number" placeholder="{{'ENTAMT' | translate}}*" name="COUpaidamt" ng-model="COUpaidamt" 
+					ng-keyup="onlyNumericSixLimitInput()" ng-trim="false" ng-pattern="/^[0-9]{1,6}$/" required/>
+					<span class="errorMessage" ng-show="COUPayForm.COUpaidamt.$error.pattern">Please Enter Valid Pincode</span>
+				</label> -->
+			
+            	<label class="input-label padding-left-15 required" translate="PAYGATEWAY"></label>
+				<select class="select-dropdown" name="COUpaymettype" data-ng-model="COUpaymettype" 
+					ng-options="o.id as o.name for o in options" required>
+					<option value="">Select Payment Gateway</option>
+				</select>  
+				
+				<div class="padding">
+	                <button class="button button-block button-positive customBgColor" ng-click="COUsavedata()" ng-disabled="!COUPayForm.$valid">
+	                <span translate="PAY"></span></button>
+	            </div> 
+	</div>
+</form>
+
+    </ion-content>
+ </ion-view>   

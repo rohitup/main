@@ -1,0 +1,107 @@
+ 
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content  class="" ng-controller="RTIapplnstatusCtrl" class="animated zoomIn">
+
+<h1 class="heading">RTI Application Status</h1>
+<form name="RTireceiptform">
+<div class="list">
+
+<label class="item item-input item-floating-label"> 
+	<span class="input-label required">RTI Application Number</span>
+	<input type="number" placeholder="RTI Application Number*" name="RTIapplnsearch" ng-model="RTIapplnsearch" id="RTiapplNo" 
+	ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" required/>
+	<span class="errorMessage" ng-show="RTireceiptform.RTIapplnsearch.$error.pattern">Please Enter Valid RTI Application Number</span>
+</label>
+
+<div class="padding">
+<button ng-click="RTIapplicationsearch()" class="button button-block button-positive customBgColor"><i class="icon ion-search fonth3"></i>
+<span translate="">Search</span></button>
+</div>
+
+<!-- <span class="item item-input" style="padding: 0 0 0 16px;" >
+<input type="number" placeholder="RTI Application Number" class="labelcsslow" data-ng-model="RTIapplnsearch"
+id="RTiapplNo" ng-keyup="eighteendigit()" >
+<button ng-click="RTIapplicationsearch()" class="button button-positive customBgColor" style="border-radius: 0px 2px 2px 0px;"><i class="icon ion-search fonth3"></i></button>
+</span>
+ -->
+ 
+<div name="RTIStatusForm" ng-if="RTIapplStatusSearch" class="animated zoomIn">
+	<table class="gridtable">
+		<tr>
+			<th width="100%" colspan="2">
+			<div align="center">RTI Application Status</div>
+			</th>
+		</tr>
+		<tr>
+			<th>RTI Number</th>
+			<td>{{ RTInumber }}</td> 
+		</tr>
+		<tr>
+			<th>Type Of Applicant</th>
+			<td>{{ RTIapplicantType }}</td>
+		</tr>
+		<tr>
+			<th>Applicant Name</th>
+			<td>{{ RTIapplName }}</td>
+		</tr>
+		<tr>
+			<th>APL/BPL Type</th>
+			<td>{{ RTIAplBplName }}</td>
+		</tr>
+		<tr>
+			<th>Alert Subscription</th>
+			<td>{{ RTIsubsType }}</td>
+		</tr>
+		<tr>
+			<th>Mobile Number</th>
+			<td>{{ RTImobileNo }}</td>
+		</tr>
+		<tr>
+			<th>Email ID</th>
+			<td>{{ RTIEmailID }}</td>
+		</tr>
+		<tr>
+			<th>Subject</th>
+			<td>{{ RTISubject }}</td>
+		</tr>
+		<tr>
+			<th>Particular Information Required</th>
+			<td>{{ RTIDetails }}</td>
+		</tr>
+		<tr>
+			<th>Application Date</th>
+			<td>{{ RTIApplnDATE }}</td>
+		</tr>
+		<tr>
+			<th>Pay Status</th>
+			<td>{{ RTIpayStatus }}</td>
+		</tr>
+		<tr>
+			<th>Application Status</th>
+			<td>{{ RTIApplnStatus }}</td>
+		</tr>
+	</table>
+	
+	<div class="padding">
+		<button ng-click="homepage()" class="button button-block button-positive customBgColor">
+		<span translate="">GoTo HomePage </span></button>
+	</div>
+	
+	</div>	
+ </div>  
+ 
+</form>  
+ </ion-content>
+</ion-view>
+

@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script>
+		function getQueryVariable(variable)
+		{
+			var hash = window.location.hash;
+			var query = hash.slice(hash.indexOf('#') + 1);
+			var vars = query.split("&");
+			console.log("hash ::: "+hash);
+			console.log("vars ::: "+vars);
+			for (var i=0;i<vars.length;i++) {
+				var pair = vars[i].split("=");
+				if(pair[0] == variable){
+					return pair[1];
+				}
+			}
+		   return(false);
+		}
+		function setFormData(){
+			var form = document.forms.payuForm;
+			var baseUrl = getQueryVariable('action1');
+			var action1 = baseUrl;
+			form.setAttribute('action',action1);
+			form.msg.value=getQueryVariable('msg');
+			form.bankUrl.value=getQueryVariable('bankUrl');
+			form.orgId.value=getQueryVariable('orgId');
+			form.tokenNo.value=getQueryVariable('tokenNo');	
+			form.submit();
+			console.log("action1 ::: "+action1);
+		}
+		</script>
+	</head>
+	<body onLoad="setFormData()">
+		<div><h1>Please Wait...</h1></div>
+		<form action="http://www.google.com" method="post" name="payuForm" id="payuForm">
+			<input type="hidden" name="msg" value=""/>
+			<input type="hidden" name="tokenNo" value=""/>
+			<input type="hidden" name="orgId" value=""/>
+			<input type="hidden" name="bankUrl" value=""/>
+		</form>
+	</body>
+</html>

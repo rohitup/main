@@ -1,0 +1,116 @@
+
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+ <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="CompDeptCtrl">
+<h3 class="heading">Complaint Registration Department</h3>
+<form>
+ <div id="">
+    <div class="list list-borderless" >
+  	  <h3 class="heading">Complaint Details</h3>
+  	  
+		    <label class="item item-select height-padding">
+				<span class="labelcss" >Department:</span>
+					<select class="select-box" data-ng-model="NewCompDeptdetails" ng-click="deptartmmentperfix()"
+					ng-options="o.deptid as o.deptname for o in deptoptions">
+					<option value="">Select</option></select>
+			</label> 
+			 
+			<label class="item item-select height-padding">
+				<span class="labelcss" >Complaint Type:</span>
+					<select class="select-box" data-ng-model="NewCompType" >
+					<option value="">Select</option></select>
+			</label>
+			
+			<label class="item item-input height-padding">
+		          <span class="input-label labelcss">Complaint Description:</span>
+		           <input type="text" class="input-box" data-ng-model="NewCompDescription" >
+		    </label>
+		    
+		     <label class="item item-input height-padding">
+		          <span class="input-label labelcss">Pincode:</span>
+		          <input type="number" class="input-box" data-ng-model="NewCompPincode" >
+		     </label><div class="spacer" style="height: 10px;"></div>
+		        
+		      <label class="item item-select height-padding">
+		          <span class="labelcss">Complaint Location:</span>
+		           <select class="select-box" data-ng-model="NewCompLocation" >
+					<option value="">Select</option></select>
+		      </label>
+			
+			  <label class="item item-input height-padding">
+		          <span class="input-label labelcss">Landmark(if any):</span>
+		          <input type="text" class="input-box" data-ng-model="NewCompLandmark" >
+		      </label>
+			
+			  <label class="item item-input height-padding">
+				<span class="input-label labelcss required">Upload Document:</span>
+		         <input type="file" class="input-box" id="" data-ng-model="NewCompDocument" />
+		     </label>
+		     
+        </div>
+ <!--    
+     <div class="padding">
+		   <button ng-click="" class="button button-block button-positive customBgColor">
+		   <span translate="">Proceed</span></button>
+	</div> -->
+</div>	
+</form>
+
+<form>
+ <div id="">
+    <div class="list list-borderless" >
+  	  <h3 class="heading">Reference Details</h3>
+  	  
+		    <label class="item item-select height-padding">
+				<span class="labelcss" >Mode:</span>
+					<select class="select-box" data-ng-model="NewCompDeptdetails" ng-click="deptartmmentperfix()"
+					ng-options="o.deptid as o.deptname for o in deptoptions">
+					<option value="">Select</option></select>
+			</label> 
+			 
+			<label class="item item-select height-padding">
+				<span class="labelcss" >Category:</span>
+					<select class="select-box" data-ng-model="NewCompType" >
+					<option value="">Select</option></select>
+			</label>
+			
+			<label class="item item-input">
+		          <span class="input-label labelcss">Reference Date:</span>
+		          <input type="Date" class="input-box" data-ng-model="NewCompDescription" >
+		    </label>
+		     
+        </div>
+    
+     <div class="padding">
+		   <button ng-click="" class="button button-block button-positive customBgColor">
+		   <span translate="">Submit</span></button>
+	</div>
+</div>	
+</form>
+
+</ion-content>
+    
+</ion-view>
+
+<style>
+
+.customBgColor{	background-color: #36979e !important;}
+.red{background-color: #E15554 !important; /*E15554*/}
+.green{	background-color: #68C39F !important; /*#68C39F*/ }
+.customBgColorWhite{background-color: #ffffff !important; }
+.fonth3 {font-size: 24px !important;}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+.padding .item{padding:10px !important;}
+
+</style>

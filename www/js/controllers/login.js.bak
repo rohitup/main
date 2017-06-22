@@ -1,0 +1,290 @@
+angular.module('starter')
+
+.directive('myMaxlength', function() {
+	  return {
+	    require: 'ngModel',
+	    link: function (scope, element, attrs, ngModelCtrl) {
+	      var maxlength = Number(attrs.myMaxlength);
+	      function fromUser(text) {
+	          if (text.length > maxlength) {
+	            var transformedInput = text.substring(0, maxlength);
+	            ngModelCtrl.$setViewValue(transformedInput);
+	            ngModelCtrl.$render();
+	            return transformedInput;
+	          } 
+	          return text;
+	      }
+	      ngModelCtrl.$parsers.push(fromUser);
+	    }
+	  }; 
+	})
+
+.directive('restrictInput', [function(){
+
+      return {
+          restrict: 'A',
+          link: function (scope, element, attrs) {
+              var ele = element[0];
+              var regex = RegExp(attrs.restrictInput);
+              var value = ele.value;
+
+              ele.addEventListener('keyup',function(e){
+                  if (regex.test(ele.value)){
+                      value = ele.value;
+                  }else{
+                      ele.value = value;
+                  }
+              });
+          }
+      };
+  }])   
+ 
+.directive('uiShowPassword', [
+  function () {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function (scope, elem, attrs) {
+      var btnShowPass = angular.element('<button style="width:10px;height:20px;" class="button button-clear"><i class="ion-eye"></i></button>'),
+        elemType = elem.attr('type');
+
+      // this hack is needed because Ionic prevents browser click event 
+      // from elements inside label with input
+      btnShowPass.on('mousedown', function (evt) {
+        (elem.attr('type') === elemType) ?
+          elem.attr('type', 'text') : elem.attr('type', elemType);
+        btnShowPass.toggleClass('button-positive');
+        //prevent input field focus
+        evt.stopPropagation();
+      });
+
+      btnShowPass.on('touchend', function (evt) {
+        var syntheticClick = new Event('mousedown');
+        evt.currentTarget.dispatchEvent(syntheticClick);
+
+        //stop to block ionic default event
+        evt.stopPropagation();
+      });
+
+      if (elem.attr('type') === 'password') {
+        elem.after(btnShowPass);
+      }
+    }
+  };
+}])
+
+
+  .controller('LoginPageCtrl', function ($scope, $location, RestService, $ionicLoading, $stateParams, toaster, $filter, ENV, dateFilter, 
+	  $state, $ionicSideMenuDelegate, sharedProperties,localStorageService,$ionicHistory,$rootScope) {
+	  $scope.isMainPanel = true;
+	  $scope.districtOptions = new Array();
+	  $scope.ulbOptions = new Array();
+	  $scope.loginmobilenumber;
+	  $scope.loginPassword;
+	  $scope.OrgID;
+	  $scope.UserID;
+	  $scope.districtlist = {};
+	  $scope.data_ = {};	  
+	  var UserType = "D";
+	  var userTypeValueId = "";
+	  var pgMobileNo;
+	 var egEmID ;
+	 
+	 var empAddress	;
+	 var empAddress1; 
+	 var empGender;
+	 var emptitle ;
+	  $ionicSideMenuDelegate.canDragContent(false)
+	  
+	   
+		  
+//	  $scope.login = function() {$state.go("app.home");}
+	  
+	  $scope.ifnotregister = function() {
+//		  alert("gaya");
+		  	$state.go("app.Register");
+	  }
+	  
+	 
+	  
+	  
+	  $scope.changedValue=function(item){
+		  
+		  $ionicLoading.show({
+						template: 'Loading...'
+					});
+		  $scope.ulbOptions.length = 0;
+		  RestService.getUlbList(item.id).then(function (response) {
+			  for(var i=0;i<response.length;i++){
+					
+					$scope.ulbOptions.push({
+					id : response[i].lookUpId,
+					name : response[i].descLangFirst
+				})
+				
+			}
+			  
+		  $ionicLoading.hide();
+		}, function (err) {
+			$ionicLoading.hide();
+		})
+	  };
+	  $scope.changedUlbValue=function(item){
+		 
+		  $scope.OrgID = item.id;
+		  localStorageService.set('orgID', item.id);
+		  localStorageService.set('orgName', item.name);
+		  $ionicLoading.show({
+						template: 'Loading...'
+					});
+		  
+		  RestService.getEmpType(item.id).then(function (response) {
+			var getEmployeeDetail = response;
+			UserType = getEmployeeDetail.deptment.lookUpCode;
+			if(UserType == "D"){
+		       	console.log("userTypeValue ::: "+getEmployeeDetail);
+		       	userTypeValueId = getEmployeeDetail.deptment.lookUpId;
+
+		       //	window.localStorage.setItem('UserTypeValueId', userTypeValueId);
+
+		       } 
+		  $ionicLoading.hide();
+		}, function (err) {
+			$ionicLoading.hide();
+		})
+	  };
+	  
+	  $scope.login = function() {
+		  if(!$scope.data_.loginmobilenumber == ""){
+			 
+				 $ionicLoading.show({
+						template: 'Loading...'
+					});
+				 
+//	 $localStorage.LocalMessage = "LocalStorage: My LocalStorage is Working.";
+		RestService.loginservice($scope.data_.loginmobilenumber,$scope.data_.loginPassword,UserType,$scope.OrgID,userTypeValueId).then(function (responselogindata){
+			console.log("responselogindata---"+JSON.stringify(responselogindata));
+						var empId = responselogindata.empId;
+					 	localStorageService.set('empId', empId);
+//					 	alert("EMP_ID_1"+empId);
+					 	if(empId!=0 && empId!=undefined) 
+					 	{
+							toaster.success($filter('translate')('LOGIN_DONE'));
+							//console.log("jwt token"+headers('jwtToken'));
+							 //console.log('jwttoken: ' + responselogindata.headers('jwtToken'));
+							 //$httpProvider.defaults.headers.post['Authorization']  = responselogindata.headers('jwtToken');
+							 //$rootScope.$broadcast("JwtToken",data.headers('jwtToken'));
+							var pgaplName = responselogindata.empName;
+						 	 var pgaplMName = responselogindata.empMName;
+						 	 var pgaplLName = responselogindata.empLName;
+							 var fullName = pgaplName+""+pgaplMName+""+pgaplLName;
+							 
+						 	localStorageService.set('EmpName', pgaplName);
+						 	//$("#homeUser").text(pgaplName);
+						 	
+						 	 pgMobileNo = responselogindata.emploginname;
+						 	 egEmID = responselogindata.empemail;
+						 	 
+						 	 empAddress		=	responselogindata.empAddress;
+						 	 empAddress1	=	responselogindata.empAddress1; 
+						 	 empGender		=	responselogindata.empGender;
+						 	 emptitle   	=   responselogindata.tittle;
+						 	 
+						 	 if('pincode' in responselogindata)   // Checking address Key Present or not
+				             {
+						 		 empPincode = responselogindata.pincode; // Present Key
+				             }
+				             else
+				             {
+				            	 empPincode = responselogindata.corPincode;
+				             }
+							 $scope.districtlist.district = { id: 0, name: 'Select District'};
+							 $scope.ulblist.ulb = { id: 0, name: 'Select ULB'};
+							 
+							  $scope.data_ = {};
+							$ionicHistory.nextViewOptions({
+							   disableBack: true
+							});	
+							$state.go('app.home');
+							
+							
+						}else{
+					toaster.error($filter('translate')('ERROR'), $filter('translate')('WRONG_PASSWORD'));
+				}
+			 $ionicLoading.hide();
+		},
+		function (err) {
+			toaster.error($filter('translate')('ERROR'), $filter('translate')('WRONG_PASSWORD'));
+			$ionicLoading.hide();
+		  })
+			         
+	  } else{ alert ("Please Enter Correct Username or Password"); }
+	
+	  };
+	  
+	   $scope.forgotpage = function() {
+//		  alert("gaya");
+		  	
+			 $ionicLoading.show({
+						template: 'Loading...'
+					});
+			RestService.forgotoptservice($scope.data_.loginmobilenumber,$scope.OrgID,UserType,userTypeValueId).then(function (response) {
+			  
+			  
+						var status = response.status;
+						console.log("status ::: "+status);
+						alert(otpresendresponsemsg);
+						
+						if(status=='success')
+						{
+							
+							alert(data.responseMsg);	
+							$state.go("app.forgotpassword");
+						}
+						else
+						{
+							
+							alert(data.responseMsg);
+							//alert("Error Generating OTP. Please Try Again After Sometime.");
+						}
+					  $ionicLoading.hide();
+					}, function (err) {
+						alert(err);
+						$ionicLoading.hide();
+					})
+	  };
+	  
+	  
+	var _init = function (){
+		
+		$ionicLoading.show({
+						template: 'Loading...'
+					});
+		$scope.districtOptions.length = 0;
+		
+		RestService.getDistrictList().then(function (response) {
+			console.log("dash==="+response);
+			
+			
+			for(var i=0;i<response.length;i++){
+				
+					$scope.districtOptions.push({
+					id : response[i].lookUpId,
+					name : response[i].descLangFirst
+				})
+				
+			}
+			
+			$ionicLoading.hide();
+		}, function (err) {
+			$ionicLoading.hide();
+		})
+		
+						
+		
+  
+  
+    };
+    _init();  
+	  
+  })

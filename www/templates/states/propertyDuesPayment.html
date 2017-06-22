@@ -1,0 +1,113 @@
+<ion-view class="home-page">
+	<!--<ion-header-bar title="center" class="bar-stable">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+		<h1 class="title logo-app"><span ng-if="store.product._id">Product</span> <span ng-if="!store.product._id">Add category</span>
+		</h1>
+	</ion-header-bar>-->
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="PropertyDuesPaymentCtrl">
+	<h3 class="heading">Property Dues/Bill Payment</h3>
+		<form name="propertyDuesPaymentForm" ng-submit="propertySearch()" >
+			<label class="item item-input item-floating-label">
+				<span class="input-label">{{'PROPERTY_NO' | translate}}</span>
+				<input type="tel" placeholder="{{'PROPERTY_NO' | translate}}" name="searchProperty" ng-model="searchProperty" ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required />
+				<span class="errorMessage" ng-show="propertyDuesPaymentForm.searchProperty.$error.pattern">Please Enter Valid Property Number</span>
+			</label>
+    		<div class="padding">
+				<button type="submit" ng-disabled="propertyDuesPaymentForm.$invalid" class="button button-block button-positive customBgColor"><span translate="SUBMIT"></span></button>
+			</div>
+		</form>
+		<div ng-show="viewpropdetail == 'true' && searchProperty!=''">
+ 			<h3 class="heading">Property Dues</h3>
+ 			<table class="gridtable AmountTable">
+				<tr>
+					<th width="55%">Property Number</th>
+					<td>{{ KPDPropertyNo }}</td>
+				</tr>
+				<tr>
+					<th>Owner Name</th>
+					<td>{{ KPDOwnerName }}</td>
+				</tr>
+				<tr>
+					<th>Arrear Without Interest (Rs.)</th>
+					<td>{{ KPDArrearWoInt }}</td>
+				</tr>
+				<tr>
+					<th>Total Annual Tax (Rs.)</th>
+					<td>{{ KPDTotalTax }}</td>
+				</tr>
+				<tr>
+					<th>Rebate (Current)</th>
+					<td>{{ KPDRebate }}</td>
+				</tr>
+				<tr>
+					<th>Rain Water Harvesting Rebate (Rs.)</th>
+					<td>{{ KPDRainRebate }}</td>
+				</tr>
+				<tr ng-show="KPDArrearIntFlag">
+					<th>Arrears Interest (Rs.)</th>
+					<td>{{ KPDArrearInt }}</td>
+				</tr>
+				<tr ng-show="KPDCurrentIntFlag">
+					<th>Current Interest (Rs.)</th>
+					<td>{{ KPDCurrentInt }}</td>
+				</tr>
+				<tr ng-show="KPDPenaltyFlag">
+					<th>Interest / Penalty (Current + Arrears) (Rs.)</th>
+					<td>{{ KPDPenalty }}</td>
+				</tr>  
+				<tr ng-show="KPDNetChargeFlag">
+					<th>Net Service Charge Payable (If Applicable) (Rs.)</th>
+					<td>{{ KPDNetCharge }}</td>
+				</tr> 
+				<tr >
+					<th>Adjustment Amount (Rs.)</th>
+					<td>{{ KPDAdjAmt }}</td>
+				</tr>
+				<tr ng-show="KPDAdvAmtFlag">
+					<th>Advance Amount (Rs.)</th>
+					<td>{{ KPDAdvAmt }}</td>
+				</tr> 
+				<tr>
+					<th>Total Payable Amount (Rs.)</th>
+					<td>{{ KPDTotalPayable }}</td>
+				</tr>
+			</table>
+			<form name="propertySubmitForm">
+				<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+					<button type="button" class="button button-positive customBgColor customRadio" ng-class="{customRadioEnabled: propPayType == 'F'}" ng-model="totalAmtRadio" ng-click="totalAmountSelection()">Total Amount</button>
+					<button type="button" class="button button-positive customBgColor customRadio" ng-class="{customRadioEnabled: propPayType == 'P'}" ng-model="partialAmtRadio" ng-click="partialAmountSelection()">Partial Amount</button>
+				</div>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Payable Amount</span>
+					<input type="text" placeholder="Partial Amount" name="KPDPayableAmount" ng-model="KPDPayableAmount" ng-trim="false" ng-pattern="amountPattern" ng-disabled="propPayType == 'F'" required />
+					<span class="errorMessage" ng-show="propertySubmitForm.KPDPayableAmount.$error.pattern">Please Enter Valid Amount</span>
+				</label>
+				<div class="padding">
+					<button type="submit" ng-disabled="propertySubmitForm.$invalid" ng-click="submitPropertyDetails()" class="button button-block button-positive customBgColor"><span translate="SUBMIT"></span></button>
+				</div>
+			</form>
+		</div>
+		<!-- <div ng-include src="'templates/states/paymentGateway.html'" ng-show="paymentGatewayDetail"></div> -->
+		<!-- <div>
+			<form name="paymentGatewayForm">
+				<select class="select-dropdown" ng-options="b.bankValue as b.bankName for b in bankList" name="birthGenderSelect" id="" ng-model="paymentGatewaySelect" required>
+					<option value="" selected="true" disabled="disabled" style="display:none;">Select Payment Gateway*</option>
+				</select>
+				<div class="padding">
+					<button type="submit" ng-disabled="paymentGatewayForm.$invalid" ng-click="paymentGateway()" class="button button-block button-positive customBgColor"><span translate="PAY"></span></button>
+				</div>
+			</form>
+		</div> -->
+    </ion-content>
+</ion-view>

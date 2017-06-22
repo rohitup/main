@@ -1,0 +1,253 @@
+ <ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+
+<ion-content scroll="" ng-controller="applicationDetailCtrl" class="animated zoomIn" scroll="false">
+	
+	<ion-slide-box  show-pager="false"  ion-slide-tabs>
+		<ion-slide ion-slide-tab-label="Water Connection">
+			<!-- Water Connection -->
+			<form name="waterConnectionform">	
+			 <div class="list">
+				<label class="input-label padding-left-15 required" translate="">Applicant Type</label>
+				<select class="select-dropdown" name="MeterStatus" ng-model="MeterStatus" 
+					ng-options="o.meterid as o.metername for o in mstoptions" ng-disabled="disabled" required>
+					<option value="">Select</option>
+				</select>
+				<label class="input-label padding-left-15 required" translate="">Type Of Application </label>
+				<select class="select-dropdown" name="MeterStatus" ng-model="MeterStatus" 
+					ng-options="o.meterid as o.metername for o in mstoptions" ng-disabled="disabled" required>
+					<option value="">Select</option>
+				</select>
+				<label class="input-label padding-left-15 required" translate="">Title</label>
+					<select class="select-dropdown" name="WNCselecttitle" ng-model="WNCselecttitle" ng-click="ttlprefix()"
+					ng-options="o.ttlid as o.ttlname for o in ttloptions" id="appTTlID" ng-disabled="disabled" required>
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">First Name</span> 
+					<input type="text" placeholder="First Name*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Middle Name</span> 
+					<input type="text" placeholder="Middle Name" name="WNCMiddlename" ng-model="WNCMiddlename" ng-trim="false"
+					 ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled"/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCMiddlename.$error.pattern">Please Enter Valid Middle Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Last Name</span> 
+					<input type="text" placeholder="Last Name*" name="WNCLastname" ng-model="WNCLastname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCLastname.$error.pattern">Please Enter Valid Last Number</span>
+				</label>
+			 	<label class="input-label padding-left-15 required" translate="">Gender</label>
+				 <select class="select-dropdown" name="WNCgender" ng-model="WNCgender" ng-click="Genprefix()" id="wncgender"
+					ng-options="o.genid as o.genname for o in genoptions" ng-disabled="disabled" required>
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Mobile Number</span> 
+					<input type="number" placeholder="Mobile Number*" name="WNCmobile" ng-model="WNCmobile" id="mobileno" 
+					ng-keyup="tenLimitInputBpl()" ng-trim="false" ng-pattern="/^[0-9]{10,10}$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCmobile.$error.pattern">Please Enter Valid Mobile Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Email ID</span> 
+					<input type="text" placeholder="Email ID*" name="WNCemailid" ng-model="WNCemailid" id="wncEmailID" 
+					ng-trim="false" ng-pattern="/^[A-Za-z0-9/s,.'-@]{1,50}$/" ng-disabled="disabled"/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCemailid.$error.pattern">Please Enter Valid Email ID</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Flat No. / Building No</span> 
+					<input type="text" placeholder="Flat No. / Building No" name="WNCFirstname" ng-model="WNCFirstname" 
+					ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Building Name</span> 
+					<input type="text" placeholder="Building Name" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Road Name</span> 
+					<input type="text" placeholder="Road Name" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Block Name</span> 
+					<input type="text" placeholder="Block Name" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Area Name</span> 
+					<input type="text" placeholder="Area Name*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Area Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Village/Town/City</span> 
+					<input type="text" placeholder="Village/Town/City*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false"
+					 ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Pin code</span> 
+					<input type="number" placeholder="Pin code*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Aadhaar Number</span> 
+					<input type="text" placeholder="Aadhaar Number" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">BPL No</span> 
+					<input type="number" placeholder="BPL No" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Zone</span> 
+					<input type="text" placeholder="Zone" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Ward</span> 
+					<input type="text" placeholder="Ward" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Property No</span> 
+					<input type="number" placeholder="Property No" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				
+				</div> 
+			</form>
+		
+		</ion-slide>
+		
+		<ion-slide ion-slide-tab-label="Connection Details">
+			<label class="input-label padding-left-15 required" translate="">Consumer Types</label>
+				<select class="select-dropdown" name="MeterStatus" ng-model="MeterStatus" 
+					ng-options="o.meterid as o.metername for o in mstoptions" required ng-disabled="disabled">
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">No.of Family</span> 
+					<input type="text" placeholder="No.of Family" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false"
+					 ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">No. of Users</span> 
+					<input type="text" placeholder="No. of Users" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false"
+					 ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="input-label padding-left-15 required" translate="">Tariff Category</label>
+				<select class="select-dropdown" name="MeterStatus" ng-model="MeterStatus" 
+					ng-options="o.meterid as o.metername for o in mstoptions" disabled required>
+					<option value="">Select</option>
+				</select>
+				<label class="input-label padding-left-15 required" translate="">Premise Type</label>
+				<select class="select-dropdown" name="MeterStatus" ng-model="MeterStatus" 
+					ng-options="o.meterid as o.metername for o in mstoptions" disabled required>
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Plumber License No</span> 
+					<input type="text" placeholder="Plumber License No" name="WNCFirstname" ng-model="WNCFirstname" 
+					ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Application No</span> 
+					<input type="text" placeholder="Application No" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false"
+					 ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" disabled required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+				<label class="input-label padding-left-15 required" translate="">Connection Size</label>
+				<select class="select-dropdown" name="MeterStatus" ng-model="MeterStatus" 
+					ng-options="o.meterid as o.metername for o in mstoptions" ng-disabled="disabled" required>
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">No. of Taps</span> 
+					<input type="text" placeholder="No. of Taps" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" 
+					ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="disabled" required/>
+					<span class="errorMessage" ng-show="waterConnectionform.WNCFirstname.$error.pattern">Please Enter Valid Village/Town/City </span>
+				</label>
+
+		</ion-slide>
+		
+		<ion-slide ion-slide-tab-label="Document"><br>
+		
+		 	<table class="gridtable" frame="box" >
+				<tr>
+					<th>Sr.No</th>
+					<th>Document Name</th>
+					<th>Download</th>
+					
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Aadhaar Card Photocopy</td>
+					<td>20150624175854.pdf</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Last Paid Property Tax Receipt </td>
+					<td>20150624175854.pdf</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Yellow Ration Card</td>
+					<td>20150624175854.pdf</td>
+				</tr>
+				
+			</table>
+		
+			 <div class="padding">
+				 <button class="button button-block button-positive " ng-click="edit()">
+				 <span translate="">Edit</span></button>
+		     </div>
+		    
+			 <div class="row margin-0">
+			   <div class="col col-50" style="padding: 5px !important;">
+		             <button class="button button-block button-positive ">
+					 <span translate="">Scrutiny</span></button>
+		       </div>
+			
+			    <div class="col col-50" style="padding: 5px !important;">
+			        <button class="button button-block button-positive ">
+					<span translate="">Back</span></button>
+			   </div>
+			</div>
+		
+		</ion-slide>
+	
+	
+	</ion-slide-box>
+  
+</ion-content>
+</ion-view> 
+

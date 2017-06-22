@@ -1,0 +1,32 @@
+<ion-view>
+    <ion-content ng-controller="PayuCtrl">
+<form name="sendParam" method="post" action="https://test.payu.in/_payment" >
+  <input type="hidden" name="key" id="key" value="VPcm4L" />
+			<input type="hidden" name="hash" value="dfda8fa72d67d460b8d8a32c2e674560bebf4f3974c0f94a1bc74bbdc834f732ff6e7121ff2c0b82e0245ddf329d53783c71a59567e1882cb749d5f32a90204a"/>
+			<input type="hidden" name="txnid" value="394954" />
+		    <input type="hidden" name="surl" value="http://192.168.100.221:8082/BIHAR_PROJ/mobileOnlinePaymentController/PayuSuccess.ws" size="64" />
+			<input type="hidden" name="furl" value="http://192.168.100.221:8082/BIHAR_PROJ/mobileOnlinePaymentController/failPayu.ws" size="64" />	
+			<input type="hidden" name="curl" value="http://192.168.100.221:8082/BIHAR_PROJ/mobileOnlinePaymentController/failPayu.ws"/>				    
+			<input type="hidden" name="pg" value=""/>
+			<input type="hidden" name="udf1" value="950"/>
+			<input type="hidden" name="udf2" value="10015090300022"/>
+			<input type="hidden" name="udf3" value="1"/>
+			<input type="hidden" name="udf4" value="100"/>
+			<input type="hidden" name="udf5" value="PROP"/>
+			<input type="hidden" name="udf6" value="NA"/>
+			<input type="hidden" name="udf7" value="NA"/>
+			<input type="hidden" name="udf8" value="NA"/>
+			<input type="hidden" name="udf9" value="NA"/>
+			<input type="hidden" name="udf10" value="NA"/> 
+			<input type="hidden" name="firstname" value="Dharti Gohil" />
+			<input type="hidden" name="email" value="dharti.gohil@gmail.com" />
+			<input type="hidden" name="phone" value="8898954208" />
+			<input type="hidden" name="amount" value="2.0" />
+			<input type="hidden" name="productinfo" value="Property Tax Self assessment and Payment" />
+			<input type="submit" value="enter" style="position: absolute; left: -9999px"/> 
+		 </form>
+		 <script>
+document.sendParam.submit();
+</script>
+    </ion-content>
+</ion-view>

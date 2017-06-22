@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+	<link href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/AngularJS-Toaster/toaster.min.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- <link href="css/calendarview.css" rel="stylesheet"> -->
+    <link href="css/sweetalert.css" rel="stylesheet">
+	<link href="css/slidingTabs.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="lib/ui-calendar-master/bower_components/fullcalendar/dist/fullcalendar.css">
+	<!-- <link rel="stylesheet" href="css/calendarShiftView.css" /> -->
+	
+ 	<!-- <link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.css"> --> 
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+	<!-- <link rel="stylesheet" href="lib/ui-calendar-master/bower_components/bootstrap-css/css/bootstrap.css" /> -->
+    
+    
+  </head>
+  <body ng-app="starter" class="platform-android platform-cordova platform-webview" ng-controller="TodoCtrl">
+  <toaster-container toaster-options="{&apos;time-out&apos;: 3000, &apos;close-button&apos;:true, &apos;animation-class&apos;: &apos;toast-top-right&apos;}"></toaster-container>
+  <ion-nav-view></ion-nav-view>
+  
+
+    <!-- ionic/angularjs js -->
+    <!-- <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script> -->
+    <script src="lib/ui-calendar-master/bower_components/jquery/dist/jquery.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="lib/angular-translate/angular-translate.js"></script>
+    <script src="lib/AngularJS-Toaster/toaster.min.js"></script>
+    <script src="lib/angular-input-masks/angular-input-masks-standalone.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.js"></script>
+
+	<script src="lib/ui-calendar-master/bower_components/bootstrap-css/js/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="lib/ui-calendar-master/bower_components/moment/moment.js"></script>
+    <script src="lib/ui-calendar-master/bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="lib/ui-calendar-master/src/calendar.js"></script>
+    
+      
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <script src="js/ng-cordova.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/common.js"></script>
+	<script src="js/sweetalert-dev.js"></script>
+     
+	<!--PDF convert  -->
+	<script src="js/html2canvas.js"></script>
+	<script src="js/pdfmake.min.js"></script>
+     
+    <!-- Directives-->
+    <script src="js/directives/select_language.js"></script>
+    <script src="js/directives/upload.js"></script>
+
+    <!-- services -->
+    <script src="js/services/restful.js"></script>
+    
+    <!--ngStorage  -->
+	<script src="js/ngStorage.js"></script>
+	<script src="js/ngStorage.min.js"></script>
+   
+    <!--for payment  -->
+ 	<script src="js/crypto/hmac-sha256.js"></script> 
+    <script src="js/crypto/enc-base64-min.js"></script>  
+
+    <!-- controllers -->
+    <script src="js/controllers.js"></script>
+	<script src="js/JWT.js"></script>
+	
+	<script src="js/crypto/jwt-decode.js"></script> 
+
+    <script src="js/controllers/waterbillpay.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/spotbilling.js"></script>
+    <script src="js/controllers/newWaterconn.js"></script> 
+    <script src="js/controllers/register.js"></script>
+    <script src="js/controllers/image.js"></script>  
+    <script src="js/controllers/changeofusage.js"></script>  
+    <script src="js/controllers/changeofownership.js"></script>
+    <script src="js/controllers/contactus.js"></script>
+    <script src="js/controllers/aboutUs.js"></script>
+    <script src="js/controllers/publicnotices.js"></script>
+    <script src="js/controllers/faq.js"></script>
+    <script src="js/controllers/forgotpwd.js"></script>
+    <script src="js/controllers/complaintpage.js"></script>
+    <script src="js/controllers/complaintreg.js"></script>
+   <!--  <script src="js/controllers/complaintstatus.js"></script> -->
+    <script src="js/controllers/complainttaskpage.js"></script>
+    <script src="js/controllers/complaintcarepage.js"></script>
+    <script src="js/controllers/complaintdepartment.js"></script>
+    <script src="js/controllers/citizencomplreceipt.js"></script>
+    <script src="js/controllers/tokenpage.js"></script>
+    <script src="js/controllers/reopenpage.js"></script>
+<script src="js/controllers/ApplnDetail.js"></script>
+	<script src="js/slidingTabsDirective.js"></script>
+	<script src="js/controllers/PDF.js"></script>
+	<!--Water  Bill Pay  -->
+	<script src="js/controllers\WaterCTRL\WaterBillCTRL\waterBillpay.js"></script>
+	<script src="js/controllers\WaterCTRL\WaterBillCTRL\billpayPage.js"></script>
+	<script src="js/controllers\WaterCTRL\WaterBillCTRL\taxdetail.js"></script>
+	
+	<!--Spot Billing  -->
+	<script src="js/controllers\WaterCTRL\SpotBillingCTRL\SpotBilling.js"></script>
+	<script src="js/controllers\WaterCTRL\SpotBillingCTRL\meterReaddetails.js"></script>
+	<script src="js/controllers\WaterCTRL\SpotBillingCTRL\generateBill.js"></script>
+	<script src="js/controllers\WaterCTRL\SpotBillingCTRL\spotBillpay.js"></script>
+	
+	<!--change of Usage  -->
+	<script src="js\controllers\WaterCTRL\ChangeOfUsageCTRL\ChangeofUsage.js"></script>
+	<script src="js\controllers\WaterCTRL\ChangeOfUsageCTRL\COUoldNewdetails.js"></script>
+	<script src="js\controllers\WaterCTRL\ChangeOfUsageCTRL\COUdocUpload.js"></script>
+	<script src="js\controllers\WaterCTRL\ChangeOfUsageCTRL\COUpayment.js"></script>
+	
+	<!--change of Owner  -->
+	<script src="js\controllers\WaterCTRL\ChangeOfOwnerCTRL\ChangeofOwner.js"></script>
+	<script src="js\controllers\WaterCTRL\ChangeOfOwnerCTRL\COoldNewdetail.js"></script>
+	<script src="js\controllers\WaterCTRL\ChangeOfOwnerCTRL\COdocUpload.js"></script>
+	<script src="js\controllers\WaterCTRL\ChangeOfOwnerCTRL\COpayment.js"></script>
+	
+	<!-- new water connnection  -->
+	<script src="js\controllers\WaterCTRL\waterModule.js"></script>
+	<script src="js\controllers\WaterCTRL\NewWaterConnCTRL\NewWaterconnection.js"></script>
+	<script src="js\controllers\WaterCTRL\NewWaterConnCTRL\NWCApplicantInfo.js"></script>
+	<script src="js\controllers\WaterCTRL\NewWaterConnCTRL\NWCApplicantAddress.js"></script>
+	<script src="js\controllers\WaterCTRL\NewWaterConnCTRL\NWCExistConndetails.js"></script>
+	<script src="js\controllers\WaterCTRL\NewWaterConnCTRL\NWCuploadoc.js"></script>
+	<script src="js\controllers\WaterCTRL\NewWaterConnCTRL\NWCpayment.js"></script>
+	
+	<!-- water Disconnection -->
+	<script src="js\controllers\WaterCTRL\waterDisconnectionCTRL\waterDisconnection.js"></script>
+	<script src="js\controllers\WaterCTRL\waterDisconnectionCTRL\UploadDoc.js"></script>
+	<script src="js\controllers\WaterCTRL\waterDisconnectionCTRL\DissconnPay.js"></script>
+	
+	<!-- water Reconnection -->
+	<script src="js\controllers\WaterCTRL\waterReconnectionCTRL\waterReconnection.js"></script>
+	
+	<!-- Complaint  -->
+	<script src="js/controllers/ComplaintCTRL/complaintPage.js"></script>
+    <script src="js/controllers/ComplaintCTRL/lodgeComplaint.js"></script>
+    <script src="js/controllers/ComplaintCTRL/complainteceipt.js"></script>
+    <script src="js/controllers/ComplaintCTRL/complaintstatus.js"></script>
+    <script src="js/controllers/ComplaintCTRL/compstatusdetail.js"></script>
+    <script src="js/controllers/ComplaintCTRL/reopentokenpage.js"></script>
+	 
+	   <!--RTI controller  -->
+    <script src="js/controllers/RTIcontroller/RTIpage.js"></script>
+    <script src="js/controllers/RTIcontroller/RTIpageform1.js"></script>
+    <script src="js/controllers/RTIcontroller/RTIpageform2.js"></script>
+    <script src="js/controllers/RTIcontroller/RTIapplnReceipt.js"></script>
+    <script src="js/controllers/RTIcontroller/RTIapplnstatus.js"></script>
+    
+    <!-- applicantion status -->
+    <script src="js/controllers/ApplicantionStatusCTRL/applnstatus.js"></script> 
+    
+    <!-- Trade AND License -->
+    <script src="js/controllers/TradeandLicenseCTRL/tradeandlicense.js"></script>
+    
+    <!--LOI details  -->
+    <script src="js/controllers/LOICtrl/LOIDetailpage.js"></script>
+    <script src="js/controllers/LOICtrl/Loidetailsctrl.js"></script>
+    <script src="js/controllers/LOICtrl/LOIDetailPay.js"></script>
+    
+    <!-- BirthandDeath -->
+    <script src="js/controllers/BirthandDeath/birthanddeathhome.js"></script>
+    <script src="js/controllers/BirthandDeath/birthRegistration.js"></script>
+    <script src="js/controllers/BirthandDeath/birthRegistrationView.js"></script>
+    <script src="js/controllers/BirthandDeath/deathRegistration.js"></script>
+    <script src="js/controllers/BirthandDeath/deathRegistrationViewdetails.js"></script>
+    <script src="js/controllers/BirthandDeath/issueBirth.js"></script>
+    <script src="js/controllers/BirthandDeath/IssueBirthReceipt.js"></script>
+    <script src="js/controllers/BirthandDeath/IssueBirthPayReceipt.js"></script>
+    <script src="js/controllers/BirthandDeath/issueDeath.js"></script>
+    <script src="js/controllers/BirthandDeath/IssueDeathReceipt.js"></script>
+    <script src="js/controllers/BirthandDeath/IssueDeathPayReceipt.js"></script>
+    
+    <!--Rent Lease  -->
+    <script src="js\controllers\RentAndLease\estateBooking.js"></script>
+    <script src="js\controllers\RentAndLease\estateBookingDetails.js"></script>
+    <script src="js\controllers\RentAndLease\estateBookProp.js"></script>
+    <script src="js\controllers\RentAndLease\BookestateApplnInfo.js"></script>
+    <script src="js\controllers\RentAndLease\BookingDetails.js"></script>
+    <script src="js\controllers\RentAndLease\bookeStateDoc.js"></script>
+    <script src="js\controllers\RentAndLease\eststeBookingpay.js"></script>
+
+	<!--BRMS-->
+    <script src="js\controllers\BRMS\checklistUpload.js"></script>
+    <script src="js\controllers\BRMS\paymentPage.js"></script>
+    
+    <!-- payment Receipt -->
+    <script src="js/controllers/PaymentReceipt/paymentreceipt.js"></script>
+    
+    <!--property  -->
+	<script src="js/controllers/propertyDuesPayment.js"></script>
+	<script src="js/controllers/paymentGateway.js"></script>
+	<script src="js/controllers/noChangePropertySearch.js"></script>
+	<script src="js/controllers/noChangePropertyDetail.js"></script>
+	<script src="js/controllers/noChangePropertyPayment.js"></script>
+	<!-- <script src="js/controllers/payupaymentcall.js"></script> -->
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?&sensor=false&key=AIzaSyD2-TSMnAOAKU6CIsky94MwWCvxLMsNfEQ&libraries=places">
+    </script>
+  </body>
+</html>

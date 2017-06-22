@@ -1,0 +1,50 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="DeathRegistrationViewCtrl" class="animated zoomIn">
+		<div>
+			<h3 class="heading">Death Registration Details</h3>
+			<table class="gridtable" ng-repeat="deathDetail in deathDetailList track by $index">
+				<tr>
+					<th class="head" colspan="2">Death Detail - {{$index + 1}}</th>
+				</tr>
+				<tr ng-if="deathDetail.deathRegNo">
+					<th width="45%">Registration Number</th>
+					<td>{{ deathDetail.deathRegNo }}</td>
+				</tr>
+				<tr ng-if="deathDetail.deathDeceasedName">
+					<th>Deceased Name</th>
+					<td>{{ deathDetail.deathDeceasedName }}</td>
+				</tr>
+				<tr ng-if="deathDetail.deathGender">
+					<th>Gender</th>
+					<td>{{ deathDetail.deathGender }}</td>
+				</tr>
+				<tr ng-if="deathDetail.deathDod">
+					<th>Date of Demise</th>
+					<td>{{ deathDetail.deathDod }}</td>
+				</tr>
+				<tr ng-if="deathDetail.deathHospitalName" ng-trim="true">
+					<th>Death Place</th>
+					<td>{{ deathDetail.deathHospitalName }}</td>
+				</tr>
+				<tr ng-if="deathDetail.deathMotherName">
+					<th>Mother Name</th>
+					<td>{{ deathDetail.deathMotherName }}</td>
+				</tr>
+				<tr ng-if="deathDetail.deathReasonDeath">
+					<th>Reason of Death</th>
+					<td>{{ deathDetail.deathReasonDeath }}</td>
+				</tr>
+			</table>
+		</div>
+    </ion-content>
+</ion-view>

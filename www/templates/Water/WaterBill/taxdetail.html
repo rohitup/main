@@ -1,0 +1,61 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="taxdetailCtrl" class="animated zoomIn">
+<h1 class="heading">Payable Amount Details</h1> 
+<form name="taxDetails" >
+<div class="list">
+  <table class="gridtable" >
+	<tr>
+	   <th>Tax Description</th>
+	   <th>Arrears Amount</th>
+	   <th>Tax Amount</th>
+	   <th>Total Amount</th>
+	</tr>
+	<tr ng-repeat = "subject in docsitems">
+		<td>{{ subject.taxdesc }}</td>
+		<td>{{ subject.arrear }}</td>
+		<td>{{ subject.taxamt }}</td>
+		<td>{{ subject.total }}</td>
+	</tr>
+</table>
+<table class="gridtable" >
+	<tr>
+	   <th style="width: 50%;">Adjustment Entry</th>
+	   <td>{{ subject.taxdesc }}</td>
+	</tr>
+	<tr>
+	   <th style="width: 50%;">Adjusted Amount</th>
+	   <td>{{ subject.taxdesc }}</td>
+	</tr>
+	<tr>
+	   <th style="width: 50%;">Balance Excess Amount</th>
+	   <td>{{ subject.taxdesc }}</td>
+	</tr>
+	<tr>
+	   <th style="width: 50%;">Rebate</th>
+	   <td>{{ subject.taxdesc }}</td>
+	</tr>
+</table>
+	<div class="padding">
+		<button ng-click="homepage()" class="button button-block button-positive customBgColor">
+		<span translate="">Back</span></button>
+	</div>
+	
+</div>	
+   
+
+</form>
+</ion-content>
+</ion-view>
+
+

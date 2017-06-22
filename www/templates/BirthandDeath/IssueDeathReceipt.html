@@ -1,0 +1,66 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	
+	<ion-content ng-controller="IssueDeathReceiptCtrl" class="animated zoomIn">
+	<form name="IssueDeathReceiptForm" ng-submit="paydeathbutton()">
+		<div>
+			<h3 class="heading">Issue Death Certificate</h3>
+			<table class="gridtable">
+				<tr>
+					<th class="head" colspan="2">Issue Death Certificate</th>
+				</tr>
+				<tr>
+					<th>Application Number</th>
+					<td>{{ deathReceiptapplID }}</td>
+				</tr>
+				<tr>
+					<th>Death Registration Number</th>
+					<td>{{ deathReceiptDeathRegnumber }}</td>
+				</tr>
+				<tr>
+					<th>Deceased Name</th>
+					<td>{{ deathReceiptdeceasedName }}</td>
+				</tr>
+				<tr>
+					<th>Gender</th>
+					<td>{{ deathReceiptGender }}</td>
+				</tr>
+				<tr>
+					<th>Date of Death</th>
+					<td>{{ deathReceiptDOB }}</td>
+				</tr>
+				<tr>
+					<th>Father Name</th>
+					<td>{{ deathReceiptfatherName }}</td>
+				</tr>
+				<tr>
+					<th>Mother Name</th>
+					<td>{{ deathReceiptmotherName }}</td>
+				</tr>
+				<tr>
+					<th>Death Place</th>
+					<td>{{ deathReceiptdeathPlace }}</td>
+				</tr>
+				<tr>
+					<th>Certificate Amount</th>
+					<td>{{ deathReceiptcertificateAmt }}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="padding">
+			<button ng-click="paydeathbutton()" class="button button-block button-positive customBgColor">
+				<span translate="">PAY</span>
+			</button>
+		</div>
+		
+	</form>
+    </ion-content>
+</ion-view>

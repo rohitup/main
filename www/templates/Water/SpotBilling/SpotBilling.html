@@ -1,0 +1,46 @@
+<ion-view>
+    <!-- <ion-nav-title>
+        <span translate="FIX_HEADER"></span>
+    </ion-nav-title> -->
+    
+  <ion-nav-title>
+ 	 <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet<sup>&reg;</sup></h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="SpotBillCtrl" class="animated zoomIn">
+<form name="SpotBillSearchForm">
+ 	<h3 class="heading">Spot Billing</h3>
+ 	
+ 	<div class="list">
+       <!--  <span class="item item-input" style="padding: 0 0 0 16px;" >
+            <input type="text" placeholder="{{'CONNECTION_NUMBER' | translate}}" class="labelcss" data-ng-model="searchspotbill" >
+			<button ng-click="spotsearch1()" class="button button-positive customBgColor" style="border-radius: 0px 2px 2px 0px;">
+			<i class="icon ion-search fonth3"></i></button>
+        </span>   --> 
+        
+   <label class="item item-input item-floating-label"> 
+		<span class="input-label required">Connection Number</span>
+		<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}" name="searchspotbill" ng-model="searchspotbill" id="connectionNosearch"
+	     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" required/>
+		<span class="errorMessage" ng-show="SpotBillSearchForm.searchspotbill.$error.pattern">Please Enter Valid Connection Number</span>
+	</label>
+
+	 <div class="padding"> 
+		<button ng-disabled="!SpotBillSearchForm.$valid" ng-click="spotsearch()" class="button button-block button-positive customBgColor">
+		<i class="icon ion-search fonth3"></i>
+		<span translate="">Search</span></button>
+ 	</div> 
+            
+    </div> 
+</form>   
+ 
+
+    </ion-content>
+ </ion-view>   

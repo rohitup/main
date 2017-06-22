@@ -1,0 +1,42 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="NoChangePropertySearchCtrl">
+		<h3 class="heading">{{'FILE_NC' | translate}}</h3>
+		<form name="noChangeSearchForm" ng-submit="noChangeSearch()">
+			<label class="item item-input item-floating-label">
+				<span class="input-label">{{'PROPERTY_NO' | translate}}</span>
+				<input type="tel" placeholder="{{'PROPERTY_NO' | translate}}" name="searchPropNo" ng-model="searchPropNo" ng-trim="false" ng-pattern="/^[0-9]{1,9}$/" ng-keyup="keypressevtPropno()" ng-required="!(searchPropNo.length || searchPID.length)" />
+				<span class="errorMessage" ng-show="noChangeSearchForm.searchPropNo.$error.pattern">Please Enter Valid Property Number</span>
+			</label>
+			<div class="center">{{'OR' | translate}}</div>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">{{'OLD_PID' | translate}}</span>
+				<input type="tel" placeholder="{{'OLD_PID' | translate}}" name="searchPID" ng-model="searchPID" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" ng-keyup="keypressevtOldpid()" ng-required="!(searchPropNo.length || searchPID.length)" />
+				<span class="errorMessage" ng-show="noChangeSearchForm.searchPID.$error.pattern">Please Enter Valid Old PID</span>
+			</label>
+			<div class="padding" ng-show="!showOTPForm">
+				<button type="submit" ng-disabled="noChangeSearchForm.$invalid" class="button button-block button-positive customBgColor"><span translate="SUBMIT"></span></button>
+			</div>
+		</form>
+		<form name="noChangeOTPForm" ng-submit="viewAssessDetail()" ng-show="showOTPForm">
+			<label class="item item-input item-floating-label">
+				<span class="input-label">{{'OTP_NO' | translate}}</span>
+				<input type="tel" placeholder="{{'OTP_NO' | translate}}" name="assessVerOTP" ng-model="assessVerOTP" ng-trim="false" ng-pattern="/^[0-9]{6,6}$/" required />
+				<span class="errorMessage" ng-show="noChangeOTPForm.assessVerOTP.$error.pattern">Please Enter Valid OTP Number</span>
+			</label>
+			<a ng-click="sendPropOtp();" class="right">{{'RESEND_OTP' | translate}}</a>
+    		<div class="padding">
+				<button type="submit" ng-disabled="noChangeOTPForm.$invalid" class="button button-block button-positive customBgColor"><span translate="SUBMIT"></span></button>
+			</div>
+		</form>
+    </ion-content>
+</ion-view>

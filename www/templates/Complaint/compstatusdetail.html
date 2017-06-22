@@ -1,0 +1,83 @@
+<ion-view>
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button> 
+</ion-nav-buttons>
+    
+<ion-content ng-controller="ComplaintstatusDetailctrl" class="animated zoomIn backgroundimage">
+    <h3 class="heading" translate="COMPLSTATUS"></h3>
+	
+<form name="tableform" class="animated zoomIn">
+	<table class="gridtable">
+		<tr>
+			<th>Organization</th>
+			<td>{{ organizationName }}</td>
+		</tr>
+		<tr>
+			<th>Token No</th>
+			<td>{{ tokenNo }}</td> 
+		</tr>
+		<tr>
+			<th>Date</th>
+			<td>{{ date }}</td>
+		</tr>
+		<tr>
+			<th>Complaint Type</th>
+			<td>{{ complaintType }}</td>
+		</tr>
+		<tr>
+			<th>Complaint Sub Type </th>
+			<td>{{ complaintSubType }}</td>
+		</tr>
+		<tr>
+			<th>Location</th>
+			<td>{{ ward }} </td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>{{ description }}</td>
+		</tr>
+	</table>
+	
+<div ng-if="esctable">
+<h3 class="heading" translate="COMPLESCDETS" ></h3>
+  <table class="gridtable" ng-repeat="subject in escalDetailsList" >
+		<tr>
+			<th>Level</th>
+			<td>{{ subject.level }}</td> 
+		</tr>
+		<tr>
+			<th>Duration</th>
+			<td>{{ subject.duration }}</td>
+		</tr>
+		<tr>
+			<th>Employee Name</th>
+			<td>{{ subject.empName }}</td>
+		</tr>
+		<tr> 
+			<th>Designation</th>
+			<td>{{ subject.Designation }}</td>
+		</tr>
+		<tr>
+			<th>Department</th>
+			<td>{{ subject.Department }}</td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td>{{ subject.Email }}</td>
+		</tr>
+		<tr>
+			<th>Status</th>
+			<td>{{ subject.Decision }}</td>
+		</tr>
+	</table>
+</div>	
+</form>
+     
+  </ion-content>
+</ion-view>
+

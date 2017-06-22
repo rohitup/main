@@ -1,0 +1,51 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-dark">
+        <h1 class="title logo-app">Receipt Collection Details</h1>
+        <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModalReceiptCollection()"></button>
+    </ion-header-bar>
+    <ion-content scroll="false" ng-controller="AccReceiptCollectionCtrl">
+        <form name="accReceiptCollectionForm"  ng-submit="updateCategory()">
+            <div class="list">
+            	<div class="padding-left-15 customBgColor">(<span class="required"></span>) <span translate="ALL_FIELDS"></span></div>
+            	<label class="input-label padding-left-15 required" translate="RECEIVED_FROM"></label>
+				<ion-receipt-head-select title="Search" key-property="value" value-property="name" options="receiptHeadsList" option-selected="receiptHeadsList.name">
+					<input type="hidden" ng-model="CRReceiptHeadId" />						  
+					<input class="select-dropdown" style="color: #000; margin-left: 5px;" type="text" ng-model="CRReceiptHead" placeholder="{{'SELECT'|translate}}" disabled>
+				</ion-receipt-head-select>
+                <!--<label class="input-label padding-left-15 required" translate="RECEIVED_FROM"></label>
+				<select class="select-dropdown" name="CRReceiptHead" ng-model="CRReceiptHead" ng-options="o.value as o.name disable when o.disabled for o in receiptHeadsList" required>
+					<option value="">{{'SELECT'|translate}}</option>
+				</select> -->
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="AMOUNT"></span> 
+					<input type="tel" placeholder="{{'AMOUNT'|translate}}*" name="CRRCAmount" ng-model="CRRCAmount" ng-trim="false" ng-pattern="/^[0-9]{1,6}$/" required/>
+					<span class="errorMessage" ng-show="accReceiptCollectionForm.CRRCAmount.$error.pattern">Please Enter Valid Amount</span>
+				</label>
+            </div>
+            <div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+				<button ng-disabled="accReceiptCollectionForm.$invalid" type="button" class="button button-positive twoButtons" ng-click="addReceiptCollectionDetail('save')">Save</button>
+				<button ng-disabled="accReceiptCollectionForm.$invalid" type="button" class="button button-positive twoButtons" ng-click="addReceiptCollectionDetail('savenew')">Save & Add</button>
+			</div>
+        </form>
+    </ion-content>
+</ion-modal-view>
+<script id="templates/receiptHeadSelect.html" type="text/ng-template">
+	<ion-modal-view>
+		<ion-header-bar>
+		<button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal();"></button>
+		<label class="item item-input searchBox" ng-if="searchSelect.enableSearch">
+			<input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="searchSelect.searchvalue" />
+		</label>
+		</ion-header-bar>
+		<ion-content>
+			<div class="list">
+				<div ng-if="searchSelect.keyProperty && searchSelect.valueProperty">
+					<ion-radio class="colorPositive" collection-repeat="option in options | filter: searchSelect.searchvalue" item-height="65px" item-width="100%" ng-value="option[searchSelect.keyProperty]" ng-click="saveOption()" ng-checked="option[searchSelect.selectedProperty]" ng-model="searchSelect.option">
+		                 {{ option[searchSelect.valueProperty] }}
+					</ion-radio>
+				</div>
+				
+			</div>
+		</ion-content>
+	</ion-modal-view>
+</script>

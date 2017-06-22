@@ -1,0 +1,48 @@
+	
+<ion-view>
+   <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="NewWaterconnUploadDocCTRL" class="animated zoomIn backgroundimage">
+<h3 class="heading" translate="UPLOADATT"> </h3>
+<form name="uploadattachdiv" novalidate>
+	<div class="list">
+	
+			<table class="gridtable" ng-repeat = "subject in docsitems">
+				<tr>
+					<th>Sr.No</th>
+					<!-- <td>{{ subject.docSerialNo }}</td> -->
+					<td>{{$index + 1}}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ subject.docDesceng }}</td>
+				</tr>
+				<tr>
+					<th>Mandatory</th>
+					<td>{{ subject.docMandatory }}</td>
+				</tr>
+				<tr>
+					<th>Upload</th>
+					<td><input type="file" class="filecss " id="{{ subject.docID }}" 
+					ng-model="COUdocupload" onchange="angular.element(this).scope().imageupload(this)"/></td>
+				</tr>
+			</table>
+		     
+		<div class="padding">
+		 <button ng-click="uploadattch()" class="button button-block button-positive customBgColor">
+		 <span translate="UPLOAD"></span></button>
+ 		</div>
+	</div>
+</form>
+
+    </ion-content>
+</ion-view>   

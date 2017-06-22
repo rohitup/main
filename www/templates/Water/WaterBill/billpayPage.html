@@ -1,0 +1,78 @@
+<ion-view>
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+ <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="billpayPageCtrl" class="animated zoomIn">
+	<form name="waterBillForm"  class="animated zoomIn">
+          <div class="list">
+        <h1 class="heading" translate="PAYABLEDETAILS"></h1> 
+           <table class="gridtable" ng-if="table1">
+			<tr>
+			   <th translate="TAXDESC"></th>
+			   <th translate="ARREAR"></th>
+			   <th translate="TAXAMT"></th>
+			   <th translate="TOTAL_AMOUNT"></th>
+			</tr>
+			<tr ng-repeat = "subject in docsitems">
+				<td>{{ subject.taxdesc }}</td>
+				<td>{{ subject.arrear }}</td>
+				<td>{{ subject.taxamt }}</td>
+				<td>{{ subject.total }}</td>
+			</tr>
+		  </table>
+			<table class="gridtable" ng-if="table2">
+				<tr>
+				   <th style="width: 50%;" translate="ADJENTRY"></th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+				<tr>
+				   <th style="width: 50%;" translate="ADJAMT"> </th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+				<tr>
+				   <th style="width: 50%;" translate="BALAN"></th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+				<tr>
+				   <th style="width: 50%;" translate="REBATE"></th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+			</table> 
+          <label class="item item-input item-floating-label"> </label>
+            <label class="item item-input item-floating-label"> 
+				<span class="input-label" translate="TOTAL_AMOUNT"> </span>
+				<input type="text" placeholder="{{'TOTAL_AMOUNT' | translate}}" name="totalPayableAmount" ng-model="totalPayableAmount" 
+				 ng-trim="false" ng-pattern="/^[0-9.]{1,50}$/" disabled/>
+			</label>
+			
+			<label class="item item-input item-floating-label"> 
+				<span class="input-label required" translate="ENTAMT"></span>
+				<input type="number" placeholder="{{'ENTAMT' | translate}}*" name="data_.payingAmount" ng-model="data_.payingAmount" id="pincodelim"
+				ng-keyup="onlyNumericSixLimitInput()" ng-trim="false" ng-pattern="/^[0-9.]{1,10}$/" required/>
+				<span class="errorMessage" ng-show="waterBillForm.data_.payingAmount.$error.pattern">Please Enter Valid Payable Amount</span>
+			</label>
+			
+            <label class="input-label padding-left-15 required" translate="PAYGATEWAY"></label>
+				<select class="select-dropdown" name="data_.paymentGateway" data-ng-model="data_.paymentGateway" 
+					ng-options="o.id as o.name for o in options" required>
+					<option value="">Select</option>
+				</select>  
+				
+			<!-- <a ui-sref="app.taxdetail" class="rightcss"><b>Tax Details</b></a> -->
+			<div class="padding">
+               <button class="button button-block button-positive customBgColor" ng-disabled="!waterBillForm.$valid"
+                ng-click="payWaterBill()">
+               <span translate="PAY"></span></button>
+            </div>  
+        </div>
+   </form>     
+        
+    </ion-content>
+</ion-view>

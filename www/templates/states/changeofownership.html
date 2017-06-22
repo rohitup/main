@@ -1,0 +1,229 @@
+<ion-view>
+ 
+  <!--   <ion-nav-title>
+        <span translate="FIX_HEADER"></span>
+    </ion-nav-title> -->
+    
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet<sup>&reg;</sup></h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="ChangeofOwnerShipCtrl" style="padding-top:0px;" class="">
+  
+	<div ng-show="show==1" >
+		  <h3 class="heading">Change Of OwnerShip</h3>
+		 	<div class="list list-inset">
+		             <span class="item item-input" style="padding: 0 0 0 16px;">
+		                <input type="text" placeholder="{{'CONNECTION_NUMBER' | translate}}" class="labelcss" data-ng-model="changeowner" >
+						<button ng-click="searchchangeowner()" class="button button-positive customBgColor" style="border-radius: 0px 2px 2px 0px;">
+						<i class="icon ion-search fonth3"></i></button>
+		            </span>      
+		    </div> 
+		
+	</div>
+  
+<form name="oldnewdetails" style="padding-top:0px;">
+ <div ng-show="show==2">
+  	<div class="list list-borderless" >
+  	  <h3 class="heading">Old Owner Details</h3>
+  	         <label class="item item-input">
+	            <span class="input-label labelcss">Consumer Name:-</span>
+				<input type="text" class="input-box" data-ng-model="oldCOWconnName" disabled />			
+			 </label>
+			 
+			 <label class="item item-input">
+	            <span class="input-label labelcss">Aadhar No:-</span>
+				<input type="number" class="input-box" data-ng-model="oldCOWadharName" disabled />			
+			 </label><br>
+			 
+			 <label class="item item-select height-padding">
+				<span class="labelcss">Tariff Category:-</span>
+					<select class="select-box" data-ng-model="oldCOUtarifCate" 
+					ng-options="o.trfid as o.trfname for o in trfoptions" id="oldtarifcos" disabled>
+					<option value="">Select</option></select>
+			</label>
+			
+			<label class="item item-select height-padding">
+				<span class="labelcss" >Permise Type:-</span>
+					<select class="select-box" data-ng-model="oldCOUpermiseType" 
+					ng-options="o.permiseid as o.permisename for o in permiseoptions" id="oldpermisecos" disabled>
+					<option value="">Select</option></select>
+			</label>
+			
+			  <label class="item item-select height-padding">
+				<span class="labelcss" >Connection Size:-</span>
+					<select class="select-box" data-ng-model="oldCOUconnSize" 
+					ng-options="o.cszid as o.cszname for o in cszoptions" id="oldconnsize" disabled>
+					<option value="">Select</option></select>
+			 </label> 
+			 
+		 <h4 class="heading">New Owner Details</h4><div class="spacer" style="height: 7px;"></div>
+	
+			   <label class="item item-select height-padding">
+					<span class="labelcss required" translate="SELECT_TRANSFER"></span>
+					<select ng-click="TFMprefix()" class="select-box" data-ng-model="newtransfermode" 
+					ng-options="o.tfmid as o.tfmname for o in tfmoptions" id="TFMname" >
+				    <option value="">Select</option></select>
+			   </label>
+			
+			   <label class="item item-select height-padding">
+				 <span class="labelcss required" translate="SEL_TITLE"></span>
+					    <select class="select-box" name="type" ng-model="WNCselecttitle" ng-click="ttlprefix()" 
+					    ng-options="o.ttlid as o.ttlname for o in ttloptions" required>
+						<option value="">Select</option></select>
+				</label>
+	
+				<label class="item item-input">
+		            <span class="input-label labelcss required">First Name:</span>
+		             <input type="text" class="input-box" data-ng-model="WNCFirstname" required/>
+		        </label>
+		        
+		        <label class="item item-input">
+		            <span class="input-label labelcss">Middle Name:</span>
+		            <input type="text" class="input-box" data-ng-model="WNCMiddlename" />
+		        </label>
+		            
+		         <label class="item item-input">
+		            <span class="input-label labelcss required">Last Name:</span>
+		            <input type="text" class="input-box" data-ng-model="WNCLastname" required/>
+		        </label><br>
+        
+                <label class="item item-select height-padding">
+					<span class="labelcss required" translate="SELECT_GEN"></span>
+					<select class="select-box" ng-click="Genprefix()" data-ng-model="WNCgender"
+					ng-options="o.genid as o.genname for o in genoptions">
+					<option value="">Select</option></select>
+				</label>
+				
+				   <label class="item item-input">
+		             <span class="input-label labelcss required">Aadhar No:</span>
+		             <input type="number" class="input-box" data-ng-model="WNCaadharnumber">
+		          </label>
+		
+			<label class="item item-input">
+	             	<span class="input-label labelcss">Remarks(if any):-</span>
+	                <input type="text" class="input-box" data-ng-model="COURemarks" >
+	        </label>
+		
+        </div>
+        
+		    <div class="padding">
+		        <button  ng-disabled="!oldnewdetails.$valid" ng-click="confrmproceed()" class="button button-block button-positive customBgColor">
+		        <span translate="CMF_PROCEED"></span></button>
+		    </div>
+	</div>
+</form>
+
+<form novalidate>
+	<div name="uploadattachdiv" ng-show="show==3">
+		<div class="list list-borderless">
+			<h3 class="heading">Upload Attachments</h3>
+			 <!-- <label class="item item-input">
+					<span class="input-label labelcss">Property Tax Paid Receipt:-</span>
+		            <input type="file" class="input-box" data-ng-model="WNCpropertyimage">
+		     </label>
+		      ng-disabled="!oldnewdetails.$valid"
+		     <label class="item item-input">
+					<span class="input-label labelcss">Location Map:-</span>
+		            <input type="file" class="input-box" data-ng-model="WNClocationimage">
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss">Ration:-</span>
+		                <input type="file" class="input-box" data-ng-model="WNCrationimage">
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss">Certificate Of Registration:-</span>
+		                <input type="file" class="input-box" data-ng-model="WNCcertimage">
+		     </label> -->
+		<!--      
+		    <table class="gridtable">
+		   		 <tbody>
+                     <tr>
+                     	<th width="5%">Sr.No</th>
+                        <th width="45%">Description</th>
+                        <th width="5%">Mandatory</th>
+                        <th width="45%">Upload File</th>
+                     </tr>
+                     <tr ng-repeat="doc in documentlist">
+                        <td>{{doc.documentSerialNo}}</td>
+                        <td>{{doc.doc_DESC_ENGL}}</td>
+                        <td>{{doc.checkkMANDATORY}}</td>
+                        <td><input type="file" class="filecss"></td>
+                    </tr>
+                 </tbody>
+              </table>   -->
+              
+               <div id="OwnerDocData"></div>
+              
+	     </div>
+	     
+	     	<div class="padding">
+				<button ng-click="uploaddocuments()" class="button button-block button-positive customBgColor">
+				<span translate="UPLOAD"></span></button>
+			</div>
+	</div>
+</form>
+
+<form name="paymentpage" novalidate> 
+<div name="paydetailsdiv" ng-show="show==4">
+
+	<div class="list list-borderless">
+		<h3 class="heading">Payment</h3>
+			 <label class="item item-input">
+					<span class="input-label labelcss">Total Amt Payable(Rs.):-</span>
+		                <input type="text" class="input-box" data-ng-model="COSFlatRate" disabled>
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss">Enter Amt to Pay(Rs.):-</span>
+		                <input type="number" class="input-box" data-ng-model="COUpaidamt" required/>
+		     </label><br>
+		     
+			   <label class="item item-select height-padding">
+				  <span class="labelcss required" translate="PAYMENT_MODE"></span>
+					<select class="select-box" name="type" data-ng-model="COUpaymettype" ng-options="o.id as o.name for o in options" required>
+						<option value="">Select</option>
+					</select>
+					</label>
+					
+	     </div>
+	     
+	       <div class="padding">
+				<button ng-disabled="!paymentpage.$valid" ng-click="changeownersavedata()" class="button button-block button-positive customBgColor">
+				 <span translate="PAY"></span></button>
+			</div>
+	</div>
+</form>
+
+    </ion-content>
+</ion-view>
+
+
+<style>
+.customBgColor{	background-color: #36979e !important;}
+.customBgColorWhite{background-color: #ffffff !important; }
+.fonth3 {font-size: 24px !important;}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+h4{font-size:18px; font-weight:normal; padding:5px 0px; line-height:20px;}
+.required:after { content:" *"; color:red;}
+
+/*24-11-2016*/
+.js .inputfile { width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1; }
+.inputfile + label { max-width: 80%; font-size: 1.25rem; /* 20px */ font-weight: 700; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; display: inline-block; overflow: hidden; padding: 0.625rem 1.25rem;/* 10px 20px */}
+.no-js .inputfile + label {display: none;}
+.inputfile:focus + label, .inputfile.has-focus + label { outline: 1px dotted #000; outline: -webkit-focus-ring-color auto 5px; }
+.inputfile + label * { /* pointer-events: none; */    /* in case of FastClick lib use */}
+.inputfile + label svg { width: 1em; height: 1em; vertical-align: middle; fill: currentColor; margin-top: -0.25em; /* 4px */ margin-right: 0.25em;/* 4px */}
+.inputfile-1 + label { color: #f1e5e6; background-color: #d3394c; }
+.inputfile-1:focus + label, .inputfile-1.has-focus + label, .inputfile-1 + label:hover { background-color: #722040; }
+</style>

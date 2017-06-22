@@ -1,0 +1,30 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="NoChangePropertyPaymentCtrl">
+		<h3 class="heading">{{'FILE_NC' | translate}}</h3>
+		<form name="propertySubmitForm">
+			<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+				<button type="button" class="button button-positive customBgColor customRadio" ng-class="{customRadioEnabled: propPayType == 'F'}" ng-model="totalAmtRadio" ng-click="totalAmountSelection()">Total Amount</button>
+				<button type="button" class="button button-positive customBgColor customRadio" ng-class="{customRadioEnabled: propPayType == 'P'}" ng-model="partialAmtRadio" ng-click="partialAmountSelection()">Partial Amount</button>
+			</div>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Payable Amount</span>
+				<input type="text" placeholder="Partial Amount" name="KPDPayableAmount" ng-model="KPDPayableAmount" ng-trim="false" ng-pattern="amountPattern" ng-disabled="propPayType == 'F'" required />
+				<span class="errorMessage" ng-show="propertySubmitForm.KPDPayableAmount.$error.pattern">Please Enter Valid Amount</span>
+			</label>
+			<div class="padding">
+				<button type="submit" ng-disabled="propertySubmitForm.$invalid" ng-click="submitPropertyDetails()" class="button button-block button-positive customBgColor"><span translate="PROCEED_TO_PAY"></span></button>
+			</div>
+		</form>
+		<div ng-include src="'templates/states/paymentGateway.html'" ng-show="paymentGatewayDetail"></div>
+    </ion-content>
+</ion-view>

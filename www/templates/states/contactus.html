@@ -1,0 +1,63 @@
+<ion-view>
+
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="ContactusCtrl" class="">
+    <h3 class="heading">Contact Us.</h3>
+    <form name="contact">
+		<div class="list">
+		   <p>Thank you for your interest in service of <strong>Raipur Municipal Corporation</strong> Please provide the following 
+				information about your needs in order to help us serve you better.This information will enable us to route your
+				request to appropriate person</p>
+				
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Mobile No</span>
+					<input type="number" placeholder="Mobile No*" name="mobileno" ng-model="mobileno" 
+					ng-keyup="onlyNumericTenLimitInput()" ng-trim="false" ng-pattern="/^[0-9]{10,10}$/" required/>
+					<span class="errorMessage" ng-show="contact.mobileno.$error.pattern">Please Enter Valid Mobile Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">First Name</span> 
+					<input type="text" placeholder="Name:*"  name="firstname" ng-model="firstname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="contact.firstname.$error.pattern">Please Enter Valid Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Last Name</span> 
+					<input type="text" placeholder="Name:*"  name="lastname" ng-model="lastname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="contact.lastname.$error.pattern">Please Enter Valid Name</span>
+				</label>
+				<label class="item item-input item-floating-label"> 
+					<span class="input-label required">Email ID</span>
+					<input type="text" placeholder="Email ID**" name="EmailID" ng-model="EmailID" ng-trim="false" ng-pattern="/^[A-Za-z0-9/s,.'-@]{1,50}$/" required/>
+					<span class="errorMessage" ng-show="contact.EmailID.$error.pattern">Please Enter Valid Email Address</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Description of Query</span> 
+					<input type="text" placeholder="Name:*"  name="desc" ng-model="desc" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="contact.desc.$error.pattern">Please Enter Valid Name</span>
+				</label>
+				
+				<div class="padding">
+					<button ng-click="save()" ng-disabled="!contact.$valid" class="button button-block button-positive green">
+					 <span>Submit</span></button>
+				</div>
+				
+	   </div>
+	</form>
+    </ion-content>
+</ion-view>
+
+
+<style>
+.green{
+	background-color: #68C39F !important; /*#68C39F*/ 
+}</style>

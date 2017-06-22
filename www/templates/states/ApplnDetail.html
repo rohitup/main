@@ -1,0 +1,100 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+
+<ion-content   ng-controller="ApplnDetailCtrl">
+    <ion-slide-box show-pager="false" ion-slide-tabs >
+        <ion-slide ion-slide-tab-label="New Complaint" >
+        	<form  name="lodgeComplaintForm" >
+			    <div class="list" >
+			  	  <h3 class="heading" translate="COMPLDET"></h3>
+			  	  
+			  	  <label class="input-label padding-left-15 required" translate="DEPTYPE"></label>
+					<select class="select-dropdown" name="NewCompDeptdetails" ng-model="NewCompDeptdetails" 
+					    ng-change="selectAction()" ng-options="o.deptid as o.deptname for o in deptoptions" required>
+						<option value="">Select </option>
+					</select>
+					
+					<label class="input-label padding-left-15 required" translate="COMPLTYPE"></label>
+					<select class="select-dropdown" name="NewCompType" ng-model="NewCompType" 
+					    ng-options ="o.comptypeID as o.comptypeDesc for o in compltypeoption" required>
+						<option value="">Select</option>
+					</select>
+					
+					<label class="item item-input item-floating-label">
+						<span class="input-label required" translate="COMPLDESC"></span> 
+						<input type="text" placeholder="{{'COMPLDESC' | translate}}*"  name="NewCompDescription" ng-model="NewCompDescription" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+						<span class="errorMessage" ng-show="lodgeComplaintForm.NewCompDescription.$error.pattern">Please Enter Valid Complaint Description</span>
+					</label>
+				  	
+					<label class="input-label padding-left-15 required" translate="COMPLOCATION"></label>
+					  <select class="select-dropdown" name="NewCompLocation" ng-model="NewCompLocation" ng-change="locationpincode()"
+					   ng-options="o.locationid as o.locationname for o in locationoptions" required>
+						<option value="">Select</option>
+					  </select>
+					  
+					  <label class="item item-input item-floating-label"> 
+						<span class="input-label " translate="PINCODE"></span>
+						<input type="number" placeholder="{{'PINCODE' | translate}}" name="NewCompPincode" ng-model="NewCompPincode" id="pincodelim"
+						ng-change="locationperfix()" ng-keyup="onlyNumericSixLimitInput()" ng-trim="false" ng-pattern="/^[0-9]{1,6}$/" />
+						<span class="errorMessage" ng-show="lodgeComplaintForm.NewCompPincode.$error.pattern">Please Enter Valid Pincode</span>
+				  	</label>
+						
+				 	 <label class="item item-input item-floating-label">
+						<span class="input-label required" translate="LANDMARK"></span> 
+						<input type="text" placeholder="{{'LANDMARK' | translate}}"  name="NewCompLandmark" ng-model="NewCompLandmark" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="lodgeComplaintForm.NewCompLandmark.$error.pattern">Please Enter Valid Landmark</span>
+					</label>
+				  
+					  <label class="item item-input item-floating-label"> 
+						<span class="input-label required" translate="UPLOAD"></span>
+						<input type="file" placeholder="{{'UPLOAD' | translate}}*" name="NewCompDocument" ng-model="NewCompDocument" 
+						id="verfiyFile" onchange="angular.element(this).scope().imageupload()" />
+						<span class="errorMessage" ng-show="lodgeComplaintForm.NewCompDocument.$error.pattern">Upload BPL file</span>
+					</label>
+				  
+				 	 <div class="padding">
+						<button ng-disabled="!lodgeComplaintForm.$valid"  ng-click="savecomplaint()" class="button button-block button-positive customBgColor">
+						<span translate="SUBMIT"></span></button>
+					</div>
+				</div>
+			 </form>
+        </ion-slide>
+        <ion-slide ion-slide-tab-label="Reopen Complaint">
+        	<form name="reopenForm"> 	 
+			<div id="existingcomplaint" >
+			 <h3 class="heading" translate="EXTCOMPLDET"></h3>
+				<div class="list">
+					<span class="item item-input" style="padding: 0 0 0 16px;" >
+					<input type="tel" ng-model="search" class="textcss" placeholder="Search By Token No">
+					</span>
+				</div> 	
+				<!-- history table -->
+			 <h3 class="heading" translate="HISTORY"></h3>
+				<div class="card list" ng-repeat = "subject in allgrievanceresponse | filter: {requestNo: search}" 
+				 ng-click="setSelected(subject.requestNo)" >
+					  <div class="item item-divider " style="background-color: #c5e9eb;">
+						<p class="applNocss">{{ 'TOKENNO' | translate  }}: {{ subject.requestNo }}</p>
+						<!-- <i class="icon ion-ios-arrow-right"></i> -->
+					  </div>
+					<div class="item item-text-wrap"> 
+					  <p>{{ 'COMPLTYPE' | translate  }}: {{ subject.descriptions.GRIEVANCE_COMPLAINT_TYPE.description }}</p>
+			          <p>{{ 'COMPLDESC' | translate  }}: {{ subject.descriptions.GRIEVANCE_DESCRIPTION.description }}</p>
+					</div>
+				</div> 
+			</div>
+			</form>	 
+		 
+        </ion-slide>
+    </ion-slide-box>
+</ion-content>
+</ion-view>
+

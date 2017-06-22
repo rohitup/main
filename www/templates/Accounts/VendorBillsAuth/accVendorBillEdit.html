@@ -1,0 +1,150 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button ng-show="viewBudget" class="button button-icon button-clear ion-ios-eye animated infinite pulse tada" ng-click="viewBudgetDetails()"></button>
+        <button ng-show="allowAdd" class="button button-icon button-clear ion-ios-plus-empty animated infinite pulse tada" ng-click="openModalDedDetail('new','','')">
+        </button>
+        <!-- <div class="padding">
+			<button ng-click="openModalDedDetail('edit','27','20')" class="button button-block button-positive">
+				<span translate="SUBMIT"></span>
+			</button>
+		</div> -->
+    </ion-nav-buttons>
+	<ion-content scroll="true" ng-controller="AccVendorBillEditCtrl" class="animated zoomIn">
+		<form name="accVendorBillEditForm" ng-submit="saveReceiptDetails()">
+			<ion-slide-box show-pager="false" on-slide-changed="slideChanged(index)" ion-slide-tabs>
+				<ion-slide ion-slide-tab-label="Basic Details">
+					<div class="padding-left-15 customBgColor">(<span class="required"></span>) <span translate="ALL_FIELDS"></span></div>
+					<div class="list">
+						<label class="input-label padding-left-15 required" translate="BILL_TYPE"></label>
+						<select class="select-dropdown" name="VBEBillType" ng-model="VBEBillType" ng-options="o.value as o.name for o in billTypeList" ng-change="vendorChange(VBEBillType)" required>
+							<option value="">{{'SELECT'|translate}}</option>
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label" translate="BILL_NO"></span>
+							<input type="text" placeholder="{{'BILL_NO'|translate}}" name="VBEBillNo" ng-model="VBEBillNo" disabled />
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label" translate="BILL_DATE"></span> 
+							<input type="text" placeholder="{{'BILL_DATE'|translate}}" name="VBEBillDate" ng-model="VBEBillDate" disabled />
+						</label>
+
+						<label class="input-label padding-left-15 required" translate="NAME"></label>
+						<select class="select-dropdown" name="VBEVendor" ng-model="VBEVendor"	ng-options="o.value as o.name for o in vendorList" ng-change="vendorChange(VBEVendor)" required>
+							<option value="">{{'SELECT'|translate}}</option>
+						</select>
+
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="BILL_AMOUNT"></span> 
+							<input type="tel" placeholder="{{'BILL_AMOUNT'|translate}}" name="VBEBillAmount" ng-model="VBEBillAmount" ng-trim="false" ng-pattern="/^[0-9]{1,13}$/" required />
+							<span class="errorMessage" ng-show="accVendorBillEditForm.VBEBillAmount.$error.pattern">{{'ERR_AMOUNT'|translate}}</span>
+						</label>
+					</div>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Expenditure Details">
+					<div class="padding-left-15 customBgColor">(<span class="required"></span>) <span translate="ALL_FIELDS"></span></div>
+					<div class="list">
+						<label class="input-label padding-left-15 required" translate="MODE"></label>
+						<select class="select-dropdown" name="AccMode" ng-model="data.AccMode" ng-options="o.value as o.name for o in AccModeList" required>
+							<option value="">{{'SELECT'|translate}}</option>
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="AMOUNT"></span> 
+							<input type="tel" placeholder="{{'AMOUNT'|translate}}" name="VBEExpAmount" ng-model="VBEExpAmount" ng-trim="false" ng-pattern="/^[0-9]{1,13}$/" required />
+							<span class="errorMessage" ng-show="accVendorBillEditForm.VBEExpAmount.$error.pattern">{{'ERR_AMOUNT'|translate}}</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="SANC_AMOUNT"></span> 
+							<input type="tel" placeholder="{{'SANC_AMOUNT'|translate}}" name="VBESancAmount" ng-model="VBESancAmount" ng-trim="false" ng-pattern="/^[0-9]{1,13}$/" required />
+							<span class="errorMessage" ng-show="accVendorBillEditForm.VBESancAmount.$error.pattern">{{'ERR_AMOUNT'|translate}}</span>
+						</label>
+						
+					</div>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Deduction Details">
+			        <label class="item item-input item-floating-label">
+						<span class="input-label">{{'SEARCH' | translate}}</span>
+						<input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="search" />
+					</label>
+					<div id="receiptErrorMsg"><span class="padding cAlert">Please add at least one Receipt Collection Detail.</span></div>
+			        <ion-list can-swipe="true" class="list-categories">
+						<ion-item ng-repeat="item in receiptCollections | filter:search track by $index"  class="item-thumbnail-left">
+							<!-- <img ng-src="{{item.image}}"> -->
+							<h2 ng-click="openModalDedDetail('edit',item.id,item.amount)" class="colorPositive col-80">{{item.receiptHead}}</h2>
+							<strong translate="AMOUNT"></strong>: <span>{{item.amount}}</span>
+							<button style="font-size: 24px;" class="button-assertive button ion-ios-trash" ng-click="removeReceiptHead($index)">
+			                </button>
+			                <!-- <ion-option-button class="button-assertive" ng-click="removeCategory(item._id, $index)">
+			                    Delete
+			                </ion-option-button> -->
+			            </ion-item>
+			        </ion-list>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Bill Summary">
+			        <label class="item item-input item-floating-label">
+						<span class="input-label" translate="TOT_BILL_AMT"></span> 
+						<input type="text" placeholder="{{'TOT_BILL_AMT'|translate}}" name="VBEBillNo" ng-model="VBEBillNo" disabled />
+					</label>
+			        <label class="item item-input item-floating-label">
+						<span class="input-label" translate="TOT_SANC_AMT"></span> 
+						<input type="text" placeholder="{{'TOT_SANC_AMT'|translate}}" name="VBEBillNo" ng-model="VBEBillNo" disabled />
+					</label>
+			        <label class="item item-input item-floating-label">
+						<span class="input-label" translate="TOT_DISALL_AMT"></span> 
+						<input type="text" placeholder="{{'TOT_DISALL_AMT'|translate}}" name="VBEBillNo" ng-model="VBEBillNo" disabled />
+					</label>
+			        <label class="item item-input item-floating-label">
+						<span class="input-label" translate="TOT_DEDUCTIONS"></span> 
+						<input type="text" placeholder="{{'TOT_DEDUCTIONS'|translate}}" name="VBEBillNo" ng-model="VBEBillNo" disabled />
+					</label>
+			        <label class="item item-input item-floating-label">
+						<span class="input-label" translate="NET_PAYABLE"></span> 
+						<input type="text" placeholder="{{'NET_PAYABLE'|translate}}" name="VBEBillNo" ng-model="VBEBillNo" disabled />
+					</label>
+					<label class="input-label padding-left-15 required" translate="FINAL_DECISION"></label>
+					<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+						<button type="button" class="button button-positive customBgColor customRadio" ng-class="{customRadioEnabled: finalDecision == 'S'}" ng-model="sanctionRadio" ng-click="finalDecision = 'S'">{{'SANCTIONED'|translate}}</button>
+						<button type="button" class="button button-positive customBgColor customRadio" ng-class="{customRadioEnabled: finalDecision == 'R'}" ng-model="rejectRadio" ng-click="finalDecision = 'R'">{{'REJECT'|translate}}</button>
+					</div>
+					<label class="item item-input item-floating-label">
+		                    <span class="input-label required" translate="REMARKS"></span>
+		                    <textarea type="text" placeholder="{{'REMARKS'|translate}}*" ng-model="VBERemarks" ng-keyup="limitText($event, 500, 'rem_char_left')" required></textarea>
+		                </label>
+						<div class="padding cMessage">{{'NARRATION_MSG'|translate}} <span id="rem_char_left">500</span>).</div>
+						<div class="padding">
+							<button ng-disabled="accVendorBillEditForm.$invalid || !(finalDecision)" class="button button-block button-positive">
+								<span translate="SUBMIT"></span>
+							</button>
+						</div>
+				</ion-slide>
+			</ion-slide-box>
+		</form>
+    </ion-content>
+</ion-view>
+<style>
+.slider{
+	height: auto;
+}
+.item-thumbnail-left .item-content {
+	min-height: 0;
+	padding: 10px 15px;
+}
+.item-thumbnail-left {
+	min-height: 0;
+}
+.button.button-assertive{
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	height: 100%;
+}
+</style>

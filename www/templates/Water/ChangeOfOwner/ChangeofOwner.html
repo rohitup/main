@@ -1,0 +1,37 @@
+<ion-view>
+ 
+  <!--   <ion-nav-title>
+        <span translate="FIX_HEADER"></span>
+    </ion-nav-title> -->
+    
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet<sup>&reg;</sup></h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="ChangeofOwnerCTRL" class="animated zoomIn">
+	<h3 class="heading" translate="CHANGE_OF_OWNER"></h3>
+<form name="changeOwnerForm">
+	<div class="list">
+	     <label class="item item-input item-floating-label"> 
+			<span class="input-label required" translate="CONNECTION_NUMBER"></span>
+			<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}*" name="changeowner" ng-model="changeowner" id="connectionNosearch"
+		     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required/>
+			<span class="errorMessage" ng-show="changeOwnerForm.changeowner.$error.pattern">Please Enter Valid Connection Number</span>
+	     </label>
+
+		 <div class="padding"> 
+			<button ng-disabled="!changeOwnerForm.$valid" ng-click="searchchangeowner()" class="button button-block button-positive customBgColor"><i class="icon ion-search fonth3"></i>
+			<span translate="SEARCH"></span></button>
+	 	</div>
+	</div>
+</form>	
+
+    </ion-content>
+</ion-view>

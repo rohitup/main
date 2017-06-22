@@ -1,0 +1,42 @@
+
+<ion-view>
+
+  <ion-nav-title>
+        <span translate="FIX_HEADER"></span>
+    </ion-nav-title>
+
+ <ion-content ng-controller="ImageCtrl">
+        
+<div>
+	 <form enctype="multipart/form-data"   method="post" name="fileinfo" accept-charset="utf-8">
+	 	<div class="list list-inset">
+	      <span class="input-label labelcss">Attach File:-</span>
+	          <input type="file" id="imageinfo" class="" data-ng-model="MeterImage">
+	          <button ng-click="imageuplod()" class="button button-block button-positive customBgColor">
+				Submit</button>
+	 </div>
+	 </form>
+</div>
+      
+</ion-content>
+  
+</ion-view>
+
+<style>
+.customBgColor{
+	background-color: #36979e !important;
+}
+.customBgColorWhite{
+	text-align:right;
+	background-color: #ffffff !important;
+}
+.fonth3 {
+	font-size: 20px !important;
+}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:20px; padding:5px 0px; line-height:20px;}
+h4{font-size:18px; font-weight:normal; padding:5px 0px; line-height:20px;}
+.labelcss{font-weight:normal; padding:5px 0px; line-height:20px;}
+.checkboxcss{font-weight:normal;}
+
+</style>

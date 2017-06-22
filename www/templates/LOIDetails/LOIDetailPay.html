@@ -1,0 +1,97 @@
+ 
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="LOIDetailPayCtrl" class="animated zoomIn">
+
+<h1 class="heading">{{ HeaderTitle }}</h1>
+<form name="LOIDetailPayForm" ng-submit="">
+	<div class="list animated zoomIn">
+
+			<table class="gridtable">
+				<tr>
+					<th width="100%" colspan="2">
+					<div align="center">{{ HeaderTitle }}</div>
+					</th>
+				</tr>
+				<tr>
+					<th>LOI Number</th>
+					<td>{{ LOInumber }}</td> 
+				</tr>
+				<tr>
+					<th>LOI Date</th>
+					<td>{{ LOIDate }}</td>
+				</tr>
+				<tr>
+					<th>Application Number</th>
+					<td>{{ applicationID }}</td>
+				</tr>
+				<tr>
+					<th>Owner Name</th>
+					<td>{{ LOIOwnerName }}</td>
+				</tr>
+				<tr>
+					<th>Mobile No.</th>
+					<td>{{ LOImobileNo }}</td>
+				</tr>
+				<tr>
+					<th>LOI Amount</th>
+					<td>{{ applnDueAmount }}</td>
+				</tr>
+				<tr>
+					<th>LOI Paid</th>
+					<td>{{ loiPaidDesc }}</td>
+				</tr> 
+			</table>
+
+
+
+
+<div class="list animated zoomIn">
+	<div class="padding" id="loipaymentDiv" ng-show="loipaymentDiv">
+		<button class="button button-block button-positive customBgColor" ng-click="loipaydiv()">
+		<span translate="">Pay Dues</span></button>
+	</div>
+	
+	<div id="loiselectPaymentDiv" ng-show="loiselectPaymentDiv">
+	   <label class="input-label padding-left-15 required">Payment Gateway</label>
+		<select class="select-dropdown" ng-model="LOIBanklist"  ng-change="LOIchange()"
+		ng-options="o.bankid as o.bankname for o in banknamelistopt" id="" required>
+		<option value="">Select Payment Gateway</option>
+		</select>
+		
+		 <div class="row padding buttoncenter">
+			<div class="col col-50">
+				<button class="button button-block button-positive customBgColor" ng-click="cancel()">
+				<span translate="">Cancel</span></button>
+			</div>
+			<div class="col col-50 "> 
+				<button ng-disabled="!LOIDetailPayForm.$valid" ng-click="paymentgateway()" class="button button-block button-positive customBgColor">
+				<span translate="">Pay</span></button>
+			</div>
+		</div><br><br>
+
+	</div>
+	
+	<div class="padding " id="loiHomePayButton" ng-show="loiHomePayButton">
+		<button ng-click="homepage()" class="button button-block button-positive customBgColor">
+		<span translate="">Go back to HomePage</span></button>
+	</div>
+</div>
+
+</div> 
+
+</form>
+</ion-content>
+</ion-view>
+
+

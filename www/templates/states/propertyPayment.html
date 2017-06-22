@@ -1,0 +1,139 @@
+<ion-view>
+   
+   <!--  <ion-nav-title>
+        <span translate="WATER_BILL_PAYMENT"></span>
+    </ion-nav-title> -->
+    
+     <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="propertyTaxCtrl" class="">
+    <h3 class="heading">Property Payment</h3>
+	<form name="deptPropertyForm" ng-submit="getProperty()">
+		
+			<label class="item item-input item-floating-label">
+					<span class="input-label">Property Number</span>
+					<input type="tel" placeholder="Property Number" name="propNumber" ng-trim="false" ng-required="!(propNumber.length || oldPid.length)" ng-pattern="/^[0-9]{9,9}$/" ng-keyup="keypressevtPropno()" data-ng-model="propNumber">
+					<span class="errorMessage" ng-show="deptPropertyForm.propNumber.$error.pattern">Please Enter Valid Property Number</span>
+				</label>
+			<label class="item item-input item-floating-label">
+					<span class="input-label">Old PID</span>
+					<input type="text" placeholder="Old PID" ng-keyup="keypressevtOldpid()" ng-required="!(propNumber.length || oldPid.length)" data-ng-model="oldPid" >
+				</label>
+			
+			<div class="padding">
+		 <button ng-disabled="!deptPropertyForm.$valid" class="button button-block button-positive">
+		 <span translate="">Search</span></button>
+	</div>
+        </form>
+		
+ <div  ng-if='viewpropdetail'>
+ <h3 class="heading">Tax Calculation Details</h3>
+ 	<table class="gridtable">
+		  <tr ng-if="NCArrearInterestFlag == 'true'">
+            <th width="60%">Arrear Without Interest (Rs.)</th>
+             <td>{{ NCArrearInterest }}</td>
+          </tr>
+          <tr ng-if="NCTotalTaxFlag == 'true'">
+            <th width="60%">Total Annual Tax (Rs.)</th>
+             <td>{{ NCTotalTax }}</td>
+          </tr>
+          <tr ng-if="NCRebateCurrentFlag == 'true'">
+            <th width="60%">Rebate (Current)</th>
+             <td>{{ NCRebateCurrent }}</td>
+          </tr>
+          <tr ng-if="NCRebateFlag == 'true'">
+            <th width="60%">Rain Water Harvesting Rebate (Rs.)</th>
+             <td>{{ NCRebate }}</td>
+          </tr>
+          <tr ng-if="NCPenaltyFlag == 'true'">
+            <th width="60%">Interest / Penalty (Current + Arrears)</th>
+             <td>{{ NCPenalty }}</td>
+          </tr>  
+          <tr ng-if="NCNetServChargeFlag == 'true'">
+            <th width="60%">Net Service Charge Payable (If Applicable)</th>
+             <td>{{ NCNetServCharge }}</td>
+          </tr> 
+           <tr ng-if="NCAdvAmtFlag == 'true'">
+            <th width="60%">Adjustment Amount</th>
+             <td>{{ NCAdvAmt }}</td>
+          </tr> 
+			<tr ng-if="NCArrearIntFlag == 'true'">
+            <th width="60%">Arrears Interest</th>
+             <td>{{ NCArrearInt }}</td>
+          </tr>
+		  <tr ng-if="NCCurrIntFlag == 'true'">
+            <th width="60%">Current Interest</th>
+             <td>{{ NCCurrInt }}</td>
+          </tr>
+		  <tr ng-if="NCTotalPayableFlag == 'true'">
+            <th width="60%">Total Payable Amount(Rs.)</th>
+             <td>{{ NCTotalPayable }}</td>
+          </tr>
+		  
+      
+      </table>
+ 
+      <div class="padding">
+		 <button  class="button button-block button-positive" ng-click="viewPropDetail()">
+		 <span translate="">View Details</span></button>
+	</div> 
+	<form name="deptPropertyPayForm">
+	<!--  <div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+			<button href="#" class="large button primary radius customRadio" >Total Amount</button>
+			<button href="#" class="large button success radius customRadio customRadioDisabled" ng-click="partialamtDisabled = !partialamtDisabled">Partial Amount</button>
+		</div>
+	
+			<label class="item item-input item-floating-label">
+					<span class="input-label">Total Amount</span>
+					<input  type="text" placeholder="Total Amount" ng-model="TotalAmount">
+				</label>
+			
+			<label class="item item-input item-floating-label">
+					<span class="input-label">Partial Amount</span>
+					<input ng-disabled="partialamtDisabled" type="tel" placeholder="Partial Amount" name="PartialAmount" ng-trim="false"  ng-pattern="/^[0-9]{0,9}$/" data-ng-model="data_.PartialAmount">
+					<span class="errorMessage" ng-show="deptPropertyPayForm.PartialAmount.$error.pattern">Please Enter Valid Property Number</span>
+				</label>-->	
+		<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+					<button type="button" class="button button-positive customRadio" ng-class="{customRadioEnabled: propPayType == 'F'}" data-ng-model="totalAmtRadio" ng-click="totalAmountSelection()">Total Amount</button>
+					<button type="button" class="button button-positive customRadio" ng-class="{customRadioEnabled: propPayType == 'P'}" data-ng-model="partialAmtRadio" ng-click="partialAmountSelection()">Partial Amount</button>
+				</div>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Payable Amount</span>
+					<input type="text" placeholder="Partial Amount" name="KPDPayableAmount" data-ng-model="data_.KPDPayableAmount" ng-trim="false" ng-pattern="amountPattern" ng-disabled="propPayType == 'F'" required />
+					<span class="errorMessage" ng-show="deptPropertyPayForm.KPDPayableAmount.$error.pattern">Please Enter Valid Amount</span>
+				</label>	
+		<select class="select-dropdown" ng-model="payMode.pay" ng-change="changedValue(payMode.pay)" ng-options="pay.name for pay in payoptions track by pay.id" required><option value="">Select Payment Mode*</option></select>
+		<div id="paymentDetails" ng-if="paymentDetails == 'true'">
+		
+			<label class="item item-input item-floating-label" ng-if="chequeno == 'true'">
+					<span class="input-label">Cheque/DD No./PO No.*</span>
+					<input type="tel" ng-pattern="/^[0-9]{6,6}$/" placeholder="Cheque/DD No./PO No.*" ng-model="data_.ChequeNo">
+				</label>
+		
+		<select class="select-dropdown" ng-if="bankName == 'true'" ng-model="bankMode.bank" ng-options="bank.name for bank in bankOptions track by bank.id"><option value="">Select Bank Name*</option></select>
+			<label ng-if="accNumber == 'true'" class="item item-input item-floating-label">
+					<span class="input-label">Account No.*</span>
+					<input type="tel" placeholder="Account No.*" ng-pattern="/^[0-9]{20,20}$/" ng-model="data_.AccountNo">
+				</label>
+			<label class="item item-input item-floating-label">
+					<span class="input-label">Cheque/DD Date/PO Date*</span>
+					<input type="date" placeholder="Cheque/DD Date/PO Date*" ng-blur="changeAttr($event)" ng-model="data_.paymentDate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" />
+				</label>
+		
+			</div>
+		<div align="center" class="padding"><button style="width: 35%;display:inline-block;margin: auto;height:35%;color: #ffffff;" 
+		       class="customBgColor button" type="button" value="Pay" ng-click="resetPayBtnClick()">Reset</button>
+		       <button style="width: 35%;display:inline-block;margin: auto;height:35%;color: #ffffff;" 
+		       class="customBgColor button" ng-disabled="deptPropertyPayForm.$invalid" type="button" value="Pay" ng-click="propertyPayBtnClick()">Pay</button></div></form>
+		</div>
+    </ion-content>
+</ion-view>

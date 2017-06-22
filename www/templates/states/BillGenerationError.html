@@ -1,0 +1,63 @@
+<ion-view>
+   
+    <ion-nav-title>
+        <span translate="BILL_GENE_ERROR"></span>
+    </ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+    <ion-content ng-controller="BillGenerationErrorCtrl">
+<div class="list list-inset" >
+		<label>Total Records for Bill Generation:-</label>
+            <span class="item item-input" style="padding: 0 0 0 18px;">
+                <input type="text" placeholder="Total Records for Bill Generation:-" class="customBgColorWhite" data-ng-model="a" >
+            </span><div class="spacer" style="height: 7px;"></div>
+            
+            <label>Total Records Selecteed for Bill Generation:-</label>
+            <span class="item item-input" style="padding: 0 0 0 18px;" >
+                <input type="text" placeholder="Total Records Selecteed for Bill Generation:-" class="customBgColorWhite" data-ng-model="b" >
+            </span><div class="spacer" style="height: 7px;"></div>
+            
+             <label>Total no. of Bill Generated Successfully:-</label>
+             <span class="item item-input" style="padding: 0 0 0 18px;" >
+                <input type="text" placeholder="Total no. of Bill Generated Successfully:-" class="customBgColorWhite" data-ng-model="c" >
+            </span><div class="spacer" style="height: 7px;"></div>
+            
+             <label>Total no. of Bill Got Errors:-</label>
+             <span class="item item-input" style="padding: 0 0 0 18px;" >
+                <input type="text" placeholder="Total no. of Bill Got Errors:-" class="customBgColorWhite" data-ng-model="d" >
+            </span><div class="spacer" style="height: 7px;"></div>
+            
+             <label>Connection Number:-</label>
+             <span class="item item-input" style="padding: 0 0 0 18px;" >
+                <input type="text" placeholder="Connection Number:-" class="customBgColorWhite" data-ng-model="e" >
+            </span><div class="spacer" style="height: 7px;"></div>
+            
+             <label>Errors Message:-</label>
+             <span class="item item-input" style="padding: 0 0 0 18px;" >
+                <input type="text" placeholder="Errors Message:-" class="customBgColorWhite" data-ng-model="f" >
+            </span>
+        </div>
+        
+		    <div class="padding">
+		        <button class="button button-block button-positive customBgColor">
+		        <span translate="SUBMIT"></span></button>
+		    </div>
+	
+    </ion-content>
+</ion-view>
+<style>
+.customBgColor{
+	background-color: #36979e !important;
+}
+.customBgColorWhite{
+	background-color: #ffffff !important;
+}
+.
+.fonth3 {
+	font-size: 24px !important;
+}
+</style>

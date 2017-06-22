@@ -1,0 +1,47 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="FaqCtrl" class="">
+    <h3 class="heading">Frequently Asked Questions</h3>
+ 			  <ion-list>
+			        <div ng-repeat="group in groups" class="padding">
+			          <ion-item class="item-stable "
+			                    ng-click="toggleGroup(group)"
+			                    ng-class="{active: isGroupShown(group)}">
+			              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+			            &nbsp;
+			             {{group.name}}
+			          </ion-item>
+			          <ion-item class="item-accordion"
+			                    ng-repeat="item in group.items"
+			                    ng-show="isGroupShown(group)">
+			            {{item.subId}}
+         			  </ion-item>
+        			</div>
+      		</ion-list>
+
+    </ion-content>
+</ion-view>
+
+<style>
+
+.customBgColor{	background-color: #36979e !important;}
+.red{background-color: #E15554 !important; /*E15554*/}
+.green{	background-color: #68C39F !important; /*#68C39F*/ }
+.customBgColorWhite{background-color: #ffffff !important; }
+.fonth3 {font-size: 24px !important;}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+.padding .item{padding:10px !important;}
+
+</style>

@@ -1,0 +1,59 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="complaintreceiptctrl" class="animated zoomIn backgroundimage">
+<h1 class="heading" translate="COMPLRECIDETS"></h1>
+<form name="complaintreceipt">
+<div class="list">
+	<table class="gridtable">
+		<!-- <tr>
+			<th width="100%" colspan="2">
+			<div align="center">Complaint Receipt Details</div>
+			</th>
+		</tr> -->
+		<tr>
+			<th>Token No</th>
+			<td>{{ receipttoken }}</td> 
+		</tr>
+		<tr>
+			<th>Applicant Name</th>
+			<td>{{ receiptapplname }}</td>
+		</tr>
+		<tr>
+			<th>Department</th>
+			<td>{{ receiptcompdept }}</td>
+		</tr>
+		<tr>
+			<th>Complaint Type</th>
+			<td>{{ compltypereceipt }}</td>
+		</tr>
+		<tr>
+			<th>Location</th>
+			<td>{{ locationreceipt  }}</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>{{ receiptdescrition  }}</td>
+		</tr>
+	</table>
+		    	 
+		<div class="padding">
+			<button ng-click="homepage()" class="button button-block button-positive customBgColor">
+			<span translate="HOMEPAGE"></span></button>
+		</div>
+	
+	</div>
+</form>
+</ion-content>
+</ion-view>
+
+

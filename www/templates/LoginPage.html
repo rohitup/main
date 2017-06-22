@@ -1,0 +1,38 @@
+<ion-view hide-nav-bar="true" class="">
+ 
+<ion-content ng-controller="LoginPageCtrl">
+<h1 class="mainetcss">MAINet<span class="trade-mark">&trade;</span></h1>
+
+<form name="loginForm">
+	<div class="list" >
+
+		<label class="item item-input item-floating-label">
+			<span class="input-label" translate="MOBILENO"></span>
+			<input type="number" placeholder="{{ 'MOBILENO' | translate}}" name="loginmobileNo" ng-model="loginmobileNo" ng-trim="false" 
+			ng-pattern="/^[0-9]{1,10}$/" ng-keyup="onlyNumericTenLimitInput()" id="mobileNo" required>
+			<span  class="errorMessage" ng-show="loginForm.loginmobileNo.$error.pattern">Please Enter Valid Mobile Number</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label" translate="PASSWORD"></span>
+			<input type="password" placeholder="{{ 'PASSWORD' | translate}}" name="loginPassword" 
+			ng-model="loginPassword" ng-trim="false" ng-pattern="/^[A-Za-z0-9/@]{1,50}$/" required>
+			<span class="errorMessage" ng-show="loginForm.loginPassword.$error.pattern">Please Enter Valid Password</span>
+		</label>
+		 <select class="select-dropdown" name="ULBid" ng-model="ULBid" 
+		 	ng-options="o.ulbid as o.ulbname for o in ULBoptions"  required>
+			<option value="" translate="SELORG"></option>
+		</select>
+		 			
+		<div class="padding">
+			<button  ng-disabled="loginForm.$invalid" ng-click="login()" class="button button-block button-positive customBgColor">
+			<span translate="SIGN_TEXT"></span></button>
+			<!-- <button ng-click="ifnotregister()" class="button button-block button-positive customBgColor">
+			<span translate="REG_PAGE"></span></button>
+			<a ui-sref="app.forgotpassword" class="rightcss" ng-click="forgotpage();">
+			<span translate="FORGOT"></span></a> -->
+		</div>
+	</div>
+</form> 
+ 
+</ion-content>
+</ion-view>

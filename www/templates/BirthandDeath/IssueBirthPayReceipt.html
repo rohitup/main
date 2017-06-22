@@ -1,0 +1,57 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="IssueBirthPayReceiptCtrl" class="animated zoomIn">
+		<form name="IssueBirthPayReceiptForm" ng-submit="paybutton()">
+			<div>
+				<h3 class="heading">Issue Birth Certificate</h3>
+				<table class="gridtable">
+					<tr>
+						<th class="head" colspan="2">Issue Birth Certificate</th>
+					</tr>
+					<tr>
+						<th>Due Amount</th>
+						<td>{{ applnDueAmount }}</td>
+					</tr>
+					<tr>
+						<th>Application Number</th>
+						<td>{{ applicationID }}</td>
+					</tr>
+					<tr>
+						<th>Application Name</th>
+						<td>{{ applicantName }}</td>
+					</tr>
+					<tr>
+						<th>Mobile Number</th>
+						<td>{{ mobileNumber }}</td>
+					</tr>
+					<tr>
+						<th>Email ID</th>
+						<td>{{ EmailID }}</td>
+					</tr>
+				</table>
+			</div>
+		
+			<label class="input-label padding-left-15 required">Payment Gateway</label>	
+			<select class="select-dropdown" name="issuebirthPay" ng-model="issuebirthPay" id="issuebirthPayreceipt" 
+			ng-click="BankListChange()" ng-options="o.bankid as o.bankname for o in banknamelistopt" ng-change="issuebirthpaychange()" required>
+				<option value="">Select Payment Gateway*</option>
+		    </select>
+		
+			<div class="padding">
+				<button ng-click="paymentgateway()" class="button button-block button-positive customBgColor">
+					<span translate="">PAY</span>
+				</button>
+			</div>
+		
+	</form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,134 @@
+
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="Complaintstatusctrl" class="animated zoomIn">
+    <h3 class="heading">Complaint Status.</h3>
+
+<form name="complaintstatusform">		
+<div class="list">
+	<label class="item item-input item-floating-label"> 
+		<span class="input-label required">Token Number</span>
+		<input type="number" placeholder="Token Number*" name="tokennumber" ng-model="tokennumber" id="tokennumberid"
+	     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" required/>
+		<span class="errorMessage" ng-show="complaintstatusform.tokennumber.$error.pattern">Please Enter Valid Token Number</span>
+	</label>
+	
+	<div class="padding">
+		<button ng-disabled="!complaintstatusform.$valid" ng-click="applicationstatussearch()" class="button button-block button-positive customBgColor"><i class="icon ion-search fonth3"></i>
+		<span translate="">Search</span></button>
+	</div>	
+</div>		
+		
+</form>
+	
+<form name="tableform" ng-if="complaintStatusFormResponse" class="animated zoomIn">
+	<!-- <table class="gridtable">
+		<tr>
+		<th>Complaint No</th>
+		<th>Date</th>
+		<th>Action</th>
+		<th>Status</th>
+		</tr>
+		                     
+		<tr>
+		<td>123</td>
+		<td>19-12-2016</td>
+		<td>Closed</td>
+		<td><button class="customBgColor1" ng-click="showPopup()">FeedBack</button></td>
+		</tr>
+		          
+		<tr>
+		<td>1234</td>
+		<td>18-12-2016</td>
+		<td>Pending</td>
+		<td><button class="customBgColor1 " ng-click="showPopuptable()">View Detail</button></td>
+		</tr>
+		          
+		<tr>
+		<td>12345</td>
+		<td>17-12-2016</td>
+		<td>Pending</td>
+		<td><button class="customBgColor1" ng-click="showPopuptable()">View Detail</button></td>
+		</tr>
+	</table>  -->
+	<table class="gridtable">
+		<tr>
+			<th width="100%" colspan="2">
+			<div align="center">Complaint Acknowledgement Details</div>
+			</th>
+		</tr>
+		<tr>
+			<th>Token No</th>
+			<td>{{  }}</td> 
+		</tr>
+		<tr>
+			<th>Complaint</th>
+			<td>{{  }}</td>
+		</tr>
+		<tr>
+			<th>Complaint Type</th>
+			<td>{{  }}</td>
+		</tr>
+		<tr>
+			<th>Complaint Sub Type</th>
+			<td>{{  }}</td>
+		</tr>
+		<tr>
+			<th>Ward</th>
+			<td>{{   }}</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>{{   }}</td>
+		</tr>
+	</table>
+	
+	
+</form>
+    
+
+    
+  </ion-content>
+</ion-view>
+
+<style>
+
+.customBgColor{	background-color: #36979e !important;}
+.customBgColor1{background-color: #36979e !important;
+text-align: center;
+text-overflow: ellipsis;
+font-size: 12px;
+line-height: 0px;
+position: relative;
+display: inline-block;
+padding: 0 12px;
+min-width: 52px;
+min-height: 22px;
+border-width: 1px;
+border-style: solid;
+border-radius: 4px;
+vertical-align: top;}
+
+.red{background-color: #E15554 !important; /*E15554*/}
+.green{background-color:  #00ff00 !important; /*#68C39F*/ }
+.customBgColorWhite{background-color: #ffffff !important; }
+.fonth3 {font-size: 24px !important;}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+/* h4{font-size:18px; font-weight:normal; padding:5px 0px; line-height:20px;}
+.labelcss{font-weight:normal; padding:5px 0px; line-height:20px; font-size:0.85em;}
+.checkboxcss{font-weight:normal;}
+.cRedSpan{color:red;}
+.required:after { content:" *"; color:red;} */
+</style>

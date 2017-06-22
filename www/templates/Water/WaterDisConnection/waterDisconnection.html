@@ -1,0 +1,102 @@
+<ion-view>
+
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+ <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="waterDisconnectionCTRL" class="backgroundimage animated zoomIn">
+<h3 class="heading">Disconnection Details</h3>
+      
+<form name="DisconnNoForm">
+	<div class="list">
+      <label class="item item-input item-floating-label"> 
+		<span class="input-label required" translate="CONNECTION_NUMBER"></span>
+		<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}*" name="connectionNosearch" ng-model="connectionNosearch" id="connectionNosearch"
+	     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required/>
+		<span class="errorMessage" ng-show="DisconnNoForm.connectionNosearch.$error.pattern">Please Enter Valid Connection Number</span>
+	 </label>
+
+	 <div class="padding"> 
+		<button ng-disabled="!DisconnNoForm.$valid" ng-click="disConnNosearch()" 
+		class="button button-block button-positive customBgColor ">
+		<i class="icon ion-search fonth3"></i>
+		<span translate="SEARCH"></span></button>
+ 	</div> 
+  </div>
+</form>         
+   
+<form name="DiscoonectionForm" ng-if="disconnNoSearchDetails">
+	<div class="list">
+		<label class="item item-input"></label> 
+		<label class="item item-input item-floating-label">
+			<span class="input-label ">Consumer Name</span> 
+			<input type="text" placeholder="Consumer Name" name="data.disConsumerName" ng-model="data.disConsumerName"
+			 disabled/>
+			
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label ">Area Name</span> 
+			<input type="text" placeholder="Area Name" name="data.disAreaName"
+			 ng-model="data.disAreaName" disabled/>
+			
+		</label>
+		<label class="input-label padding-left-15 required" translate="DisConn_Type"></label>
+		<select class="select-dropdown" name="data.disConnType" id="DisConnType" ng-model="data.disConnType" 
+		ng-options="o.id as o.name for o in DICoptions" required>
+			<option value="">Select</option>
+			<!-- <option value="274">Permanent Disconnection</option>
+			<option value="275">Temporary Disconnection</option> -->
+		</select>
+		<div ng-if="data.disConnType == '275'">
+			<label class="item item-input"></label> 
+			<h3 class="heading">Temporary Disconnection</h3>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">From Date</span>
+				<input type="date" placeholder="From Date(DD/MM/YYYY)" ng-blur="changeAttr($event)" 
+				name="data.disfromdate" ng-model="data.disfromdate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" required/>
+				<span class="errorMessage" ng-show="DiscoonectionForm.data.disfromdate.$error.pattern">Please Enter Valid Date</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">To Date</span>
+				<input type="date" placeholder="To Date(DD/MM/YYYY)" ng-blur="tochangeAttr($event)"
+				 name="data.distodate" ng-model="data.distodate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" required/>
+				<span class="errorMessage" ng-show="DiscoonectionForm.data.distodate.$error.pattern">Please Enter Valid Date</span>
+			</label>
+		</div>
+		<label class="item item-input item-floating-label"></label>  
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Disconnection Reason</span> 
+			<input type="text" placeholder="Disconnection Reason*" name="data.disConnReason" ng-model="data.disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="DiscoonectionForm.data.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>	
+		<label class="input-label padding-left-15 required" translate="Plumber_Details"></label>
+		<select class="select-dropdown" name="data.disPlumberDetail" ng-model="data.disPlumberDetail" required>
+			<option value="">Select</option>
+			<option value="UR">ULB Registered</option>
+			<option value="NUR">Not ULB Registered</option>
+		</select>	
+		<div ng-if="data.disPlumberDetail == 'NUR'">
+			<label class="item item-input item-floating-label">
+				<span class="input-label required ">Plumber License No</span> 
+				<input type="number" placeholder="Plumber License No*" name="data.plumberlicNo"
+				 ng-model="data.plumberlicNo" ng-trim="false"  ng-pattern="/^[0-9]{0,10}$/"/ required>
+				<span class="errorMessage" ng-show="DiscoonectionForm.data.plumberlicNo.$error.pattern">Please Enter Valid Plumber License No</span>
+			</label>
+		</div>
+		<div class="padding">
+			<button ng-disabled="DiscoonectionForm.$invalid" ng-click="confirmtoproceed()" 
+			class="button button-block button-positive customBgColor">
+			<span translate="CONFIRM"></span></button>
+		</div>
+	</div>
+</form>
+
+    </ion-content>
+</ion-view>   
+

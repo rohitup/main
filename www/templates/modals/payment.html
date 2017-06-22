@@ -1,0 +1,29 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-dark">
+        <h1 class="title logo-app">Payment</h1>
+        <button class="button button-icon button-clear mdi mdi-window-close" ng-click="closeModalPayment()"></button>
+    </ion-header-bar>
+    <ion-content>
+        <form name="paymentForm" ng-submit="confirmPayment()">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Username <span class="assertive">*</span></span>
+                    <input type="text" placeholder="Loi" ng-model="data.order.customerName" class="font-weight-md"
+                           required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Email <span class="assertive">*</span></span>
+                    <input type="email" placeholder="stove654@gmail.com" ng-model="data.order.customerEmail" class="font-weight-md" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Phone Number <span class="assertive">*</span></span>
+                    <input type="text" placeholder="01638678364" ng-model="data.order.customerPhone" class="font-weight-md" required>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-positive" type="submit" ng-disabled="!data.order.items.length || !paymentForm.$valid">Payment</button>
+            </div>
+
+        </form>
+    </ion-content>
+</ion-modal-view>

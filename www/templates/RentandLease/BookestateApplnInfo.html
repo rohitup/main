@@ -1,0 +1,75 @@
+<ion-view class="home-page">
+	
+	<ion-nav-title>
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="BookestateApplnInfoCTRL" class="animated zoomIn">
+		<h3 class="heading">Applicant Information</h3>
+		<form name="BookestateApplnInfoCTRLForm" >
+			<div class="list">
+				 <label class="input-label padding-left-15 required" translate="SEL_TITLE"></label>
+					<select class="select-dropdown" name="WNCselecttitle" ng-model="WNCselecttitle" ng-click="ttlprefix()"
+					ng-options="o.ttlid as o.ttlname for o in ttloptions" required>
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">First Name</span> 
+					<input type="text" placeholder="First Name*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Middle Name</span> 
+					<input type="text" placeholder="Middle Name*" name="WNCMiddlename" ng-model="WNCMiddlename" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCMiddlename.$error.pattern">Please Enter Valid Middle Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Last Name</span> 
+					<input type="text" placeholder="Last Name*" name="WNCLastname" ng-model="WNCLastname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCLastname.$error.pattern">Please Enter Valid Last Number</span>
+				</label>
+			    <label class="input-label padding-left-15 required" translate="SELECT_GEN"></label>
+					<select class="select-dropdown" name="WNCgender" ng-model="WNCgender" ng-click="Genprefix()" id="wncgender"
+					ng-options="o.genid as o.genname for o in genoptions" required>
+					<option value="">Select</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Mobile Number</span> 
+					<input type="number" placeholder="Mobile Number*" name="WNCmobile" ng-model="WNCmobile" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCmobile.$error.pattern">Please Enter Valid Mobile Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Email ID</span> 
+					<input type="number" placeholder="Email ID*" name="WNCemailid" ng-model="WNCemailid" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCemailid.$error.pattern">Please Enter Valid Email ID</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label ">Address</span> 
+					<input type="number" placeholder="Address" name="WNCemailid" ng-model="WNCemailid" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCemailid.$error.pattern">Please Enter Valid Email ID</span>
+				</label>
+			    <label class="item item-input item-floating-label">
+					<span class="input-label">Aadhar Number</span> 
+					<input type="number" placeholder="Aadhar Number" name="WNCaadharnumber" ng-model="WNCaadharnumber" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCaadharnumber.$error.pattern">Please Enter Valid Aadhar Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Pan Number</span> 
+					<input type="number" placeholder="Pan Number" name="WNCaadharnumber" ng-model="WNCaadharnumber" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCaadharnumber.$error.pattern">Please Enter Valid Aadhar Number</span>
+				</label>
+				
+				<div class="padding">
+					<button ng-click="savebookapplninfo()" class="button button-block button-positive customBgColor">
+						<span translate="SUBMIT"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+    </ion-content>
+</ion-view>

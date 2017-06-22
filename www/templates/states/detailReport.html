@@ -1,0 +1,43 @@
+<ion-view>
+   
+   <!--  <ion-nav-title>
+        <span translate="WATER_BILL_PAYMENT"></span>
+    </ion-nav-title> -->
+    
+     <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="reportdetailsCtrl" class="">
+    <h3 class="heading">Daily Collection Report</h3>
+	
+		
+	<form>
+					<table class="gridtable"><tr>
+					<th class="head" width="100%" colspan="4">
+					<div align="center">Daily update collection report</div></th></tr>
+					<tr><th style="width: 20%;">Date</th>
+					<th style="width: 20%;">Receipt No.</th>
+					<th style="width: 30%;">Property No.</th>
+					<th style="width: 30%;">Amount</th></tr>
+					<tr ng-repeat="detail in prop.reports"><td>{{detail.receiptDate}}</td>
+					<td>{{detail.receiptNo}}</td>
+					<td>{{detail.propertyNo}}</td>
+					<td >{{detail.receiptAmt}}</td>
+					<tr><td colspan="3">Total Amount</td>
+					<td>{{sum}}</td></tr></table>
+					 
+		       </form>
+			   <div class="padding">
+					 <button  class="button button-block button-positive" ng-click="propprintDetail()">
+					 <span translate="">Print</span></button>
+				</div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,48 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="ComplaintPagectrl" class="backgroundimage">
+  <h3 class="heading">Complaint Details</h3>
+
+    
+<div class="row margin-0">
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+			<a class="item gridnopadding" ng-click="deptartmentperfix()"><img src="../www/img/water-bill-icon.png" width="55px" height="55px">
+			<h5 translate="LODGECOMPL"> </h5></a>
+		</div>
+	</div>
+	<div class="col col-50 animated fadeInRight">
+		<div class="list text-center">
+			<a class="item gridnopadding" ui-sref="app.complaintstatus"><img src="../www/img/new-water-connection.png" width="55px" height="55px">
+			<h5 translate="COMPLSTATUS"> </h5></a>
+		</div>
+	</div>
+</div>
+ 
+<!--   <div class="row margin-0">
+ 
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+			<a class="item gridnopadding" ui-sref="app.PDF">
+			<img src="../www/img/water-bill-icon.png" width="55px" height="55px">
+			<h5 translate="">PDF test</h5></a>
+		</div>
+	</div>
+
+</div> -->
+  
+ 
+ 
+ </ion-content>
+</ion-view>
+

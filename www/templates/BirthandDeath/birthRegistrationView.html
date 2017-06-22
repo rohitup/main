@@ -1,0 +1,50 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="BirthRegistrationViewCtrl" class="animated zoomIn">
+		<div>
+			<h3 class="heading">Birth Registration Details</h3>
+			<table class="gridtable" ng-repeat="birthDetail in birthDetailList track by $index">
+				<tr>
+					<th class="head" colspan="2">Birth Detail - {{$index + 1}}</th>
+				</tr>
+				<tr ng-if="birthDetail.bRegNo">
+					<th width="45%">Registration Number</th>
+					<td>{{ birthDetail.bRegNo }}</td>
+				</tr>
+				<tr ng-if="birthDetail.bChildName">
+					<th>Child Name</th>
+					<td>{{ birthDetail.bChildName }}</td>
+				</tr>
+				<tr ng-if="birthDetail.bGender">
+					<th>Gender</th>
+					<td>{{ birthDetail.bGender }}</td>
+				</tr>
+				<tr ng-if="birthDetail.bDob">
+					<th>Date of Birth</th>
+					<td>{{ birthDetail.bDob }}</td>
+				</tr>
+				<tr ng-if="birthDetail.bFatherName">
+					<th>Father Name</th>
+					<td>{{ birthDetail.bFatherName }}</td>
+				</tr>
+				<tr ng-if="birthDetail.bMotherName">
+					<th>Mother Name</th>
+					<td>{{ birthDetail.bMotherName }}</td>
+				</tr>
+				<tr ng-if="birthDetail.bHospName">
+					<th>Birth Place</th>
+					<td>{{ birthDetail.bHospName }}</td>
+				</tr>
+			</table>
+		</div>
+    </ion-content>
+</ion-view>

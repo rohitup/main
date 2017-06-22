@@ -1,0 +1,199 @@
+<ion-view>
+
+    
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="ChangeofUsageCtrl" class="">
+			
+<div ng-show="show==1">
+	<h3 class="heading">Change Of Usage</h3>
+<div class="list list-inset">
+	<span class="item item-input" style="padding: 0 0 0 16px;" >
+	<input type="text" placeholder="{{'CONNECTION_NUMBER' | translate}}" class="labelcss" data-ng-model="changeusages" >
+	<button ng-click="searchchangeusages()" class="button button-positive customBgColor" style="border-radius: 0px 2px 2px 0px;">
+	<i class="icon ion-search fonth3"></i></button>
+	</span>      
+</div> 
+</div>
+  
+<form name="olddetailsdiv">
+ <div ng-show="show==2">
+  	<div class="list list-borderless" >
+  	  <h3 class="heading">Old Details</h3>
+  	         <label class="item item-input">
+	            <span class="input-label labelcss">Consumer Name:-</span>
+				<input type="text" class="input-box" data-ng-model="COUconnName" disabled />			
+			 </label><br>
+		
+		    <label class="item item-select height-padding">
+				<span class="labelcss" >Connection Size:-</span>
+					<select class="select-box" data-ng-model="COUconnSize" ng-options="o.cszid as o.cszname for o in cszoptions" disabled>
+					<option value="">Select</option></select>
+			</label> 
+			 
+			 <label class="item item-select height-padding">
+				<span class="labelcss">Tariff Category:-</span>
+					<select class="select-box" data-ng-model="COUtarifCate" ng-options="o.trfid as o.trfname for o in trfoptions" disabled>
+					<option value="">Select</option></select>
+			</label>
+			
+			<label class="item item-select height-padding">
+				<span class="labelcss" >Permise Type:-</span>
+					<select class="select-box" data-ng-model="COUpermiseType" ng-options="o.permiseid as o.permisename for o in permiseoptions" disabled>
+					<option value="">Select</option></select>
+			</label>
+			
+		 <h3 class="heading">New Details</h3><div class="spacer" style="height: 7px;"></div>
+	          
+			<label class="item item-select height-padding">
+				<span class="labelcss required" translate="SELECT_TARIF"></span>
+				<select class="select-box" data-ng-model="newCOUtarifnew" ng-click="TRFprefix()" ng-change="selectAction()"
+				ng-options="o.trfid as o.trfname for o in trfoptions" id="NCOutarif" required>
+				<option value="">Select</option></select>
+			</label>
+			 
+			 <label class="item item-select height-padding">
+				<span class="labelcss required" translate="SELECT_PERMISE"></span>
+					<select class="select-box" ng-disabled="!permiseoptions1" data-ng-model="newCOUpermise" ng-change="selectpermise()"
+					ng-options ="o.permiseid1 as o.permisename1 for o in permiseoptions1" id="NCOUpermise" required>
+					<option value="">Select</option></select>
+			</label> 
+			 
+				<label class="item item-input">
+		             	<span class="input-label labelcss">Remarks(if any):-</span>
+		                <input type="text" class="input-box" data-ng-model="COURemarks" >
+		        </label>
+        </div>
+        
+		    <div class="padding">
+		        <button ng-disabled="!olddetailsdiv.$valid" ng-click="confrmproceed()" class="button button-block button-positive customBgColor">
+		        <span translate="CMF_PROCEED"></span></button>
+		    </div>
+	</div>
+</form>
+
+<form name="uploadattachdiv">
+	<div ng-show="show==3">
+		<div class="list list-borderless">
+			<h3 class="heading">Upload Attachments</h3>
+			
+			<!-- <label class="item item-input">
+					<span class="input-label labelcss required">Aadhaar Card :-</span>
+		            <input type="text" class="input-box" id="adada" data-ng-model="COUadharcard" required/>
+		     </label> 
+		     
+			 <label class="item item-input">
+					<span class="input-label labelcss required">Property Tax Receipt:-</span>
+		            <input type="text" class="input-box" data-ng-model="COUprotertytaxreceipt" required/>
+		     </label>
+		   
+		     <label class="item item-input">
+					<span class="input-label labelcss required">Yellow Ration Card:-</span>
+		            <input type="text" class="input-box" data-ng-model="COUrationimage" required/>
+		     </label>
+
+		     <label class="item item-input highlight">
+					<span class="input-label labelcss">Building Permission Photocopy:-</span>
+		            <input type="text" class="input-box" data-ng-model="COUpermissionphoto">
+		     </label>
+		       
+		     <label class="item item-input">
+					<span class="input-label labelcss">Location Map:-</span>
+		            <input type="text" class="input-box" data-ng-model="COUlocationimage">
+		     </label> -->
+		     
+		     <div id="UsageDocData">
+		
+           </div>
+		     
+		     <!-- 
+	 		  <table class="gridtable">
+                     <tr>
+                        <th width="5%">Sr.No</th>
+                        <th >DocID</th>
+                        <th >Description</th>
+                        <th>Mandatory</th>
+                        <th>Upload Document.</th>
+                     </tr>
+                     
+                     <tr ng-repeat = "subject in subjects">
+                    	<td>{{subject.documentSerialNo}}</td>
+                    	<td>{{subject.documentId}}</td>
+                        <td>{{ subject.doc_DESC_ENGL }}</td>
+                        <td>{{ subject.checkkMANDATORY }}</td>
+                        <td><input type="file" class="filecss" id="verfiyFile" ng-model="subject.documentId"
+                        onchange="angular.element(this).scope().imageupload()"/></td>
+                     </tr>
+              </table>  -->
+              
+	     </div>
+	     
+	     <div class="padding">
+				<button ng-disabled="!uploadattachdiv.$valid" ng-click="uploaddocuments()" class="button button-block button-positive customBgColor">
+				<span translate="UPLOAD"></span></button>
+		</div>
+	</div>
+</form>
+
+<form name="paymentpage" novalidate> 
+	<div name="paydetailsdiv" ng-show="show==4">
+
+	<div class="list list-borderless">
+		<h3 class="heading">Payment</h3>
+			 <label class="item item-input">
+					<span class="input-label labelcss">Total Amt Payable(Rs.):-</span>
+		            <input type="text" class="input-box" data-ng-model="COUFlatRate" disabled>
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss">Enter Amt to Pay(Rs.):-</span>
+		            <input type="number" class="input-box" data-ng-model="COUpaidamt" required/>
+		     </label><br>
+		     
+			   <label class="item item-select height-padding">
+				 <span class="labelcss required" translate="PAYMENT_MODE"></span>
+					<select class="select-box" name="type" data-ng-model="COUpaymettype" ng-options="o.id as o.name  for o in options" required>
+						<option value="">Select</option></select>
+				</label>
+	     </div>
+	     
+	       <div class="padding">
+				<button ng-disabled="!paymentpage.$valid" ng-click="COUsavedata()" class="button button-block button-positive customBgColor">
+				 <span translate="PAY"></span></button>
+		  </div>
+	</div>
+</form>
+
+</ion-content>
+ 
+</ion-view>
+
+<style>
+.customBgColor{
+	background-color: #36979e !important;
+}
+.customBgColorWhite{
+	background-color: #ffffff !important; 
+}
+.
+.fonth3 {
+	font-size: 24px !important;
+}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+.required:after { content:" *"; color:red;}
+/* h4{font-size:18px; font-weight:normal; padding:5px 0px; line-height:20px;}
+.labelcss{font-weight:normal; padding:5px 0px; line-height:20px; font-size:0.85em;}
+.checkboxcss{font-weight:normal;}
+.cRedSpan{color:red;}
+.required:after { content:" *"; color:red;} */
+</style>

@@ -1,0 +1,82 @@
+
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="ReOpenCtrl" class="">
+   
+<div>
+ <h3 class="heading">Reply</h3>
+	<table class="gridtable">
+		  <tr>
+            <th>Sr.No</th>
+            <td>01</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>26/12/2016</td>
+           </tr>
+           <tr> 
+            <th>Replied By</th>
+            <td>Mr. Suresh Sharma</td>
+            </tr>
+            <tr>
+            <th>Replied</th>
+            <td>Complaint is Closed</td>
+           </tr>
+    
+      </table> 
+      
+      <div class="padding">
+		<button ng-click="reopencomplaint()" class="button button-small button-balanced center">
+		<span translate="">Reopen Complaint</span></button>
+	 </div>
+</div>
+
+
+<form name="waterBillForm" ng-if="compdescription">
+	<div class="list list-borderless">
+	 <h3 class="heading">Complaint Description</h3>
+	  <label class="item item-input">
+		<span class="input-label labelcss">Your Reply</span>
+		<input type="text" class="input-box" data-ng-model="reply" />
+	  </label>
+	
+	   <label class="item item-input height-padding">
+			<span class="input-label labelcss required">Upload Document:</span>
+			<input type="file" class="filecss input-box" id="verfiyFile" ng-model="NewCompDocument"
+	        onchange="angular.element(this).scope().imageupload()"/>
+	</label>
+			     
+	</div>
+	<div class="padding">
+		<button ng-click="" class="button button-small button-balanced center">
+		<span translate="">Submit</span></button>
+	 </div>
+</form>
+
+
+    </ion-content>
+</ion-view>
+
+<style>
+.center{ margin-left: auto; margin-right: auto;display: block;width:50%;height: 40px;background-color: #36979e !important;}
+.customBgColor{	background-color: #36979e !important;}
+.red{background-color: #E15554 !important; /*E15554*/}
+.green{	background-color: #68C39F !important; /*#68C39F*/ }
+.customBgColorWhite{background-color: #ffffff !important; }
+.fonth3 {font-size: 24px !important;}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+.padding .item{padding:10px !important;}
+
+</style>

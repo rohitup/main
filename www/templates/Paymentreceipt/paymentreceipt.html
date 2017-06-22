@@ -1,0 +1,59 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+<ion-content ng-controller="paymentReceiptCtrl" class="animated zoomIn">
+		<form name="PaymentreceiptFoem">
+			<h3 class="heading">Payment Receipt</h3>
+ 			<table class="gridtable AmountTable">
+				<tr>
+					<th width="55%">Transaction Id</th>
+					<td>{{ payRecTrackId }}</td>
+				</tr>
+				<tr>
+					<th>Application Number</th>
+					<td>{{ payRecAppNo }}</td>
+				</tr>
+				<tr>
+					<th>Applicant Name</th>
+					<td>{{ payRecAppName }}</td>
+				</tr>
+				<tr>
+					<th>Mobile Number</th>
+					<td>{{ payRecMobNo }}</td>
+				</tr>
+				<tr>
+					<th>Email Id</th>
+					<td>{{ payRecEmail }}</td>
+				</tr>
+				<tr>
+					<th>Amount</th>
+					<td>{{ payRecAmt }}</td>
+				</tr>
+				<tr ng-show="payRecBankFlag">
+					<th>Bank Ref. No.</th>
+					<td>{{ payRecBank }}</td>
+				</tr>
+				<tr>
+					<th>Service Name</th>
+					<td>{{ payRecService }}</td>
+				</tr>
+				<tr>
+					<th>Payment Status</th>
+					<td>{{ payRecStatus }}</td>
+				</tr>
+			</table>
+			<div class="padding">
+					<button ng-click="homepage()" class="button button-block button-positive customBgColor">
+					<span translate="Home">Home</span></button>
+				</div>
+		</form>
+    </ion-content>
+</ion-view>

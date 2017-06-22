@@ -1,0 +1,136 @@
+<ion-view>
+   <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>	
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="NewWaterconnInfoCTRL" class="animated zoomIn backgroundimage">
+
+	<form name="NWCApplicantInfoForm">
+		<div class="list">
+		 <h3 class="heading" translate="NEW_WATER_CONN"></h3>
+	         <label class="input-label padding-left-15 required" translate="SEL_APPLT_TYPE"></label>
+				<select ng-click="appltype()" class="select-dropdown" name="WNCapplicantype" ng-model="WNCapplicantype" id="apltype"
+					ng-options="o.aptid as o.aptname for o in aptoptions" required>
+					<option value="">Select</option>
+				</select> 
+				<label class="item item-input item-floating-label"></label>
+					<div id="org" ng-if="WNCapplicantype == '224'">
+					  <label class="item item-input item-floating-label">
+							<span class="input-label required" translate="ORGNAME"></span> 
+							<input type="text" placeholder="{{'ORGNAME' | translate}}*" name="data_.WNCorgname" ng-model="data_.WNCorgname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+							<span class="errorMessage" ng-show="NWCApplicantInfoForm.data_.WNCorgname.$error.pattern">Please Enter Valid Organisation Number</span>
+						</label>
+					 </div>
+					 
+			 	  <label class="input-label padding-left-15 required" translate="SEL_TYPE_APPL"></label> 
+					<select class="select-dropdown" name="WNCtemporary" ng-model="WNCtemporary" 
+					 ng-options="obj.value as obj.label for obj in permttemp" ng-dropdown required>
+						<option translate="" value="">Select</option>
+						<!-- <option value="P" ng-selected="true">Permanent</option>
+						<option value="T" >Temporary</option> -->
+					</select><label class="item item-input item-floating-label" ></label>
+					
+					<div id="fod" ng-if="WNCtemporary == 'T'">
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="FRDATE" > </span>
+							<input type="date" placeholder="{{'FRDATE' | translate}}*" ng-blur="changeAttr($event)" name="data_.WNCfromdate" ng-model="data_.WNCfromdate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" required/>
+							<span class="errorMessage" ng-show="NWCApplicantInfoForm.data_.WNCfromdate.$error.pattern">Please Enter Valid Date</span>
+						</label>
+					</div>
+					<div id="tod" ng-if="WNCtemporary == 'T'">
+						 <label class="item item-input item-floating-label">
+							<span class="input-label required" translate="TODATE"></span>
+							<input type="date" placeholder="{{'TODATE' | translate}}*" ng-blur="tochangeAttr($event)" name="data_.WNCtodate" ng-model="data_.WNCtodate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" required/>
+							<span class="errorMessage" ng-show="NWCApplicantInfoForm.data_.WNCtodate.$error.pattern">Please Enter Valid Date</span>
+						</label>
+					</div>	
+		
+		<h3 class="heading" translate="APPLICANTINFO"></h3>
+			     <label class="input-label padding-left-15 required" translate="SEL_TITLE"></label> 
+					<select class="select-dropdown" name="WNCselecttitle" ng-model="WNCselecttitle" ng-click="ttlprefix()"
+					ng-options="o.ttlid as o.ttlname for o in ttloptions" id="appTTlID" required>
+					<option value="" >Select</option>
+				</select><label class="item item-input item-floating-label" ></label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="FNAME"></span> 
+					<input type="text" placeholder="{{'FNAME' | translate}}*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCFirstname.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label" translate="MNAME"> </span> 
+					<input type="text" placeholder="{{'MNAME' | translate}}" name="WNCMiddlename" ng-model="WNCMiddlename" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCMiddlename.$error.pattern">Please Enter Valid Middle Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="LNAME"></span> 
+					<input type="text" placeholder="{{'LNAME' | translate}}*" name="WNCLastname" ng-model="WNCLastname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCLastname.$error.pattern">Please Enter Valid Last Number</span>
+				</label>
+			 	 <label class="input-label padding-left-15 required" translate="GENDER"></label> 
+				 <select class="select-dropdown" name="WNCgender" ng-model="WNCgender" ng-click="Genprefix()" id="wncgender"
+					ng-options="o.genid as o.genname for o in genoptions" required>
+					<option value="" translate="">Select</option>
+				</select><label class="item item-input item-floating-label" ></label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="MOBILENO"></span> 
+					<input type="number" placeholder="{{'MOBILENO' | translate}}*" name="WNCmobile" ng-model="WNCmobile" id="mobileno" 
+					ng-keyup="tenLimitInputBpl()" ng-trim="false" ng-pattern="/^[0-9]{10,10}$/" required/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCmobile.$error.pattern">Please Enter Valid Mobile Number</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="EMAILID"> </span> 
+					<input type="text" placeholder="{{'EMAILID' | translate}}" name="WNCemailid" ng-model="WNCemailid" id="wncEmailID" ng-trim="false" 
+					ng-pattern="/^[A-Za-z0-9/s,.'-@]{1,50}$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCemailid.$error.pattern">Please Enter Valid Email ID</span>
+				</label>
+			    <label class="item item-input item-floating-label">
+					<span class="input-label" translate="ADHARNO"></span> 
+					<input type="number" placeholder="{{'ADHARNO' | translate}}" name="WNCaadharnumber" ng-model="WNCaadharnumber"
+					ng-keyup="twelveLimitInput()" id="adharNO" ng-trim="false" ng-pattern="/^[0-9]{12,12}$/"/>
+					<span class="errorMessage" ng-show="NWCApplicantInfoForm.WNCaadharnumber.$error.pattern">Please Enter Valid Aadhar Number</span>
+				</label>
+			     <label class="input-label padding-left-15 required" translate="SEL_BPL"></label> 
+				<select class="select-dropdown" name="WNCBpl" ng-model="WNCBpl" 
+					ng-options="obj.value as obj.label for obj in bpldata"required>
+					<option value="" translate="">Select</option>
+					<!-- <option value="Y">Yes</option>
+					<option value="N" ng-selected="true">No</option> -->
+				</select><label class="item item-input item-floating-label" ></label>
+				
+				<div id="isbpl" ng-if="WNCBpl == 'Y'">
+					<label class="item item-input item-floating-label">
+						<span class="input-label required" translate="BPLNO"></span> 
+						<input type="text" placeholder="{{'BPLNO' | translate}}*" name="data_.WNCbplno" ng-model="data_.WNCbplno" id="bplNumber"
+						ng-keyup="sixteenLimitBpl()" ng-trim="false" ng-pattern="/^[A-Za-z0-9/s,.'-@]{16,16}$/" required/>
+						<span class="errorMessage" ng-show="NWCApplicantInfoForm.data_.WNCbplno.$error.pattern">Please Enter Valid BPL Number</span>
+					</label>
+				 </div>
+				 
+				  <label class="input-label padding-left-15 required" translate="">Zone</label> 
+					<select class="select-dropdown" name="WNCZone" ng-model="WNCZone" ng-change="selectzone()"
+					ng-options="o.wwzid as o.wwzname for o in WWZoptions"  required>
+					<option value="">Select </option>
+				 </select><label class="item item-input item-floating-label" ></label>
+				 
+				  <label class="input-label padding-left-15 required" translate="">Ward</label> 
+					<select class="select-dropdown" name="WNCWard" ng-model="WNCWard"
+					ng-options="o.wardid as o.wardname for o in wardoptions" required>
+					<option value="">Select </option>
+				 </select><label class="item item-input item-floating-label" ></label>
+				 
+			  <div class="padding">
+			     <button ng-disabled="!NWCApplicantInfoForm.$valid" ng-click="applicantinfo()" class="button button-block button-positive customBgColor">
+				 <span translate="WATERCONN_NEXT"></span></button>
+			 </div>
+	   </div>
+</form>
+
+ </ion-content>
+</ion-view>   

@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "userId": 10,
+  "orgId": 81,
+  "responseMsg": "Login is Successfully",
+  "errorMsg": null,
+  "httpstatus": "OK",
+  "synchTime": 1486791430116,
+  "wsInputErrorList": null,
+  "userName": "9921266899",
+  "title": "Other",
+  "mobileNo": 9921266899,
+  "firstName": "Ambar",
+  "middleName": null,
+  "lastName": "Inamdar",
+  "gender": "M",
+  "address": "Vista Phase 2, Flat No. I-603, Wadala Road, Indira Nagar",
+  "addhaarNo": null,
+  "emailId": "ambar.inamdar@gmail.com",
+  "dob": 325449000000,
+  "userStatus": "Active",
+  "userType": "Citizen"
+}

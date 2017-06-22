@@ -1,0 +1,95 @@
+
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="CitizenCompReceipt">
+    <h3 class="heading">Complaint Receipt</h3>
+<form>
+ <div id="newcomp">
+    <div class="list list-borderless" >
+		
+			<label class="item item-input">
+		          <span class="input-label labelcss">Token:</span>
+		           <input type="text" class="input-box" data-ng-model="receipttoken" disabled>
+		    </label>
+		    
+		     <label class="item item-input">
+		          <span class="input-label labelcss">Complaint:</span>
+		          <input type="text" class="input-box" data-ng-model="receiptcomplaint" disabled>
+		     </label><!-- <div class="spacer" style="height: 5px;"></div> -->
+			
+			  <label class="item item-input ">
+		          <span class="input-label labelcss">Complaint Type:</span>
+		          <input type="text" class="input-box" data-ng-model="receiptcomplainttype" disabled>
+		      </label>
+			
+			  <label class="item item-input ">
+				<span class="input-label labelcss required">Complaint Sub Type :</span>
+		        <input type="text" class="input-box" id="" data-ng-model="receiptcpmplaintsubtype" disabled/>
+		     </label>
+		     
+		      <label class="item item-input ">
+				<span class="input-label labelcss required">Ward:</span>
+		        <input type="text" class="input-box" id="" data-ng-model="receiptward" disabled/>
+		     </label>
+		     
+		      <label class="item item-input ">
+				<span class="input-label labelcss required">Description:</span>
+		        <input type="text" class="input-box" id="" data-ng-model="receiptdescrition" disabled/>
+		     </label><br>
+		     
+		    	<table class="gridtable">
+					  <tr>
+			            <th>Level</th>
+			            <th>DurationD:H:M)</th>
+			            <th>Employee Name</th>
+			            <th>Designation</th>
+			            <th>Department</th>
+			            <th>Email</th>
+			          </tr>
+			         <tr>
+			             <td>0</td>
+			             <td>3:0:0</td>
+			             <td>Rohan Kumar</td>
+			             <td>Head of Department</td>
+			             <td>Water Department</td>
+			             <td>rohan.kumar@mail.com</td>
+			          </tr>
+			           <tr>
+			             <td>1</td>
+			             <td>4:0:0</td>
+			             <td>Anil Awad</td>
+			             <td>Junior Engineer</td>
+			             <td>Water Department</td>
+			             <td>anil.awad@mail.com</td>
+			          </tr>
+			           <tr>
+			             <td>2</td>
+			             <td>4:20:0</td>
+			             <td>Kailash Agrwal</td>
+			             <td>Chief Officer</td>
+			             <td>Water Department</td>
+			             <td>kailash.agrwal@mail.com</td>
+			          </tr>
+      			</table>  
+		     
+        </div>
+    
+     <div class="padding">
+		   <button ng-click="homepage()" class="button button-block button-positive customBgColor">
+		   <span translate="">Go Back To HomePage</span></button>
+	</div>
+</div>	
+</form>
+
+</ion-content>
+</ion-view>
+

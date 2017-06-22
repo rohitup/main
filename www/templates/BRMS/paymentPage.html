@@ -1,0 +1,50 @@
+<ion-view>
+   
+  <ion-nav-title>
+ 	 <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet<sup>&reg;</sup></h1>
+ </div>
+	</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content class="animated zoomIn">
+<h3 class="heading"  translate="PAYMENT"></h3>
+<form name="BRMSPaymentForm">
+	<div class="list">
+	             <label class="item item-input item-floating-label"> 
+					<span class="input-label required" translate="TOTAL_AMOUNT"></span>
+					<input type="number" placeholder="{{'TOTAL_AMOUNT' | translate}}" ng-model="finalAmount" disabled/>
+				</label>
+	             <label class="item item-input item-floating-label"> 
+					<span class="input-label required" translate="APPL_NAME"></span>
+					<input type="text" placeholder="{{'APPL_NAME' | translate}}" name="finalAppName" ng-model="data.finalAppName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required />
+					<span class="errorMessage"  ng-show="BRMSPaymentForm.finalAppName.$error.pattern">Please Enter Valid First Number</span>
+				</label>
+	             <label class="item item-input item-floating-label"> 
+					<span class="input-label required" translate="MOBILENO"></span>
+					<input type="tel" placeholder="{{'MOBILENO' | translate}}" name="finalAppMobile" ng-model="data.finalAppMobile"  ng-pattern="/^[0-9]{10,10}$/" required/>
+					<span class="errorMessage" ng-show="BRMSPaymentForm.finalAppMobile.$error.pattern">Please Enter Valid Mobile Number</span>
+				</label>			
+	            <label class="item item-input item-floating-label"> 
+					<span class="input-label" translate="EMAILID"></span>
+					<input type="email" placeholder="{{'EMAILID' | translate}}" name="finalAppEmail" ng-model="data.finalAppEmail" ng-trim="false" ng-pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/" />
+					<span class="errorMessage" ng-show="BRMSPaymentForm.finalAppEmail.$error.pattern">Please Enter Valid Email ID</span>
+				</label>			
+            	<label class="input-label padding-left-15 required" translate="PAYGATEWAY"></label>
+				<select class="select-dropdown" name="paymentType" data-ng-model="data.paymentType" 
+					ng-options="o.id as o.name for o in pgOptions" required>
+					<option value="">Select Payment Gateway</option>
+				</select>  
+				
+				<div class="padding">
+	                <button class="button button-block button-positive customBgColor" ng-click="saveRNLServiceData()" ng-disabled="!BRMSPaymentForm.$valid">
+	                <span translate="PAY"></span></button>
+	            </div> 
+	</div>
+</form>
+
+    </ion-content>
+ </ion-view>   

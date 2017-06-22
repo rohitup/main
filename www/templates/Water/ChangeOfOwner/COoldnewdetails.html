@@ -1,0 +1,115 @@
+<ion-view>
+ 
+  <!--   <ion-nav-title>
+        <span translate="FIX_HEADER"></span>
+    </ion-nav-title> -->
+    
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet<sup>&reg;</sup></h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="COoldNewDetailCTRL" class="animated zoomIn">
+
+	<form name="COoldNewDetails">
+	 <h3 class="heading" translate="OLDDETCO"></h3>
+  		<div class="list">
+  			<label class="item item-input item-floating-label">
+				<span class="input-label" translate="CONSNAME"></span> 
+				<input type="text" placeholder="{{'CONSNAME' | translate}}" name="oldCOWconnName" ng-model="oldCOWconnName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" disabled/>
+				<span class="errorMessage" ng-show="COoldNewDetails.oldCOWconnName.$error.pattern">Please Enter Valid Consumer Name</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label" translate="ADHARNO"></span> 
+				<input type="number" placeholder="{{'ADHARNO' | translate}}" name="oldCOWadharName" ng-model="oldCOWadharName" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" disabled/>
+				<span class="errorMessage" ng-show="COoldNewDetails.oldCOWadharName.$error.pattern">Please Enter Valid Aadhar Number</span>
+			</label>
+			<label class="input-label padding-left-15" translate="SELECT_TARIF"> </label>
+				<select class="select-dropdown" name="oldCOUtarifCate" ng-model="oldCOUtarifCate"
+					ng-options="o.trfid as o.trfname for o in trfoptions" id="oldtarifcos" disabled>
+					<option value="">Select Tariff Category</option>
+				</select>
+			<label class="input-label padding-left-15" translate="SELECT_PERMISE"> </label>
+				<select class="select-dropdown" name="oldCOUpermiseType" ng-model="oldCOUpermiseType"
+					ng-options="o.permiseid as o.permisename for o in permiseoptions" id="oldpermisecos" disabled>
+					<option value="">Select Permise Type</option>
+				</select>
+  			<label class="input-label padding-left-15" translate="SELECT_CONSIZE"></label>
+				<select class="select-dropdown disabled-class" name="oldCOUconnSize" ng-model="oldCOUconnSize" 
+					ng-options="o.cszid as o.cszname for o in cszoptions" id="oldconnsize" disabled>
+					<option value="">Select Connection Size</option>
+				</select>
+  	
+			 
+	 <h4 class="heading" translate="NEWDETCO"></h4><div class="spacer" style="height: 7px;"></div>
+			<label class="input-label padding-left-15 required" translate="SELECT_TRANSFER"></label>
+				<select class="select-dropdown" name="newtransfermode" ng-model="newtransfermode" 
+					ng-options="o.tfmid as o.tfmname for o in tfmoptions" id="TFMname"  required>
+					<option value="">Select</option>
+				</select>
+  			<label class="input-label padding-left-15 required" translate="SEL_TITLE"></label>
+				<select class="select-dropdown" name="WNCselecttitle" ng-model="WNCselecttitle"
+					    ng-options="o.ttlid as o.ttlname for o in ttloptions" required>
+					<option value="">Select</option>
+				</select>
+			<label class="item item-input item-floating-label">
+				<span class="input-label required " translate="FNAME"> </span> 
+				<input type="text" placeholder="{{'FNAME' | translate}}*" name="WNCFirstname" ng-model="WNCFirstname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+				<span class="errorMessage" ng-show="COoldNewDetails.WNCFirstname.$error.pattern">Please Enter Valid First Name</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label " translate="MNAME"> </span> 
+				<input type="text" placeholder="{{'MNAME' | translate}}" name="WNCMiddlename" ng-model="WNCMiddlename" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+				<span class="errorMessage" ng-show="COoldNewDetails.WNCMiddlename.$error.pattern">Please Enter Valid Middle Name</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label required" translate="LNAME"></span> 
+				<input type="text" placeholder="{{'LNAME' | translate}}*" name="WNCLastname" ng-model="WNCLastname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+				<span class="errorMessage" ng-show="COoldNewDetails.WNCLastname.$error.pattern">Please Enter Valid Last Name</span>
+			</label>
+			<label class="input-label padding-left-15 required" translate="GENDER">Gender</label>
+				<select class="select-dropdown" name="WNCgender" ng-model="WNCgender"
+					ng-options="o.genid as o.genname for o in genoptions"  required>
+					<option value="">Select</option>
+				</select>
+			<label class="item item-input item-floating-label">
+				<span class="input-label required" translate="ADHARNO"></span> 
+				<input type="number" placeholder="{{'ADHARNO' | translate}}*" name="WNCaadharnumber" ng-model="WNCaadharnumber"
+				 ng-trim="false" ng-pattern="/^[0-9]{12,12}$/" required/>
+				<span class="errorMessage" ng-show="COoldNewDetails.WNCaadharnumber.$error.pattern">Please Enter Valid Aadhar Number</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label " translate="REMARKS"></span> 
+				<input type="text" placeholder="{{'REMARKS' | translate}}" name="COURemarks" ng-model="COURemarks" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+				<span class="errorMessage" ng-show="COoldNewDetails.COURemarks.$error.pattern">Please Enter Valid Remarks</span>
+			</label>
+			<label class="input-label padding-left-15 required" translate="SEL_BPL"></label>
+					<select class="select-dropdown" name="WNCBpl" ng-model="COBpl" required>
+					<option value="">Select</option>
+					<option value="Y">Yes</option>
+					<option value="N">No</option>
+				</select>
+				
+				<div id="isbpl" ng-if="COBpl == 'Y'">
+					<label class="item item-input item-floating-label">
+						<span class="input-label required" translate="BPLNO"></span> 
+						<input type="number" placeholder="{{'BPLNO' | translate}}*" name="CObplno" ng-model="CObplno" ng-trim="false" ng-pattern="/^[0-9]{6,6}$/" required/>
+						<span class="errorMessage" ng-show="COoldNewDetails.CObplno.$error.pattern">Please Enter Valid BPL Number</span>
+					</label>
+				 </div>
+			   
+		    <div class="padding">
+		        <button  ng-disabled="!COoldNewDetails.$valid" ng-click="confrmproceed()" class="button button-block button-positive customBgColor">
+		        <span translate="CMF_PROCEED"></span></button>
+		    </div>
+	</div>
+</form>
+
+    </ion-content>
+</ion-view>

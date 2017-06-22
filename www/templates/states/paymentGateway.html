@@ -1,0 +1,10 @@
+	<div ng-controller="PaymentGatewayCtrl">
+		<form name="paymentGatewayForm">
+			<select class="select-dropdown" ng-options="b.bankValue as b.bankName for b in bankList" id="" ng-model="paymentGatewaySelect" ng-change="retrieveBankDetail(paymentGatewaySelect)" required>
+				<option value="" selected="true" disabled="disabled" style="display:none;">Select Payment Gateway*</option>
+			</select>
+			<div class="padding">
+				<button type="submit" ng-disabled="paymentGatewayForm.$invalid" ng-click="paymentGateway()" class="button button-block button-positive customBgColor"><span translate="PAY"></span></button>
+			</div>
+		</form>
+	</div>

@@ -1,0 +1,77 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="RTIform2Ctrl" class="animated zoomIn">
+<h1 class="heading">RTI Application Form</h1>
+
+<form name="RTIformpage2" ng-submit="RTIformsubmit()"> 
+	<div class="list">
+	
+		<label class="item item-input item-floating-label"> 
+		<span class="input-label required">Subject</span>
+ 		<input type="text" placeholder="Subject*" name="RTIsubject" ng-model="RTIsubject" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+ 		<span class="errorMessage" ng-show="RTIformpage2.RTIsubject.$error.pattern">Please Enter Valid Subject Line</span>
+		</label>
+		
+		<label class="item item-input item-floating-label">
+		<span class="input-label required">Particular Info Required</span>
+		<input type="text" placeholder="Particular Info Required*" name="RTIparticular" ng-model="RTIparticular" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+		<span class="errorMessage" ng-show="RTIformpage2.RTIparticular.$error.pattern">Please Enter Valid Particular Information</span>
+		</label>
+		
+		<label class="input-label padding-left-15 required">Delivery Mode</label>
+		<select class="select-dropdown" name="type" data-ng-model="RTIDeliveryMode" ng-click="deliverymode()" 
+		ng-change="selectAction()" ng-options="o.listid as o.listname for o in deliverylist" required>
+		<option value="">Select Delivery Mode</option>
+		</select>
+		
+		<label class="input-label padding-left-15 required">Media Type</label>
+		<select class="select-dropdown" name="type" data-ng-model="RTImediatype" 
+		ng-options="o.mediaID as o.mediaName for o in mediatypeoptions" required>
+		<option value="">Select Media Type</option>
+		</select>
+		
+		<label class="input-label padding-left-15 required">Alert Subscription Type</label>
+		<select class="select-dropdown" name="type" data-ng-model="RTIalertsubcribe" ng-click="subscriptiontype()"
+		 ng-options="o.alertid as o.alertName for o in alerttypelist" required>
+		<option value="">Select Alert Subscription Type</option>
+		</select>
+		
+		<label class="item item-input item-floating-label">
+		<span class="input-label required">Mobile No</span>
+		<input type="number" id="RTImobileNo" placeholder="Mobile No*" name="RTImobileno" ng-model="RTImobileno" 
+		ng-keyup="onlyNumericTenLimitInput()" ng-trim="false" ng-pattern="/^[0-9]{10,10}$/" required/>
+		<span class="errorMessage" ng-show="RTIformpage2.RTImobileno.$error.pattern">Please Enter Valid Mobile Number</span>
+		</label>
+		
+		<label class="item item-input item-floating-label"> 
+		<span class="input-label required">Email ID</span>
+		<input type="text" placeholder="Email ID**" name="RTIEmailID" ng-model="RTIEmailID" ng-trim="false" ng-pattern="/^[A-Za-z0-9/s,.'-@]{1,50}$/" required/>
+		<span class="errorMessage" ng-show="RTIformpage2.RTIEmailID.$error.pattern">Please Enter Valid Email Address</span>
+		</label>
+		 
+		<label class="item item-input item-floating-label"> 
+		<span class="input-label required">Upload File</span>
+		<input type="file" placeholder="Upload File" ng-model="RTIfile" />
+		</label> 
+				 
+		<div class="padding">
+		<button ng-disabled="!RTIformpage2.$valid" ng-click="RTIformsubmit()" class="button button-block button-positive customBgColor">
+		<span translate="">Submit</span></button>
+		</div>
+	
+	</div>
+</form>
+
+ </ion-content>
+</ion-view>
+

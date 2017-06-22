@@ -1,0 +1,50 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-dark">
+        <h1 class="title logo-app">Sign In</h1>
+        <button class="button button-icon button-clear mdi mdi-window-close" ng-click="closeModalLogin()"></button>
+    </ion-header-bar>
+    <ion-content scroll="false">
+
+        <div class="tab-login-page">
+            <ul>
+                <li><a class="positive" ng-class="{active: !data.isSignUpPage}" ng-click="viewSignInPage()">Sign In</a></li>
+                <li><a class="positive" ng-class="{active: data.isSignUpPage}" ng-click="viewSignUpPage()">Sign Up</a></li>
+            </ul>
+        </div>
+
+        <form name="loginForm" ng-hide="data.isSignUpPage" ng-submit="login()">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="email" placeholder="Email" ng-model="data.user.email" required>
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" ng-model="data.user.password" required>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-positive" type="submit" ng-disabled="!loginForm.$valid">Sign in</button>
+            </div>
+        </form>
+
+        <form name="registerForm" ng-show="data.isSignUpPage" ng-submit="createUser()">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="email" placeholder="Email" ng-model="data.newUser.email" required>
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" ng-model="data.newUser.password" required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="First Name" ng-model="data.newUser.firstName" required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Last Name" ng-model="data.newUser.lastName" required>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-positive" type="submit" ng-disabled="!registerForm.$valid">Sign up</button>
+            </div>
+        </form>
+
+    </ion-content>
+</ion-modal-view>

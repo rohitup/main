@@ -1,0 +1,78 @@
+ 
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content  ng-controller="PDFCtrl">
+
+<h1 class="heading">PDF </h1>
+<!-- 
+<div class="list list-inset" >
+<span class="item item-input" style="padding: 0 0 0 16px;" >
+<input type="number" placeholder="RTI Application Number" class="labelcsslow" data-ng-model="RTIapplnsearch" >
+<button ng-click="RTIapplicationsearch()" class="button button-positive customBgColor" style="border-radius: 0px 2px 2px 0px;"><i class="icon ion-search fonth3"></i></button>
+</span>
+</div>
+        -->
+<form name="RTIStatusForm">
+
+<div class="spacer" style="height: 10px;" ></div>
+<table class="gridtable" id="PDFtableconvert">
+	<tr>
+	<th width="100%" colspan="2">
+	<div align="center">RTI Application Status</div>
+	</th>
+	</tr>
+	<tr>
+	<th>RTI Number</th>
+	<td>123</td> 
+	</tr>
+	<tr>
+	<th>Type Of Applicant</th>
+	<td>hhzdz</td>
+	</tr>
+	<tr>
+	<th>Applicant Name</th>
+	<td>drhrh</td>
+	</tr>
+	<tr>
+	<th>APL/BPL Type</th>
+	<td>dfh</td>
+	</tr>
+	<tr>
+	<th>Alert Subscription</th>
+	<td>fgzsfgz</td>
+	</tr>
+	<tr>
+	<th>Mobile Number</th>
+	<td>rshyee</td>
+	</tr>
+	<tr>
+	<th>Email ID</th>
+	<td>eryhsreh</td>
+	</tr>
+	<tr>
+	<th>Subject</th>
+	<td>dsgbdszs</td>
+	</tr>
+	
+	
+</table>
+
+<div class="padding">
+<button ng-click="convertPDf()" class="button button-block button-positive customBgColor">
+<span translate="">Convert To PDF </span></button>
+</div>
+
+</form>	
+    
+ </ion-content>
+</ion-view>

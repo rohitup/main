@@ -1,0 +1,65 @@
+<ion-view >
+  
+<ion-nav-title>
+  <div class="bar bar-header headercolor"> 	 
+  	<h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+
+ <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+
+<ion-content class="backgroundimage" ng-controller="waterModuleCtrl">
+<h1 class="heading">WATER SERVICES</h1>
+<div class="row margin-0">
+        <div class="col col-50 animated fadeInLeft"> 
+            <div class="list text-center">
+	             <a class="item gridnopadding" ui-sref="app.waterBillpay"><img src="../www/img/water-bill-icon.png" width="55px" height="55px">
+	             <h5 translate="WATER_BILL_PAYMENT"></h5></a>
+            </div>
+        </div>
+        
+        <div class="col col-50 animated fadeInRight">
+            <div class="list text-center">
+             <a class="item gridnopadding" ng-click="appltype()"><img src="../www/img/new-water-connection.png" width="55px" height="55px">
+	         <h5 translate="NEW_WATER_CONNECTION"></h5></a>
+            </div>
+        </div>
+ </div>
+
+ <div class="row margin-0">
+       <div class="col col-50 animated fadeInLeft">
+            <div class="list text-center">
+             <a class="item gridnopadding" ui-sref="app.ChangeofUsage"><img src="../www/img/change-of-usage-icon.png" width="55px" height="55px">
+	         <h5 translate="CHANGE_OF_USAGE"> </h5></a>
+            </div>
+        </div>
+             
+         <div class="col col-50 animated fadeInRight">
+            <div class="list text-center">
+             <a class="item gridnopadding" ui-sref="app.ChangeofOwner"><img src="../www/img/change-of-ownership-icon.png" width="55px" height="55px">
+	         <h5 translate="CHANGE_OF_OWNER"> </h5></a>
+            </div>
+        </div> 
+</div>
+            
+ <!-- <div class="row margin-0">
+    	<div class="col col-50 animated fadeInLeft">
+            <div class="list text-center">
+             <a class="item gridnopadding" ui-sref="app.waterDisconnection"><img src="../www/img/spot-billing-icon.png" width="55px" height="55px">
+	         <h5>Water Disconnection</h5></a>
+            </div>
+        </div>
+        <div class="col col-50 animated fadeInRight">
+            <div class="list text-center">
+             <a class="item gridnopadding" ng-click="reconndata()" ><img src="../www/img/spot-billing-icon.png" width="55px" height="55px">
+	         <h5>Water Reconnection</h5></a>
+            </div>
+        </div>
+</div> -->
+
+
+</ion-content>
+</ion-view>

@@ -1,0 +1,65 @@
+<ion-view class="home-page">
+	
+<ion-nav-title>
+<div class="bar bar-header headercolor">
+	<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+</div>
+</ion-nav-title>
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+
+<ion-content class="animated zoomIn">
+ <h3 class="heading">Estate Booking</h3>
+		<form name="EstateBookingForm">
+			<div>
+			<label class="input-label padding-left-15 required">Category</label>
+			<select class="select-dropdown" ng-options="c.categoryValue as c.categoryName for c in categoryList" ng-model="rnlCategorySelect" ng-change="retrievePropertyList(rnlCategorySelect)" required>
+				<option value="" selected="true" disabled="disabled" style="display:none;">Select</option>
+			</select>
+			</div>
+			<div ng-show="showPropDetail">
+				<label class="item item-input item-floating-label">
+					<span class="input-label">{{'SEARCH' | translate}}</span>
+					<input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="search" />
+				</label>
+				<ion-list>
+					<ion-item class="listTableItem" ng-repeat="item in propertyListResponse.estatePropResponseDTOs | filter:search track by $index">
+						<table class="gridtable noBorderGridTable">
+							<tr>
+								<th>Property Name</th>
+								<td>{{item.propName}}</td>
+							</tr>
+							<tr>
+								<th>Location</th>
+								<td>{{item.location}}</td>
+							</tr>
+							<tr>
+								<th>Availability</th>
+								<td><button class="customButtonSmall" ng-click="checkBookingDetails(item.propId)">Check</button></td>
+							</tr>
+						</table>
+					</ion-item>
+				</ion-list>
+			</div>
+		</form>
+    </ion-content>
+</ion-view>
+
+
+<style>
+
+/* .customButtonSmall
+{
+	background-color: #36979e !important;  
+	text-align: center;
+	font-size: 14px;
+	border-radius: 4px;
+	color: #ffffff;
+	padding: 0 12px;
+	border-width: 1px;
+	border-style: solid;
+} */
+</style>
+
+

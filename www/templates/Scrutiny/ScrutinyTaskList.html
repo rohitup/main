@@ -1,0 +1,48 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+<!-- <ion-nav-bar class="bar-dark" align-title="center">   
+ <ion-nav-back-button ng-click="backbutton()"></ion-nav-back-button>
+     
+ </ion-nav-bar>  --> 
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+
+
+<ion-content ng-controller="ScrutinyTaskCtrl" class="animated zoomIn">
+<h3 class="heading" translate="ASSTASk"> </h3>
+		 
+	<form name="ScrutinyTaskdashboard">		
+	
+		<div class="list">
+			<span class="item item-input" style="padding: 0 0 0 16px;" >
+			<input type="tel" ng-model="search" class="" placeholder="{{ 'SEARCHAPPLNO' | translate}}">
+			</span>
+		</div> 
+		
+		<div class="card list" ng-click="appldetail()"
+			 style="border:1px solid !important;color: #c5e9eb;" >
+			<div class="item item-divider item-icon-right" style="background-color: #c5e9eb;">
+				<u class="applNocss">Application No: 8116082600004</u>
+				<i class="icon ion-ios-arrow-right"></i>
+			</div>
+			<div class="item item-text-wrap "> 
+				<p>Service Name: New Water Connection</p>
+				<p>Event Name: Scrutiny Level_1</p>
+				<p>Status: Pending</p>
+			</div>
+		</div> 	
+		
+		
+	
+	</form>	 
+	
+</ion-content>
+</ion-view>
+

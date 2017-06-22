@@ -1,0 +1,65 @@
+<ion-view>
+   
+   <!--  <ion-nav-title>
+        <span translate="WATER_BILL_PAYMENT"></span>
+    </ion-nav-title> -->
+    
+     <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="WaterBillCtrl" class="">
+    <h3 class="heading">Water Bill Payment</h3>
+		<div class="list list-inset" >
+            <span class="item item-input" style="padding: 0 0 0 16px;" >
+                <input type="text" placeholder="{{'CONNECTION_NUMBER' | translate}}" class="labelcss" data-ng-model="search" >
+				<button ng-click="searchWaterBill()" class="button button-positive customBgColor" style="border-radius: 0px 2px 2px 0px;"><i class="icon ion-search fonth3"></i></button>
+            </span>
+        </div>
+       
+		<form name="waterBillForm" ng-if="waterBillSearch" ng-submit="payWaterBill()">
+            <div class="list list-borderless">
+               
+             <label class="item item-input">
+	            <span class="input-label labelcss">Total Amount:-</span>
+	             <input type="number" class="input-box" data-ng-model="totalPayableAmount" disabled/>
+	        </label>
+	        
+	         <label class="item item-input">
+	            <span class="input-label labelcss required">Enter Pay Amt:-</span>
+	             <input type="number" class="input-box" data-ng-model="data_.payingAmount" required/>
+	        </label><br>
+                
+			<label class="item item-select height-padding">
+				<span class="labelcss required" translate="PAYMENT_MODE"></span>
+				<select class="select-box" data-ng-model="data_.paymentGateway"  ng-options="o.id as o.name for o in options" required >
+				<option value="">-------</option></select>
+			</label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-positive customBgColor"  ng-disabled="!waterBillForm.$valid">
+                <span translate="PAY"></span></button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
+<style>
+.customBgColor{
+	background-color: #36979e !important;
+}
+.customBgColorWhite{
+	background-color: #ffffff !important;
+}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+.fonth3 {
+	font-size: 24px !important;
+}
+.required:after { content:" *"; color:red;}
+</style>

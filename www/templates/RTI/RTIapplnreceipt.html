@@ -1,0 +1,69 @@
+<ion-view>
+ 
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content class="" ng-controller="RTIReceiptCtrl" class="animated zoomIn">
+<h1 class="heading">RTI Application Entry</h1><div class="spacer" style="height: 10px;"></div>
+	<form name="RTIapplreceipt">
+		<div class="list" >
+			<table class="gridtable">
+				<tr><th width="100%" colspan="2">
+					<div align="center">RTI Application Entry</div>
+					</th>
+				</tr>
+				<tr>
+					<th>Application ID</th>
+					<td>{{ applicationID }}</td>
+				</tr>
+				<tr>
+					<th>Due Amount Type</th>
+					<td>{{ applnDueAmount }}</td>
+				</tr>
+				<tr>
+					<th>Applicant Name</th>
+					<td>{{ applnName }}</td>
+				</tr>
+				<tr>
+					<th>Mobile No</th>
+					<td>{{ applnMobileNo }}</td>
+				</tr>
+				<tr>
+					<th>Email ID</th>
+					<td>{{ applnEmailID }}</td>
+				</tr>           
+			</table><div class="spacer" style="height: 7px;"></div>
+
+
+<label class="input-label padding-left-15 required">Payment Gateway</label>			
+ <select class="select-dropdown" name="type" ng-model="RTISelectedBankname" ng-click="RTIbanklist()" ng-change="RTIbanklistchange()"
+	ng-options="o.bankid as o.bankname for o in banknamelistopt" id="RTIpaymentgateway" required>
+	<option value="">Select Payment Gateway</option>
+</select> 
+
+
+	<div class="row padding buttoncenter">
+		<div class="col col-50">
+			<button ng-click="homepage()" class="button button-block button-positive customBgColor">
+			<span translate="">Home</span></button>
+		</div>
+		<div class="col col-50"> 
+			<button ng-disabled="!RTIapplreceipt.$valid" ng-click="paymentgateway()" class="button button-block button-positive customBgColor">
+			<span translate="">Pay</span></button>
+		</div>
+	</div>
+	
+</div>
+</form>  
+
+	
+    
+ </ion-content>
+</ion-view>

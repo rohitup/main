@@ -1,0 +1,82 @@
+<ion-view class="" hide-back-button="true">
+  
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+
+ <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+
+<ion-content class="backgroundimage" ng-controller="HomeCtrl" >
+
+ <div class="bar  row-no-padding header-bg animated slideInDown">
+	 <div class="header-content">
+	  <h2 translate="OFFLSERVICE"> </h2>
+	  <p translate="OFFLTEXT"></p>
+	</div>
+</div>
+
+<div class="row margin-0">
+	   <div class="col col-50 animated fadeInLeft">
+            <div class="list text-center">
+	             <a class="item gridnopadding" ng-click="findtask()"><img src="../www/img/contact-us-icon.png" width="auto" height="auto">
+	             <h5 translate="COMPLRES"></h5></a>
+            </div>
+       </div>
+	
+    <div class="col col-50 animated fadeInRight">
+         <div class="list text-center">
+             <a class="item gridnopadding" ui-sref="app.reports"><img src="../www/img/report.png" width=55px" height=55px">
+	         <h5 translate="REPORT"></h5></a>
+        </div>
+    </div>
+</div>
+
+<div class="row margin-0">
+
+ 	<div class="col col-50 animated fadeInLeft">
+            <div class="list text-center">
+             <a class="item gridnopadding" ui-sref="app.SpotBilling"><img src="../www/img/spot-billing-icon.png" width="55px" height="55px">
+	         <h5 translate="SPOTBiLL"> </h5></a>
+            </div>
+        </div>
+    <div class="col col-50 animated fadeInRight">
+         <div class="list text-center">
+             <a class="item gridnopadding" ui-sref="app.setting"><img src="../www/img/setting.png" width=55px" height=55px">
+	         <h5 translate="SETTINGS"></h5></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row margin-0" >
+	<div class="col col-50 animated fadeInLeft">
+        <div class="list text-center" >
+	        <a class="item gridnopadding" ui-sref="app.accHome"><img src="../www/img/water-bill-icon.png" width="55px" height="55px">
+	        <h5>Accounts</h5></a>
+         </div>
+   </div>
+   <div class="col col-50 animated fadeInRight">
+        <div class="list text-center" >
+	        <a class="item gridnopadding" ui-sref="app.ScrutinyTaskList"><img src="../www/img/water-bill-icon.png" width="55px" height="55px">
+	        <h5>Scrutiny Process</h5></a>
+         </div>
+   </div>
+</div> 
+
+<div class="row margin-0" >
+	<div class="col col-50 animated fadeInLeft">
+        <div class="list text-center" >
+	        <a class="item gridnopadding" ui-sref="app.propAssess"><img src="../www/img/propertytax.png" width="55px" height="55px">
+	        <h5>Property Assessment</h5></a>
+         </div>
+   </div>	 
+   </div>
+</ion-content>
+	
+</ion-view>
+

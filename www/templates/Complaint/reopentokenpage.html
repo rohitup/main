@@ -1,0 +1,85 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="reopenTokenCtrl" class="backgroundimage">
+
+    <h3 class="heading" translate="COMPLDET"></h3>
+	 <table class="gridtable">
+		  <tr>
+            <th>Token Number</th>
+            <td>{{ tokenNumber }}</td>
+          </tr>
+          <tr>
+            <th>Department</th>
+            <td>{{ department }}</td>
+           </tr>
+           <tr> 
+            <th>Complaint Type</th>
+            <td>{{ complainttype }}</td>
+            </tr>
+            <tr>
+            <th>Complaint Description</th>
+            <td>{{ compdesc }}</td>
+           </tr>
+           <tr> 
+            <th>Status</th>
+            <td>{{ status }}</td>
+           </tr>
+      </table> 
+<br>
+
+<div>
+ <h3 class="heading" translate="REPLY"></h3>
+ 	<div id="ReplyDocIDData"></div>
+      <div class="padding">
+		<button ng-click="reopencomplaint()" class="button button-small button-balanced center">
+		<span translate="REOPENCOMPLAINT"></span></button>
+	 </div>
+</div>
+
+<form name="reopenForm" ng-if="compdescription">
+	<div class="list">
+	 <h3 class="heading" translate="COMPLDESC"> </h3>
+	
+	 	 <label class="item item-input item-floating-label">
+			<span class="input-label required" translate="YOUREPLY"></span> 
+			<input type="text" placeholder="{{ 'YOUREPLY' | translate }}*"  name="data.reply" ng-model="data.reply" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+			<span class="errorMessage" ng-show="reopenForm.data.reply.$error.pattern">Please Enter Valid Reply</span>
+		</label>
+	  
+		  <label class="item item-input item-floating-label"> 
+			<span class="input-label required" translate="UPLOAD"></span>
+			<input type="file" placeholder="{{ 'UPLOAD' | translate }}*" name="data.Document" ng-model="data.Document" 
+			id="verfiyFile" onchange="angular.element(this).scope().imageupload()" />
+			<span class="errorMessage" ng-show="reopenForm.data.Document.$error.pattern">Upload BPL file</span>
+		</label>
+	
+	  <div class="padding">
+		<button ng-disabled="!reopenForm.$valid" ng-click="reopencompsave()" class="button button-small button-balanced center">
+		<span translate="SUBMIT"></span></button>
+	 </div>
+	 			     
+	</div>
+</form>
+
+    </ion-content>
+</ion-view>
+
+<style>
+.center{ margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width:50%;
+    height: 40px;
+    background-color: #36979e !important;}
+    
+</style> 

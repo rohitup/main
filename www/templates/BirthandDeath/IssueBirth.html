@@ -1,0 +1,63 @@
+<ion-view class="home-page">
+
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="IssueBirthCtrl" class="animated zoomIn">
+	<h1 class="heading">Issue Birth Certificate</h1>
+		<form name="IssueBirthForm" ng-submit="issueBirth()">
+			<div class="list">
+			
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Application Number</span>
+					<input type="number" placeholder="Application Number*" name="birthapplnumber" ng-model="birthapplnumber" 
+					id="birthapplNo" ng-keyup="eighteendigit1()" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" >
+					<span class="errorMessage" ng-show="IssueBirthForm.birthapplnumber.$error.pattern">Please Enter Valid Application Number</span>
+				</label>
+			
+					<center style="font-size: 18px;">OR</center>	
+						
+			    <label class="item item-input item-floating-label">
+					<span class="input-label required">Birth Registration Number</span>
+					<input type="number" placeholder="Birth Registration Number*" name="birthregnumber" ng-model="birthregnumber"
+					id="birthregno"  ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{1,18}$/" >
+					<span class="errorMessage" ng-show="IssueBirthForm.birthregnumber.$error.pattern">Please Enter Valid Birth Registration Number</span>
+				</label>
+				
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Year of Registration</span>
+					<input type="number" placeholder="Year of Registration*" name="birthyearofreg" ng-model="birthyearofreg"
+					id="yearofreg" ng-keyup="fourdigit()" ng-trim="false" ng-pattern="/^[0-9]{1,4}$/" required>
+					<span class="errorMessage" ng-show="IssueBirthForm.birthyearofreg.$error.pattern">Please Enter Valid Year of Registration</span>
+				</label>
+				
+				<label class="item item-input item-floating-label">
+					<span class="input-label required">Number of Copies</span>
+					<input type="number" placeholder="Number of Copies*" name="birthnumberofcopies" ng-model="birthnumberofcopies"
+					id="noofcopies" ng-keyup="twodigit()" ng-trim="false" ng-pattern="/^[0-9]{1,2}$/" required>  
+					<span class="errorMessage" ng-show="IssueBirthForm.birthnumberofcopies.$error.pattern">Please Enter Valid Number of Copies</span>
+				</label>
+				
+				<label class="input-label padding-left-15 required">Delivery Mode</label>
+				<select class="select-dropdown" name="birthdeliverycode" ng-model="birthdeliverycode" id="birthGenderSelect" ng-click="postaldeliverycode()"
+				ng-options="o.lookUpId as o.lookUpDesc for o in postaldataoption"  required>
+					<option value="" >Select</option>
+				</select>
+				
+				<div class="padding">
+					<button ng-disabled="IssueBirthForm.$invalid" ng-click="issueBirth()" class="button button-block button-positive customBgColor">
+						<span translate="SUBMIT"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+    </ion-content>
+</ion-view>
+

@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-dark">
+        <h1 class="title logo-app">Notification</h1>
+        <button class="button button-icon button-clear mdi mdi-window-close" ng-click="closeModalNotification()"></button>
+    </ion-header-bar>
+    <ion-content scroll="false">
+
+
+        <form name="notificationForm" ng-submit="createNotification()">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Title</span>
+                    <input type="text" placeholder="hello!" required ng-model="store.notification.title">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Content</span>
+                    <textarea placeholder="..." required ng-model="store.notification.content"></textarea>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-positive" type="submit" ng-disabled="!notificationForm.$valid">Save</button>
+            </div>
+        </form>
+
+    </ion-content>
+</ion-modal-view>

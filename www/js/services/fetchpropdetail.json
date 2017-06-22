@@ -1,0 +1,59 @@
+{
+  "contactDetailDTO": {
+    "contactNo": "",
+    "email": "",
+    "mobileNo": 9835269423
+  },
+  "adressDetailDTO": {
+    "houseNo": "",
+    "asseAdd": "SAIDPURA,NANDUTOLA,KHAGAUL.",
+    "propAdd": "",
+    "pinCode": 801105
+  },
+  "generalDetailDTO": {
+    "propertyNo": "223000868",
+    "newHoldingNo": "NA",
+    "oldProNo": "NA",
+    "refProNo": "",
+    "oldPid": "2705001164",
+    "uID": 0,
+    "revenueCircle": "",
+    "ownerHouse1": "",
+    "ownerHouse2": "",
+    "ownerHouse3": "",
+    "ownerType": 186698
+  },
+  "landOrBuildingDetailDTO": {
+    "acquDate": 1396290600000,
+    "mainTotalArea": 480,
+    "annualRentalValue": 1920,
+    "vacantLandArea": 0,
+    "totalArrearTax": 173
+  },
+  "ownerDetailDTO": [
+    {
+      "fName": "SRI. VIJAY KUMAR",
+      "husName": "SRI. MATHURA PRASAD",
+      "genDesc": "Male",
+      "panNo": "",
+      "title": "Mr."
+    }
+  ],
+  "taxCalculation": {
+    "arrearswithoutInterest": 0,
+    "totalannualtax": 173,
+    "rebatesas": 0,
+    "rebaters": 0,
+    "interestPenaltysas": 3,
+    "netServiceChargePay": 0,
+    "adjustmentAmount": 0,
+    "advanceAmount": 0,
+    "totalpayable": 176
+  },
+  "resMsg": null,
+  "status": "success",
+  "yearId": "2000000031",
+  "totalPay": 176,
+  "lastPaidYear": "2015-2016",
+  "saveOrUpdateDataReqDTO": null
+}

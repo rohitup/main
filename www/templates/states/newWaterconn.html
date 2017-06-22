@@ -1,0 +1,437 @@
+	
+<ion-view>
+   <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="newWaterconnCtrl">
+<!-- Water Connection Page -->
+ 
+<form name="waterconnForm" style="padding-top:0px;">
+  <div name="waterconndiv" ng-show="show==1">
+	<div class="list list-borderless">
+          <h3 class="heading">New Water Connection</h3>
+             <label class="item item-select height-padding">
+					<span class="labelcss required" translate="APP_IS_CONS"></span>
+					<select class="select-box" name="type" ng-model="WNCwaterconn" ng-dropdown required>
+						<option value="">Select</option>
+						<option value="Y">Yes</option>
+						<option value="N">No.</option>
+					</select>
+			 </label>
+			 
+			 <label class="item item-select height-padding">
+				<span class="labelcss required" translate="SEL_APPLT_TYPE"></span>
+				<select ng-click="appltype()" class="select-box" ng-model="WNCapplicantype" id="apltype" 
+				ng-options="o.aptid as o.aptname for o in aptoptions" ng-dropdown required>
+				<option value="">Select</option>
+				</select>
+			 </label>
+			 
+			 <div id="org" ng-if="WNCapplicantype == '224'">
+			   <label class="item item-input"> 
+				 <span class="input-label labelcss">Organisation Name:-<span class="cRedSpan">*</span></span>
+	             <input type="text" class="input-box" ng-model="WNCorgname" />
+	           </label><br>
+			 </div>
+			 
+			 <label class="item item-select height-padding">
+			<span class=" labelcss required" translate="SEL_TYPE_APPL"></span>
+				<select class="select-box" name="type" ng-model="WNCtemporary" ng-dropdown required>
+						<option value="">Select</option>
+						<option value="P">Permanent</option>
+						<option ng-option value="T">Tempoarary</option>
+				</select>
+			 </label>
+			 
+			 <div id="fod" ng-if="WNCtemporary == 'T'">
+			   <label class="item item-input">
+				 <span class="input-label labelcss">From Date:-<span class="cRedSpan">*</span></span>
+	             <input type="date" placeholder="dd/mm/yyyy" class="input-box dateclass placeholderclass" ng-model="WNCfromdate" />
+	            </label>
+			 </div>
+			 <div id="tod" ng-if="WNCtemporary == 'T'">
+			  <label class="item item-input">
+				 <span class="input-label labelcss">To Date:-<span class="cRedSpan">*</span></span>
+	             <input type="date" placeholder="dd/mm/yyyy" class="input-box dateclass1 placeholderclass1" ng-model="WNCtodate" />
+	          </label>
+			 </div>
+		    
+		 <div class="padding">
+	          <button ng-disabled="!waterconnForm.$valid" ng-click="newwaterconn()" class="button button-block
+	           button-positive customBgColor">
+			  <span translate="WATERCONN_NEXT"></span></button>
+ 		</div>
+ 		
+     </div> 
+ </div> 
+</form>
+       
+ <form name="infoForm" novalidate>
+ <div name="applicantinfodiv" ng-show="show==2">
+	<div class="list list-borderless" >
+		<h3 class="heading">Applicant Information</h3>
+			  
+			   <label class="item item-select height-padding">
+				 <span class="labelcss required" translate="SEL_TITLE"></span>
+					    <select class="select-box" name="type" ng-model="WNCselecttitle" id="wnctitle" ng-click="ttlprefix()" 
+					    ng-options="o.ttlid as o.ttlname for o in ttloptions" required>
+							<option value="">Select</option>
+						</select>
+				 </label>
+		
+				<label class="item item-input">
+		            <span class="input-label labelcss">First Name :<span class="cRedSpan">*</span></span>
+		                <input type="text" class="input-box" data-ng-model="WNCFirstname" required/>
+		        </label>
+		
+		        <label class="item item-input">
+		            <span class="input-label labelcss">Middle Name :</span>
+		            <input type="text" class="input-box" data-ng-model="WNCMiddlename" />
+		        </label>
+		            
+		         <label class="item item-input">
+		            <span class="input-label labelcss">Last Name :<span class="cRedSpan">*</span></span>
+		            <input type="text" class="input-box" data-ng-model="WNCLastname" required/>
+		        </label><br>
+        
+                <label class="item item-select height-padding">
+					<span class="labelcss required" translate="SELECT_GEN"></span>
+					<select class="select-box" ng-click="Genprefix()" data-ng-model="WNCgender" id="wncgender"
+					ng-options="o.genid as o.genname for o in genoptions" required>
+					<option value="">Select</option></select>
+				 </label>
+		 
+				  <label class="item item-input">
+				    <span class="input-label labelcss">Mobile Number :<span class="cRedSpan">*</span></span>
+		            <input type="number" pattern="[0-9]*" maxlength="10" class="input-box" data-ng-model="WNCmobile" required/>
+		           </label>
+		           
+		          <label class="item item-input"> 
+		             <span class="input-label labelcss" >Email ID :</span>
+		             <input type="text" class="input-box" data-ng-model="WNCemailid" >
+		          </label>
+		          
+		          <label class="item item-input">
+		             <span class="input-label labelcss">Aadhar Number :</span>
+		             <input type="number" class="input-box" data-ng-model="WNCaadharnumber" >
+		          </label><br>
+	          
+		           <label class="item item-select height-padding">
+					 <span class=" labelcss required" translate="SEL_BPL"></span>
+						<select class="select-box" name="type" ng-model="WNCBpl" ng-dropdown required>
+								<option value="">Select</option>
+								<option value="Y">Yes</option>
+								<option value="N">No</option>
+							</select>
+					 </label>
+			 
+				 <div id="isbpl" ng-if="WNCBpl == 'Y'">
+				   <label class="item item-input"> 
+					 <span class="input-label labelcss">BPL No :<span class="cRedSpan">*</span></span>
+		             <input type="number" class="input-box" data-ng-model="WNCbplno" required/>
+		            </label>
+				 </div>
+	          
+			  <div class="padding">
+			     <button ng-disabled="!infoForm.$valid" ng-click="applicantinfo()" class="button button-block button-positive customBgColor">
+				 <span translate="WATERCONN_NEXT"></span></button>
+			 </div>
+       </div>
+	</div>
+</form>
+
+<form name="infoFormaddress" novalidate>
+  <div name="applicantifoadddiv" ng-show="show==3">
+	 <div class="list list-borderless">
+		<h3 class="heading">Address Details</h3>
+			<label class="item item-input">
+	            <span class="input-label labelcss">Road Name :<span class="cRedSpan">*</span></span>
+	                <input type="text" class="input-box" data-ng-model="WNCroadname" required/>
+	        </label>
+	        
+	        <label class="item item-input">
+	            <span class="input-label labelcss">Area Name :<span class="cRedSpan">*</span></span>
+	                <input type="text" class="input-box" data-ng-model="WNCareaname" required/>
+	        </label>
+	            
+	         <label class="item item-input">
+	            <span class="input-label labelcss">Village/Town/City :<span class="cRedSpan">*</span></span>
+	                <input type="text" class="input-box" data-ng-model="WNCtowncity" required/>
+	        </label>
+	        
+	        <label class="item item-input">
+	            <span class="input-label labelcss">Pin Code :<span class="cRedSpan">*</span></span>
+	                <input type="number" class="input-box" data-ng-model="WNCpincode" required/>
+	        </label><br>
+	      
+	   
+	   		<label class="item item-select height-padding">
+			 <span class="labelcss required" translate="CORSP_ADD"></span>
+				<select class="select-box" name="type" ng-model="addinfochecked" ng-dropdown required>
+						<option value="">Select</option>
+						<option value="Y">Yes</option>
+						<option value="N">No</option>
+					</select>
+			 </label>
+	   
+	       <div ng-if="addinfochecked == 'N'">
+		        <label class="item item-input">
+		            <span class="input-label labelcss">Road Name<span class="cRedSpan">*</span></span>
+		            <input type="text" class="input-box" data-ng-model="WNCbillroadname" required/>
+		        </label>
+		        
+		        <label class="item item-input">
+		            <span class="input-label labelcss">Area Name <span class="cRedSpan">*</span></span>
+		            <input type="text" class="input-box" data-ng-model="WNCbillareaname" required/>
+		        </label>
+		            
+		         <label class="item item-input">
+		            <span class="input-label labelcss">Village/Town/City <span class="cRedSpan">*</span></span>
+		            <input type="text" class="input-box" data-ng-model="WNCbilltowncity" required/>
+		         </label>
+		        
+		         <label class="item item-input">
+		            <span class="input-label labelcss">Pin Code <span class="cRedSpan">*</span></span>
+		            <input type="number" class="input-box" data-ng-model="WNCbillpincode" required/>
+		         </label>
+			</div>
+			
+			<div class="padding">
+		      
+		          <button ng-disabled="!infoFormaddress.$valid" ng-click="applicantinfoaddress()" class="button button-block 
+		          button-positive customBgColor">
+				  <span translate="WATERCONN_NEXT"></span></button>
+		       
+ 			</div>
+		</div>
+</div>
+</form>
+
+
+<form name="existconndetails" novalidate>
+<div name="conndetaildiv" ng-show="show==4">
+	<br>
+	<div class="list list-borderless">
+		<label class="item item-select height-padding">
+			 <span class="labelcss required" translate="SEL_EXTCONDET"></span>
+				<select class="select-box" name="type" ng-model="WNCexistconsumerdetail" ng-dropdown required>
+						<option value="">Select</option>
+						<option value="Y">Yes</option>
+						<option value="N">No</option>
+					</select>
+			 </label>
+			 
+			<div ng-if="WNCexistconsumerdetail == 'Y'">
+				 <h3 class="heading">Existing Consumer Details</h3>
+				<label class="item item-input">
+		            <span class="input-label labelcss">Connection No:- <span class="cRedSpan">*</span> </span>
+		                <input type="text" class="input-box" data-ng-model="WNCexistconnno" required/>
+		        </label><br>
+		        
+		        <label class="item item-select height-padding">
+					<span class="labelcss required" translate="SELECT_CONS"></span>
+					<select class="select-box" ng-click="cszprefix()" data-ng-model="connSize" id="wncconnsize"
+					ng-options="o.cszid as o.cszname for o in cszoptions"  required>
+							<option value="">Select</option>
+						</select></label>
+		        
+		        <label class="item item-input">
+		            <span class="input-label labelcss">No. of Taps:-<span class="cRedSpan">*</span></span>
+		                <input type="text" class="input-box" data-ng-model="WNCexisttaps" required/>
+		        </label>
+			 </div><br>
+	
+		<label class="item item-select height-padding">
+		 <span class="labelcss required"translate="SEL_EXTPROP"></span>
+				<select class="select-box" name="type" ng-model="WNCexistproperty" ng-dropdown required>
+						<option value="">Select</option>
+						<option value="Y">Yes</option>
+						<option value="N">No</option>
+					</select>
+			 </label>
+			 
+			<div id="isbpl" ng-if="WNCexistproperty == 'Y'">
+			   <label class="item item-input">
+	            	<span class="input-label labelcss">Property No:-<span class="cRedSpan">*</span></span>
+	                <input type="text" class="input-box" data-ng-model="WNCpropertyno" required/>
+	        	</label>
+			 </div>
+	
+<h3 class="heading">Connection Details</h3>
+
+			<label class="item item-select height-padding">
+				<span class="labelcss required" translate="SELECT_CONS_TYPE"></span>
+					<select class="select-box" data-ng-model="WNCconstype" ng-click="CCGprefix()"
+					ng-options="o.ccgid as o.ccgname for o in ccgoptions" required>
+						<option value="">Select</option>
+			</select></label>
+					
+			<label class="item item-input">
+	            <span class="input-label labelcss">No. of Family:-</span>
+	             <input type="text" class="input-box" data-ng-model="WNCnooffamily" required/>
+	        </label>
+	        
+	        <label class="item item-input">
+	            <span class="input-label labelcss">No. of Users:-</span>
+	             <input type="text" class="input-box" data-ng-model="WNCnoofusers" required/>
+	        </label><br>
+	        
+	        <label class="item item-select height-padding">
+				<span class="labelcss required" translate="SELECT_TARIF"></span>
+					<select class="select-box" data-ng-model="WNCtarif" id="seltarif" ng-click="TRFprefix()" ng-change="selecttariff()"
+					ng-options="o.trfid as o.trfname for o in trfoptions" required>
+						<option value="">Select</option>
+			</select></label>
+				 
+				<label class="item item-select height-padding">
+				<span class="labelcss required" translate="SELECT_PERMISE"></span>
+					<select class="select-box" name="type" data-ng-model="WNCpermise" id="selpermise" ng-change="selectpermise1()" 
+					ng-options="o.permiseid1 as o.permisename1 for o in permiseoptions1" required>
+						<option value="">Select</option>
+			    </select></label>
+							
+			<label class="item item-select height-padding">
+				 <span class="labelcss required" translate="SELECT_CONSIZE"></span>
+					<select class="select-box" ng-click="cszprefix()" data-ng-model="WNCConnSize"
+					ng-options="o.cszvalue as o.cszname for o in cszoptions"  required>
+						<option value="">Select</option>
+			</select></label>
+	        
+	        <label class="item item-input">
+	            <span class="input-label labelcss">No. of Taps:-</span>
+	             <input type="text" class="input-box" data-ng-model="WNCnooftaps" required/>
+	        </label>
+	        
+				<div class="padding">
+				       <!--  <div class="col col-50">
+				            <button ng-click="goBack()" class="button button-block button-positive customBgColor">
+				             <span translate="WATER_BACK"></span></button>
+				        </div>
+				        <div class="col col-50"> -->
+				          <button ng-disabled="!existconndetails.$valid" ng-click="initialzedmodel()" class="button button-block button-positive customBgColor">
+						  <span translate="PROCEED"></span></button>
+				      <!--   </div> -->
+				</div>
+		</div>
+</div>
+</form>
+
+<form name="uploadattachdiv" novalidate>
+<div ng-show="show==5">
+	   <div class="list list-borderless">
+			<h3 class="heading">Upload Attachments</h3>
+			
+			<!-- <label class="item item-input">
+					<span class="input-label labelcss required">Addhar Card:-</span>
+		            <input type="file" accept="image/*;capture=camera" id="verfiyFile" class="input-box" 
+                    data-ng-model="WNCpropertyimage" onchange="angular.element(this).scope().imageuplod11()" required>
+		     </label>
+			
+			 <label class="item item-input">
+					<span class="input-label labelcss required">Property Tax Receipt:-</span>
+		            <input type="file" accept="image/*;capture=camera" id="verfiyFile" class="input-box" 
+                    data-ng-model="WNCpropertyimage" onchange="angular.element(this).scope().imageuplod11()" required>
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss required">Yellow Ration Card:-</span>
+		            <input type="file" class="input-box" data-ng-model="WNCrationimage"
+		            onchange="angular.element(this).scope().imageuplod11()" required>
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss">Building Permission Photocopy:-</span>
+		            <input type="file" class="input-box" data-ng-model="WNCcertimage"
+		            onchange="angular.element(this).scope().imageuplod11()">
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss">Location Map:-</span>
+		            <input type="file" class="input-box" data-ng-model="WNClocationimage"
+		            onchange="angular.element(this).scope().imageuplod11()">
+		     </label> -->
+		     
+		 <!--       <table class="gridtable">
+		    <tbody>
+                     <tr>
+                     	<th width="5%">Sr.No</th>
+                        <th width="45%">Description</th>
+                        <th width="5%">Mandatory</th>
+                        <th width="45%">Upload File</th>
+                     </tr>
+                      <tr ng-repeat="doc in documentlist">
+                        <td>{{$index}}</td>
+                        <td>{{doc.doc_DESC_ENGL}}</td>
+                        <td>{{doc.checkkMANDATORY}}</td>
+                        <td><input type="file" class="filecss"></td>
+                     </tr>
+                 </tbody>
+              </table> -->
+              
+              <div id="NewConnDocData"></div>
+		     
+		     <div class="padding">
+			   	 <button ng-click="uploadattch()" class="button button-block button-positive customBgColor">
+			    <span translate="">Upload</span></button>
+ 		     </div>
+	     </div>
+	</div>
+</form>
+
+<form name="paymentpage" novalidate> 
+<div name="paydetailsdiv" ng-show="show==6">
+
+	<div class="list list-borderless">
+		<h3 class="heading">Payment</h3>
+			 <label class="item item-input">
+					<span class="input-label labelcss">Total Amt(Rs.):-</span>
+		                <input type="text" class="input-box" data-ng-model="FlatRate" disabled>
+		     </label>
+		     
+		     <label class="item item-input">
+					<span class="input-label labelcss required">Enter Amt to Pay(Rs.):-</span>
+		                <input type="number" class="input-box" data-ng-model="data_.payingAmount" required/>
+		     </label><br>
+		     
+					<label class="item item-select height-padding">
+						<div class="labelcss required" ><span translate="PAYMENT_MODE"></span></div>
+						<select class="select-box" data-ng-model="data_.paymentGateway" ng-options="o.id as o.name for o in options" required >
+							<option value="">Select</option>
+						</select>
+					</label>
+					
+					
+				<div class=" padding">
+				        <!-- <div class="col col-50">
+				            <button ng-click="goBack()" class="button button-block button-positive customBgColor">
+				             <span translate="WATER_BACK"></span></button>
+				        </div>
+				        <div class="col col-50"> -->
+				          <button ng-disabled="!paymentpage.$valid" ng-click="savedata()" class="button button-block button-positive customBgColor">
+						  <span translate="PAY"></span></button>
+				      <!--   </div> -->
+				</div>
+	     </div>
+	</div>
+</form>
+    </ion-content>
+</ion-view>   
+
+ 
+ <style>
+.customBgColor{background-color: #36979e !important;}
+.fonth3 {font-size: 24px !important;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+h4{font-size:18px; font-weight:normal; padding:5px 0px; line-height:20px;}
+.checkboxcss{font-weight:normal;}
+.cRedSpan{color:red;}
+.required:after { content:" *"; color:red;}
+</style>

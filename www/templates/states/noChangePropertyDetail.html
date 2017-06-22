@@ -1,0 +1,177 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+        <ion-content scroll="false" ng-controller="NoChangePropertyDetailCtrl">
+          <ion-slide-box show-pager="false" ion-slide-tabs>
+				<ion-slide ion-slide-tab-label="General Details">
+				<h3 id="accclick"></h3>
+				    <table class="gridtable">
+						<tr><th style="width: 50%;">Property Number</th>
+							<td>{{NCPropertyNo}}</td>
+						</tr>
+						<tr><th>New Holding No</th>
+							<td>{{NCNewHoldingNo}}</td>
+						</tr>
+						<tr><th>Old Property Number</th>
+							<td>{{NCOldProNo}}</td>
+						</tr>
+						<tr><th>Parent Property Number</th>
+							<td>{{NCRefProNo}}</td>
+						</tr>
+						<tr><th>Old PID</th>
+							<td>{{NCOldPID}}</td>
+						</tr>
+						<tr><th>UID</th>
+							<td>{{NCUID}}</td>
+						</tr>
+						<tr><th>Revenue Circle Number</th>
+							<td>{{NCRevenueCircle}}</td>
+						</tr>
+						
+						<tr><th>Owner House</th>
+							<td style="padding:0px !important;"><table style="margin:0px;border: 0px !important;" class="gridtable">
+								<tr style="border: 0px !important;">
+									<td class="ownerColumn" >{{NCOwnerHouse1}}</td>
+									<td class="ownerColumn" >{{NCOwnerHouse2}}</td>
+									<td style="border: 0px !important;" >{{NCOwnerHouse3}}</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Owner Details">
+				<h3 id="accclick"></h3>
+				    <table class="gridtable" ng-if="NCOwnerTable == 'one'">
+							<tr>
+							<th width="35%">Name</th>
+							<th width="50%">Spouse/Father Name</th>
+							<th width="15%">Gender</th>
+							</tr>
+						<tr><td>{{name}}</td>
+						<td>{{fathername}}</td>
+						<td>{{gender}}</td></tr>
+					</table>
+					<table class="gridtable" ng-if="NCOwnerTable == 'two'">
+								<tr>
+								<th>Organization/Company Name</th>
+								<th>Pan Card Number</th>
+								</tr>
+								<tr><td>{{Company}}</td>
+						<td>{{pancardno}}</td></tr>
+					</table>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Address Details">
+				<h3 id="accclick"></h3>
+				    <table class="gridtable">
+						<tr><th style="width: 40%;">Property/House Number</th>
+							<td>{{NCHouseNo}}</td>
+						</tr>
+						<tr><th>Address Line 1</th>
+							<td>{{NCAssessAdd}}</td>
+						</tr>
+						<tr><th>Address Line 2</th>
+							<td>{{NCPropAdd}}</td>
+						</tr>
+						<tr><th>Pincode</th>
+							<td>{{NCPinCode}}</td>
+						</tr>
+					</table>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Contact Details">
+				<h3 id="accclick"></h3>
+				    <table class="gridtable">
+						<tr><th style="width: 40%;">Telephone Number</th>
+							<td>{{NCContactNo}}</td>
+						</tr>
+						<tr><th>Email ID</th>
+							<td>{{NCEmail}}</td>
+						</tr>
+						<tr><th>Mobile Number</th>
+							<td>{{NCMobileNo}}</td>
+						</tr>
+					</table>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Land/Building Details">
+				<h3 id="accclick"></h3>
+				    <table class="gridtable">
+						<tr><th style="width: 50%;">Acquisition Date</th>
+							<td>{{NCAcquDate}}</td>
+						</tr>
+						<tr><th>Ratable Area (Sq. Ft.)</th>
+							<td>{{NCMainTotalArea}}</td>
+						</tr>
+						<tr><th>Annual Rental Value (Rs.)</th>
+							<td>{{NCAnnualRentalValue}}</td>
+						</tr>
+						<tr><th>Taxable Vacant Land Area (Sq. Ft.)</th>
+							<td>{{NCVacantLandArea}}</td>
+						</tr>
+						<tr><th>Total Annual Tax (Holding + Vacant Land)(Rs.)</th>
+							<td>{{NCTotalArrearTax}}</td>
+						</tr>
+					</table>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Tax Calculation Details">
+				<h3 id="accclick"></h3>
+			    <table class="gridtable">
+				<tr>
+					<th>Arrear Without Interest (Rs.)</th>
+					<td>{{ NCArrearWoInt }}</td>
+				</tr>
+				<tr>
+					<th>Total Annual Tax (Rs.)</th>
+					<td>{{ NCTotalTax }}</td>
+				</tr>
+				<tr>
+					<th>Rebate (Current)</th>
+					<td>{{ NCRebate }}</td>
+				</tr>
+				<tr>
+					<th>Rain Water Harvesting Rebate (Rs.)</th>
+					<td>{{ NCRainRebate }}</td>
+				</tr>
+				<tr ng-show="NCArrearIntFlag">
+					<th>Arrears Interest (Rs.)</th>
+					<td>{{ NCArrearInt }}</td>
+				</tr>
+				<tr ng-show="NCCurrentIntFlag">
+					<th>Current Interest (Rs.)</th>
+					<td>{{ NCCurrentInt }}</td>
+				</tr>
+				<tr ng-show="NCPenaltyFlag">
+					<th>Interest / Penalty (Current + Arrears) (Rs.)</th>
+					<td>{{ NCPenalty }}</td>
+				</tr>  
+				<tr ng-show="NCNetChargeFlag">
+					<th>Net Service Charge Payable (If Applicable) (Rs.)</th>
+					<td>{{ NCNetCharge }}</td>
+				</tr> 
+				<tr ng-show="NCAdjAmtFlag">
+					<th>Adjustment Amount (Rs.)</th>
+					<td>{{ NCAdjAmt }}</td>
+				</tr>
+				<tr ng-show="NCAdvAmtFlag">
+					<th>Advance Amount (Rs.)</th>
+					<td>{{ NCAdvAmt }}</td>
+				</tr> 
+				<tr>
+					<th>Total Payable Amount (Rs.)</th>
+					<td>{{ NCTotalPayable }}</td>
+				</tr>
+				</table>
+				<div class="padding">
+					<button ng-click="proceedToPayPage();" class="button button-block button-positive customBgColor"><span>Submit</span></button>
+				</div>
+				</ion-slide>
+			</ion-slide-box>
+        </ion-content>
+</ion-view>

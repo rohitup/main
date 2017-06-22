@@ -1,0 +1,445 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+        <button ng-show="allowAdd" class="button button-icon button-clear ion-ios-plus-empty animated infinite pulse tada" ng-click="openModalReceiptCollection('new','','')">
+        </button>
+        <!-- <div class="padding">
+			<button ng-click="openModalReceiptCollection('edit','27','20')" class="button button-block button-positive">
+				<span translate="SUBMIT"></span>
+			</button>
+		</div> -->
+    </ion-nav-buttons>
+	<ion-content scroll="true" ng-controller="propAssessmentCtrl" class="animated zoomIn">
+	
+		<form name="accCreateReceiptForm" ng-submit="saveReceiptDetails()">
+			<div>
+				
+				<div ng-if="view == 'Owner_Detail'">
+					<ng-form name="Owner_Detail">
+					<label class="input-label padding-left-15 required" translate="Building Permission No."></label>
+					<select class="select-dropdown" name="CRVendor" ng-model="buildPerm"  required>
+							<option value="1">12345</option>
+							<option value="2">12345</option>
+							<option value="3">12345</option>
+							<option value="4">12345</option>
+
+					</select>
+					<label class="input-label padding-left-15 required" translate="Ownership Type"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="ownType"  required>
+							<option value="1">12345</option>
+							<option value="2">12345</option>
+							<option value="3">12345</option>
+							<option value="4">12345</option>
+
+					</select>
+					<div class="padding">
+							<button id="Owner_Detail" ng-disabled="Owner_Detail.$invalid" class="button button-block button-positive" data-ng-click="views($event)">
+								<span translate="NEXT"></span>
+							</button>
+						</div>
+					</ng-form>
+				</div>
+				
+				<div ng-if="view == 'Owner_Details'">
+					<ng-form name="Owner_Details">
+					<div ng-if="details == 'show'">
+						<label class="input-label padding-left-15 required" translate="OWNER TITLE"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="ownTitle"  required>
+							<option value="1">12345</option>
+							<option value="2">12345</option>
+							<option value="3">12345</option>
+							<option value="4">12345</option>
+
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Owners_Name"></span> 
+							<input type="text" placeholder="{{'Owners_Name'|translate}}*" name="ownName" ng-model="ownName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+							<span class="errorMessage" ng-show="Owner_Details.ownName.$error.pattern">Please Enter Valid Owners Name</span>
+						</label>
+						<label class="input-label padding-left-15 required" translate="Gender"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="gender"  required>
+							<option value="1">Male</option>
+							<option value="2">female</option>
+							<option value="3">trangender</option>
+							
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Husband/Fathers Name	"></span> 
+							<input type="text" placeholder="{{'Husband/Fathers Name	'|translate}}*" name="fatherName" ng-model="fatherName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"  required/>
+							<span class="errorMessage" ng-show="accCreateReceiptForm.fatherName.$error.pattern">Please Enter Husband/Fathers Name</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="MOBILENO"></span> 
+							<input type="tel" placeholder="{{'MOBILENO'|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="accCreateReceiptForm.CRMobile.$error.pattern">Please Enter Valid Mobile Number</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Aadhar No."></span> 
+							<input type="tel" placeholder="{{'Aadhar No.'|translate}}*" name="aadharNo" ng-model="data.aadharNo" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="accCreateReceiptForm.aadharNo.$error.pattern">Please Enter Valid Aadhar No.</span>
+						</label>
+						 <div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+							<button id="Owner_Details" ng-disabled="Owner_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="prevView($event)">PREV</button>
+							<button id="Owner_Details" ng-disabled="Owner_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="views($event)">Add</button>
+						</div>
+					</div>
+					<div >
+						<label class="item item-input item-floating-label">
+						<span class="input-label">{{'SEARCH' | translate}}</span>
+						<input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="search" />
+					</label>
+					<div id="receiptErrorMsg"><span class="padding cAlert">Please add at least one Receipt Collection Detail.</span></div>
+			        <ion-list can-swipe="true" class="list-categories">
+						<ion-item ng-repeat="item in receiptCollections | filter:search track by $index"  class="item-thumbnail-left">
+							<!-- <img ng-src="{{item.image}}"> -->
+							<h2 ng-click="openModalReceiptCollection('edit',item.Name,item.Country)" class="colorPositive col-80">{{item.Name}}</h2>
+							<strong translate="AMOUNT"></strong>: <span>{{item.Country}}</span>
+							<button style="font-size: 24px;" class="button-assertive button ion-ios-trash" ng-click="removeReceiptHead($index)">
+			                </button>
+			                <!-- <ion-option-button class="button-assertive" ng-click="removeCategory(item._id, $index)">
+			                    Delete
+			                </ion-option-button> -->
+			            </ion-item>
+			        </ion-list>
+					</div>
+					</ng-form>
+				</div>
+				<div ng-if="view == 'Property_Details'">
+					<ng-form name="Property_Details">
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Old Property No."></span> 
+							<input type="text" placeholder="{{'Old Property No.'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Old Property No.</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="CSN/Khasra No. "></span> 
+							<input type="text" placeholder="{{'CSN/Khasra No.'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid CSN/Khasra No.</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Survey Number"></span> 
+							<input type="text" placeholder="{{'Survey Number'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Survey Number</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Khata No."></span> 
+							<input type="text" placeholder="{{'Khata No.'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Khata No.</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Toji No. "></span> 
+							<input type="text" placeholder="{{'Toji No. '|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Toji No. </span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Plot No"></span> 
+							<input type="text" placeholder="{{'Plot No'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Plot No.</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Street No./Name "></span> 
+							<input type="text" placeholder="{{'Street No./Name '|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Street No./Name </span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Village/Mauja Name"></span> 
+							<input type="text" placeholder="{{'Village/Mauja Name'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Details.CRPayeeName.$error.pattern">Please Enter Valid Village/Mauja Name</span>
+						</label>
+						<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+							<button id="Property_Details" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="prevView($event)">PREV</button>
+							<button id="Property_Details" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="views($event)">NEXT</button>
+						</div>
+					</ng-form>	
+				</div>
+				<div ng-if="view == 'Property_Address_Details'">
+					<ng-form name="Property_Address_Details">
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Property Address"></span> 
+							<input type="text" placeholder="{{'Property Address'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Valid Property Address</span>
+						</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Location"></span> 
+							<input type="text" placeholder="{{'Location'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Location </span>
+						</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Pincode "></span> 
+							<input type="tel" placeholder="{{'Pincode '|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRMobile.$error.pattern">Please Enter Valid Pincode </span>
+						</label>
+						<li class="item item-checkbox  checkbox-energized">
+							   If Corresponding Address Different from Property Address
+							   <label class="checkbox">
+							   <input type="checkbox">
+							   </label>
+						</li>
+						<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+							<button id="Property_Address_Details" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="prevView($event)">PREV</button>
+							<button id="Property_Address_Details" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="views($event)">NEXT</button>
+						</div>
+					</ng-form>
+				</div>
+				<div ng-if="view == 'Correspondence_Address'">
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Property Address"></span> 
+							<input type="text" placeholder="{{'Property Address'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Valid Property Address</span>
+						</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Pincode "></span> 
+							<input type="tel" placeholder="{{'Pincode '|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRMobile.$error.pattern">Please Enter Valid Pincode </span>
+						</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Pincode "></span> 
+							<input type="tel" placeholder="{{'Pincode '|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRMobile.$error.pattern">Please Enter Valid Pincode </span>
+						</label>
+					<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+							<button id="Correspondence_Address" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="prevView($event)">PREV</button>
+							<button id="Correspondence_Address" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="views($event)">NEXT</button>
+						</div>
+					
+				</div>
+				<div ng-if="view == 'Last_Payment_Details'">
+					<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+						<button type="button" class="button button-positive customRadio" ng-class="{customRadioEnabled: propPayType == 'F'}" data-ng-model="totalAmtRadio" ng-click="totalAmountSelection()">NA</button>
+						<button type="button" class="button button-positive customRadio" ng-class="{customRadioEnabled: propPayType == 'P'}" data-ng-model="partialAmtRadio" ng-click="partialAmountSelection()">Manual</button>
+					</div>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Receipt No."></span> 
+							<input type="text" placeholder="{{'Receipt No.'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Valid Receipt No.</span>
+					</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Receipt Amount "></span> 
+							<input type="text" placeholder="{{'Receipt Amount'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Valid Receipt Amount </span>
+					</label>
+					<label class="input-label padding-left-15 required" translate="Gender"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="CRVendor"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<div class="button-group" data-grouptype="OR" style="font-size: 24px;">
+							<button id="Last_Payment_Details" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="prevView($event)">PREV</button>
+							<button id="Last_Payment_Details" ng-disabled="Property_Details.$invalid" type="button" class="button button-positive twoButtons" data-ng-click="views($event)">NEXT</button>
+						</div>
+					
+				</div>
+				<div ng-if="view == 'Building_Details'">
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Year of Acquisition"></span> 
+							<input type="text" placeholder="{{'Year of Acquisition '|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Select Year of Acquisition </span>
+					</label>
+					<label class="input-label padding-left-15 required" translate="Property Type"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="CRVendor"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					
+					<label class="input-label padding-left-15 required" translate="Property SubType"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="CRVendor"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Total plot Area "></span> 
+							<input type="text" placeholder="{{'Total plot Area '|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Valid Total plot Area  </span>
+					</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Build Up/Constructed Area on the Ground Floor"></span> 
+							<input type="text" placeholder="{{'Build Up/Constructed Area on the Ground Floor'|translate}}*" name="CRPayeeName" ng-model="CRPayeeName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" ng-disabled="CRVendor" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRPayeeName.$error.pattern">Please Enter Valid Build Up/Constructed Area on the Ground Floor</span>
+					</label>
+					
+				</div>
+				<div ng-if="view == 'Unit_Details'">
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="count "></span> 
+							<input type="tel" placeholder="{{'count '|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRMobile.$error.pattern">Please Enter Valid count </span>
+					</label>
+					<label class="input-label padding-left-15 required" translate="Unit Type"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Unit Type"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="input-label padding-left-15 required" translate="Floor No."></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Floor No."  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="item item-input item-floating-label" ng-show="!cash">
+							<span class="input-label required">Date of Construction</span>
+							<input id="AccInstDate" max="{{currentDate}}" type="date" name="AccInstDate" ng-model="data.AccInstDate" placeholder="{{'INST_DATE'|translate}} {{'DATE_FORMAT'|translate}}*" ng-blur="changeDateAttr($event,data.AccInstDate,'{{&quot;INST_DATE&quot;|translate}} {{&quot;DATE_FORMAT&quot;|translate}}*')" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="datepicker" ng-required="!cash" />
+							<span class="errorMessage" ng-show="accCreateReceiptForm.AccInstDate.$error.pattern">Please Enter Valid Date of Construction</span>
+						</label>
+					<label class="input-label padding-left-15 required" translate="Usage Type"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Usage Type"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="input-label padding-left-15 required" translate="Usage SubType"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Usage SubType"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="input-label padding-left-15 required" translate="Construction Type"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Construction Type"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="input-label padding-left-15 required" translate="Occupancy Type"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Occupancy Type"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Taxable Area "></span> 
+							<input type="tel" placeholder="{{'Taxable Area '|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRMobile.$error.pattern">Please Enter Valid count </span>
+					</label>
+					<label class="item item-input item-floating-label">
+							<span class="input-label required" translate="Rent"></span> 
+							<input type="tel" placeholder="{{'Rent'|translate}}*" name="CRMobile" ng-model="data.CRMobile" ng-trim="false" ng-pattern="/^[0-9]{1,10}$/" required/>
+							<span class="errorMessage" ng-show="Property_Address_Details.CRMobile.$error.pattern">Please Enter Valid count </span>
+					</label>
+				</div>
+				<div ng-if="view == 'Unit_Specific_additional_Information'">
+					<li class="item item-checkbox  checkbox-energized">
+							   Check to applicable to all
+							   <label class="checkbox">
+							   <input type="checkbox">
+							   </label>
+					</li>
+					<label class="input-label padding-left-15 required" translate="Factors"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Factors"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="input-label padding-left-15 required" translate="Factor Value"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Factor_Value"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+					<label class="item item-input item-floating-label" ng-show="!cash">
+							<span class="input-label required">Start Date</span>
+							<input id="AccInstDate" max="{{currentDate}}" type="date" name="AccInstDate" ng-model="data.AccInstDate" placeholder="{{'INST_DATE'|translate}} {{'DATE_FORMAT'|translate}}*" ng-blur="changeDateAttr($event,data.AccInstDate,'{{&quot;INST_DATE&quot;|translate}} {{&quot;DATE_FORMAT&quot;|translate}}*')" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="datepicker" ng-required="!cash" />
+							<span class="errorMessage" ng-show="accCreateReceiptForm.AccInstDate.$error.pattern">Please Enter Valid Start Date</span>
+						</label>
+						<label class="item item-input item-floating-label" ng-show="!cash">
+							<span class="input-label required">End Date</span>
+							<input id="AccInstDate" max="{{currentDate}}" type="date" name="AccInstDate" ng-model="data.AccInstDate" placeholder="{{'INST_DATE'|translate}} {{'DATE_FORMAT'|translate}}*" ng-blur="changeDateAttr($event,data.AccInstDate,'{{&quot;INST_DATE&quot;|translate}} {{&quot;DATE_FORMAT&quot;|translate}}*')" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="datepicker" ng-required="!cash" />
+							<span class="errorMessage" ng-show="accCreateReceiptForm.AccInstDate.$error.pattern">Please Enter Valid End Date</span>
+						</label>
+						<label class="input-label padding-left-15 required" translate="Sr_No_Units"></label>
+						<select class="select-dropdown" name="CRVendor" ng-model="Sr_No_Units"  required>
+							<option value="1">12345</option>
+							<option value="2">5678</option>
+							<option value="3">98765</option>
+							
+					</select>
+				</div>
+				<div ng-if="view == 'Documents_Upload'">
+					<ng-form name="propassessFile">
+					<label class="item item-input item-floating-label">
+						<!-- <span class="input-label required">Attach File</span> --> 
+						<input type="file" placeholder="Sales Deed/Family settlement" name="Sales_Deed" ng-model="Sales_Deed" id="imageinfo"
+						ng-trim="false" onchange="angular.element(this).scope().imageuplod11()" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="propassessFile.Sales_Deed.$error.pattern">Please Enter Valid File</span>
+					</label>
+					<label class="item item-input item-floating-label">
+						<!-- <span class="input-label required">Attach File</span> --> 
+						<input type="file" placeholder="Electricity Bill 1st Time(Demand Copy)" name="Electricity_Bill" ng-model="Electricity_Bill" id="imageinfo"
+						ng-trim="false" onchange="angular.element(this).scope().imageuplod11()" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="propassessFile.Electricity_Bill.$error.pattern">Please Enter Valid File</span>
+					</label>
+					<label class="item item-input item-floating-label">
+						<!-- <span class="input-label required">Attach File</span> --> 
+						<input type="file" placeholder="Mutation Copy issued by C.O./EO" name="Mutation_Copy" ng-model="Mutation_Copy" id="imageinfo"
+						ng-trim="false" onchange="angular.element(this).scope().imageuplod11()" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="propassessFile.Mutation_Copy.$error.pattern">Please Enter Valid File</span>
+					</label>
+					<label class="item item-input item-floating-label">
+						<!-- <span class="input-label required">Attach File</span> --> 
+						<input type="file" placeholder="ID proof Copy" name="ID_proof" ng-model="ID_proof" id="imageinfo"
+						ng-trim="false" onchange="angular.element(this).scope().imageuplod11()" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="propassessFile.ID_proof.$error.pattern">Please Enter Valid File</span>
+					</label>
+					<label class="item item-input item-floating-label">
+						<!-- <span class="input-label required">Attach File</span> --> 
+						<input type="file" placeholder="Khatihan Copy (if available)" name="Khatihan_Copy" ng-model="Khatihan_Copy" id="imageinfo"
+						ng-trim="false" onchange="angular.element(this).scope().imageuplod11()" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="propassessFile.Khatihan_Copy.$error.pattern">Please Enter Valid File</span>
+					</label>
+					<label class="item item-input item-floating-label">
+						<!-- <span class="input-label required">Attach File</span> --> 
+						<input type="file" placeholder="Last Receipt if any Last Payment mode" name="Last_Receipt" ng-model="Last_Receipt" id="imageinfo"
+						ng-trim="false" onchange="angular.element(this).scope().imageuplod11()" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+						<span class="errorMessage" ng-show="propassessFile.Last_Receipt.$error.pattern">Please Enter Valid File</span>
+					</label>
+					</ng-form>
+				</div>
+			</div>
+		</form>
+		 <!--<button class="button button-float" ng-click="floatfunc()" ng-if="showFloat == 'true'">
+				<i class="icon ion-plus"></i>
+        </button>-->
+    </ion-content>
+	
+</ion-view>
+<style>
+.slider{
+	height: auto;
+}
+.item-thumbnail-left .item-content {
+	min-height: 0;
+	padding: 10px 15px;
+}
+.item-thumbnail-left {
+	min-height: 0;
+}
+.button.button-assertive{
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	height: 100%;
+}
+</style>

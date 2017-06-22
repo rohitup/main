@@ -1,0 +1,58 @@
+
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="ComplaintTaskCtrl" class="">
+<h3 class="heading">Assign Task List</h3>
+		 
+<form name="complresolutiondashboard">		
+
+<div class="list list-inset">
+	<span class="item item-input" style="padding: 0 0 0 16px;" >
+	<input type="number" ng-model="search" placeholder="Search By Application No">
+	<i class="icon ion-search fonth3 button button-positive customBgColor"></i>
+	</span>
+</div> 
+
+<div class="card list" ng-show="show==1" ng-click="setSelected(subject.applicationNo)"
+ng-repeat = "subject in empTaskData | filter: {applicationNo: search}">
+	<div class="item item-avatar avatarcss" style="background-color: rgba(81, 81, 81, 0.1);">
+		<img class="clickimg">
+		<p class="applNocss">Application No: {{subject.applicationNo}}</p >
+	</div>
+	<div class="item item-text-wrap"> 
+		<p>Application Date:  {{ applicationNo }}</p>
+		<p>Department: {{ subject.departmentName }}</p>
+		<p>Complaint Type: {{ subject.complaintSubType }}</p>
+	</div>
+</div> 	
+
+</form>	 
+	
+
+    </ion-content>
+</ion-view>
+
+<style>
+.applNocss{margin: 7px 0 10px;}
+.avatarcss{padding-left: 70px; min-height: 50px;}
+.clickimg{background-image: url("../www/img/click.png"); background-repeat: no-repeat; background-size: 80%; background-position: 50% 10%;top: 10px; }
+.customBgColor{	background-color: #36979e !important;}
+.red{background-color: #E15554 !important; /*E15554*/}
+.green{	background-color: #68C39F !important; /*#68C39F*/ }
+.customBgColorWhite{background-color: #ffffff !important; }
+.fonth3 {font-size: 24px !important;}
+.cBody{background-image: url("../img/bg.png"); border:0px; background-size: 100% 100%; margin:0px; padding:0px;}
+.heading{font-size:15px; padding:10px 20px; line-height:25px; font-family:'Trajan Pro Bold'; background:#f2f2f2;}
+.padding .item{padding:10px !important;}
+
+</style>

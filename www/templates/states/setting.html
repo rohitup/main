@@ -1,0 +1,30 @@
+<ion-view>
+   
+   <!--  <ion-nav-title>
+        <span translate="WATER_BILL_PAYMENT"></span>
+    </ion-nav-title> -->
+    
+     <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="settingCtrl" class="">
+    <h3 class="heading">Settings</h3>
+	
+	 <ion-toggle ng-model="item.checked" style="font-weight:bold; font-size:16px;" 
+                    ng-change="toggleChange()" ng-checked="item.set" style="width:100%;" style="padding-right:5px">
+          Connection Status :{{connected}}
+        </ion-toggle>
+		<div class="padding">
+					 <button  class="button button-block button-positive" ng-click="propprintTest()">
+					 Test Print</button>
+				</div>
+    </ion-content>
+</ion-view>

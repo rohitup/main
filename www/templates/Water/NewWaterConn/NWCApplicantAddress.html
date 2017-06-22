@@ -1,0 +1,76 @@
+<ion-view>
+   <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+ </ion-nav-buttons>
+    
+<ion-content ng-controller="NewWaterconnAddressCTRL" class="animated zoomIn backgroundimage">
+<h3 class="heading" translate="ADDRESSDET"> </h3> 
+
+	<form name="NWCinfoFormAddress" novalidate>
+	 	<div class="list">
+			<label class="item item-input item-floating-label">
+				<span class="input-label required" translate="ROADNAME"> </span> 
+				<input type="text" placeholder="{{'ROADNAME' | translate}}*" name="WNCroadname" ng-model="WNCroadname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+				<span class="errorMessage" ng-show="NWCinfoFormAddress.WNCroadname.$error.pattern">Please Enter Valid Road Name</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label required" translate="AREANAME"> </span> 
+				<input type="text" placeholder="{{'AREANAME' | translate}}*" name="WNCareaname" ng-model="WNCareaname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+				<span class="errorMessage" ng-show="NWCinfoFormAddress.WNCareaname.$error.pattern">Please Enter Valid Area Name</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label required" translate="VTCITY"></span> 
+				<input type="text" placeholder="{{'VTCITY' | translate}}*" name="WNCtowncity" ng-model="WNCtowncity" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+				<span class="errorMessage" ng-show="NWCinfoFormAddress.WNCtowncity.$error.pattern">Please Enter Valid Village/Town/City</span>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label required" translate="PINCODE"></span> 
+				<input type="number" placeholder="{{'PINCODE' | translate}}*" name="WNCpincode" ng-model="WNCpincode" ng-trim="false" 
+				id="addpincode" ng-keyup="onlyNumericSixLimitInput()" ng-pattern="/^[0-9]{6,6}$/" required/>
+				<span class="errorMessage" ng-show="NWCinfoFormAddress.WNCpincode.$error.pattern">Please Enter Valid PinCode</span>
+			</label>
+			
+			<ion-checkbox name="cb" ng-model="addinfochecked" ng-change="checkedOrNot(addinfochecked)">
+			<span class="input-label" translate="CORSP_ADD"></span>	</ion-checkbox>
+			
+			<div id="hidebillingdiv" ng-if="billinghide">
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="ROADNAME"></span> 
+					<input type="text" placeholder="{{'ROADNAME' | translate}}*" name="data_.WNCbillroadname" ng-model="data_.WNCbillroadname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCinfoFormAddress.data_.WNCbillroadname.$error.pattern">Please Enter Valid Road Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="AREANAME"> </span> 
+					<input type="text" placeholder="{{'AREANAME' | translate}}*" name="data_.WNCbillareaname" ng-model="data_.WNCbillareaname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCinfoFormAddress.data_.WNCbillareaname.$error.pattern">Please Enter Valid Area Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="VTCITY"></span> 
+					<input type="text" placeholder="{{'VTCITY' | translate}}*" name="data_.WNCbilltowncity" ng-model="data_.WNCbilltowncity" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+					<span class="errorMessage" ng-show="NWCinfoFormAddress.data_.WNCbilltowncity.$error.pattern">Please Enter Valid Village/Town/City</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="PINCODE"></span> 
+					<input type="number" placeholder="{{'PINCODE' | translate}}*" name="data_.WNCbillpincode" ng-model="data_.WNCbillpincode" ng-trim="false"
+					id="addpincode" ng-keyup="onlyNumericSixLimitInput()" ng-pattern="/^[0-9]{6,6}$/" required/>
+					<span class="errorMessage" ng-show="NWCinfoFormAddress.data_.WNCbillpincode.$error.pattern">Please Enter Valid PinCode</span>
+				</label>
+			</div>
+			
+			<div class="padding">
+		          <button ng-disabled="!NWCinfoFormAddress.$valid" ng-click="applicantinfoaddress()" class="button button-block 
+		          button-positive customBgColor">
+				  <span translate="WATERCONN_NEXT"></span></button>
+ 			</div>
+	</div>
+</form>
+
+    </ion-content>
+</ion-view>   

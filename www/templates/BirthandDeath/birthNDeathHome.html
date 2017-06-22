@@ -1,0 +1,50 @@
+<ion-view>
+  
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+
+ <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+<ion-content class="backgroundimage" ng-controller="BirthDeathCtrl">
+<h1 class="heading">BIRTH & DEATH SERVICES</h1>
+<div class="row margin-0" >
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+		<a class="item gridnopadding" ui-sref="app.birthRegistration"><img src="../www/img/birth-registration48x48.png" width="55px" height="55px">
+		<h5>Birth Registration Details</h5></a>
+		</div>
+	</div>
+	             
+	<div class="col col-50 animated fadeInRight">
+		<div class="list text-center">
+		<a class="item gridnopadding" ui-sref="app.deathRegistration"><img src="../www/img/death-registraion48x48.png" width="55px" height="55px">
+		<h5>Death Registration Details</h5></a>
+		</div>
+	</div>
+</div>
+
+<div class="row margin-0">
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="postaldeliverybirth()"><img src="../www/img/issue-birth-certificate48x48.png" width="55px" height="55px">
+		<h5>Issue Birth Certificate</h5></a>
+		</div>
+	</div>
+	             
+	<div class="col col-50 animated fadeInRight">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="postaldeliverydeath()"><img src="../www/img/issue-death-certificate48x48.png" width="55px" height="55px">
+		<h5>Issue Death Certificate</h5></a>
+		</div>
+	</div>
+</div>
+    
+ </ion-content>
+  
+ </ion-view>
+

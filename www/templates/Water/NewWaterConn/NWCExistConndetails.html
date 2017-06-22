@@ -1,0 +1,129 @@
+<ion-view>
+   <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="NewWaterconnExistCTRL" class="animated zoomIn backgroundimage" >
+<h3 class="heading" translate="EXISTCONSDET"></h3>
+<form name="NWCExistConnForm"> 
+	<div class="list">
+	     <label class="input-label padding-left-15 required" translate="SEL_EXTCONDET"></label>
+			<select class="select-dropdown" name="WNCexistconsumerdetail" ng-model="WNCexistconsumerdetail" 
+            ng-options="obj.value as obj.label for obj in existdata" required>
+				<option value="">Select</option>
+			</select><label class="item item-input item-floating-label"></label>
+			
+			  <div ng-if="WNCexistconsumerdetail == 'Y'">
+				<h3 class="heading" translate="SEL_EXTCONDET"></h3>
+				 <label class="item item-input item-floating-label">
+					<span class="input-label required" translate="CONNECTION_NUMBER"></span> 
+					<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}*" 
+					name="data_.WNCexistconnno" ng-model="data_.WNCexistconnno" 
+					ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required/>
+					<span class="errorMessage" ng-show="NWCExistConnForm.data_.WNCexistconnno.$error.pattern">Please Enter Valid Connection Number</span>
+				</label>
+				<label class="input-label padding-left-15 required" translate="SEL_EXTCONDET"></label>
+					<select class="select-dropdown" name="data_.connSize" ng-model="data_.connSize"
+					 ng-click="cszprefix()" id="wncconnsize"
+					ng-options="o.cszid as o.cszname for o in cszoptions" required >
+						<option value="">Select</option>
+					</select><label class="item item-input item-floating-label"></label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="NOTAPS"></span> 
+					<input type="number" placeholder="{{'NOTAPS' | translate}}*" 
+					name="data_.WNCexisttaps" ng-model="data_.WNCexisttaps" 
+					ng-trim="false" ng-pattern="/^[0-9]{1,2}$/" required/>
+					<span class="errorMessage" ng-show="NWCExistConnForm.data_.WNCexisttaps.$error.pattern">Please Enter Valid No. of Taps</span>
+				</label>
+			 </div> 
+						
+		 <label class="input-label padding-left-15 required" translate="SEL_EXTPROP"></label>
+				<select class="select-dropdown" name="WNCexistproperty" ng-model="WNCexistproperty" 
+				 ng-options="obj.value as obj.label for obj in existdata" required>
+					<option value="">Select</option>
+					<!-- <option value="Y">Yes</option>
+					<option value="N">No</option> -->
+				</select><label class="item item-input item-floating-label"></label>
+				
+			 <div id="isbpl" ng-if="WNCexistproperty == 'Y'">
+				<label class="item item-input item-floating-label">
+					<span class="input-label required" translate="PROPERTYNO"></span> 
+					<input type="number" placeholder="{{'PROPERTYNO' | translate}}*" name="data_.WNCpropertyno" ng-model="data_.WNCpropertyno" 
+					ng-trim="false" ng-pattern="/^[0-9]{1,12}$/" required/>
+					<span class="errorMessage" ng-show="NWCExistConnForm.data_.WNCpropertyno.$error.pattern">Please Enter Valid Property number</span>
+				</label>
+			 </div> 
+
+		<h3 class="heading" translate="CONNDETS"></h3>
+
+				<label class="input-label padding-left-15 required" translate="SELECT_CONS_TYPE"></label>
+				<select class="select-dropdown" name="WNCconntype" ng-model="WNCconntype" 
+					ng-options="o.ccgid as o.ccgname for o in ccgoptions" required>
+					<option value="">Select</option>
+				</select><label class="item item-input item-floating-label"></label>
+			    <label class="item item-input item-floating-label">
+					<span class="input-label " translate="NOFAMILY"></span> 
+					<input type="number" placeholder="{{'NOFAMILY' | translate}}" name="WNCnooffamily" ng-model="WNCnooffamily" ng-trim="false" ng-pattern="/^[0-9]{1,2}$/" />
+					<span class="errorMessage" ng-show="NWCExistConnForm.WNCnooffamily.$error.pattern">Please Enter Valid No. of Family</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label" translate="NOUSER"></span> 
+					<input type="number" placeholder="{{'NOUSER' | translate}}" name="WNCnoofusers" ng-model="WNCnoofusers" ng-trim="false" ng-pattern="/^[0-9]{1,2}$/" />
+					<span class="errorMessage" ng-show="NWCExistConnForm.WNCnoofusers.$error.pattern">Please Enter Valid No. of Users</span>
+				</label>
+				<label class="input-label padding-left-15 required" translate="SELECT_TARIF"></label>
+				<select class="select-dropdown" name="WNCtarif" ng-model="WNCtarif" id="seltarif" ng-click="TRFprefix()" ng-change="selecttariff()"
+					ng-options="o.trfid as o.trfname for o in trfoptions" required>
+					<option value="">Select</option>
+				</select><label class="item item-input item-floating-label"></label>
+				<label class="input-label padding-left-15 required" translate="SELECT_PERMISE"></label>
+				<select class="select-dropdown" name="WNCpermise" data-ng-model="WNCpermise" id="selpermise"  
+					ng-options="o.permiseid1 as o.permisename1 for o in permiseoptions1" required>
+					<option value="">Select</option>
+				</select><label class="item item-input item-floating-label"></label>
+				
+				<label class="input-label padding-left-15 required" translate="Plumber_Details"></label>
+				<select class="select-dropdown" name="data_.PlumberDetail" ng-model="data_.PlumberDetail" required>
+					<option value="">Select</option>
+					<option value="Y" >ULB Registered</option>
+					<option value="N">Not ULB Registered</option>
+				</select><label class="item item-input item-floating-label"></label>
+				<div ng-if="data_.PlumberDetail == 'N'">
+					<label class="item item-input item-floating-label">
+						<span class="input-label required ">Plumber License No</span> 
+		 				<input type="number" placeholder="Plumber License No*" name="data_.plumberlicNo"
+						 ng-model="data_.plumberlicNo" ng-trim="false"  ng-pattern="/^[0-9]{0,10}$/"/ required>
+						<span class="errorMessage" ng-show="NWCExistConnForm.data_.plumberlicNo.$error.pattern">Please Enter Valid Plumber License No</span>
+					</label>
+				</div>
+				
+				<label class="input-label padding-left-15 required" translate="SELECT_CONSIZE"></label>
+				<select class="select-dropdown" name="WNCConnSize" ng-model="WNCConnSize" id="selconSize"
+					ng-options="o.cszid as o.cszname for o in cszoptions"  required>
+					<option value="">Select</option>
+				</select><label class="item item-input item-floating-label"></label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label" translate="NOTAPS"></span> 
+					<input type="number" placeholder="{{'NOTAPS' | translate}}" name="WNCnooftaps" ng-model="WNCnooftaps" ng-trim="false" ng-pattern="/^[0-9]{1,2}$/" />
+					<span class="errorMessage" ng-show="NWCExistConnForm.WNCnooftaps.$error.pattern">Please Enter Valid No. of Taps</span>
+				</label>
+
+				 <div class="padding">
+				    <button ng-disabled="!NWCExistConnForm.$valid" ng-click="initialzedmodel()" class="button button-block button-positive customBgColor">
+					<span translate="CMF_PROCEED"></span></button>
+				 </div>
+	</div>
+</form>
+
+
+    </ion-content>
+</ion-view>   
+
+ 

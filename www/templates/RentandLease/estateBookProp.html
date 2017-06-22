@@ -1,0 +1,175 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content scroll="true" class="animated zoomIn">
+		<form name="estateBookPropForm" ng-submit="submitPropertyInfo()">
+			<ion-slide-box show-pager="false" ion-slide-tabs>
+				<ion-slide ion-slide-tab-label="Property Information">
+					<h3 id="accclick"></h3>
+				    <table class="gridtable">
+						<tr><th style="width: 50%;">Estate Code</th>
+							<td>{{RNLEstateCode}}</td>
+						</tr>
+						<tr><th>Estate Name</th>
+							<td>{{RNLEstateName}}</td>
+						</tr>
+						<tr><th>Property Code</th>
+							<td>{{RNLPropertyNo}}</td>
+						</tr>
+						<tr><th>Property Name</th>
+							<td>{{RNLPropName}}</td>
+						</tr>
+						<tr><th>Unit Number</th>
+							<td>{{RNLUnitNo}}</td>
+						</tr>
+						<tr><th>Occupancy Type</th>
+							<td>{{RNLOccType}}</td>
+						</tr>
+						<tr><th>Usage</th>
+							<td>{{RNLUsage}}</td>
+						</tr>
+						<tr><th>Floor</th>
+							<td>{{RNLFloor}}</td>
+						</tr>
+						<tr><th>Total Area</th>
+							<td>{{RNLTotalArea}}</td>
+						</tr>
+					</table>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Applicant Information">
+					<div class="padding-left-15 customBgColor">All fields marked asterisk(<span class="required"></span>) are mandatory</div>
+					<div class="list">
+						<label class="input-label padding-left-15 required" translate="SEL_TITLE"></label>
+						<select class="select-dropdown" name="RNLTitle" ng-model="data.RNLTitle" ng-options="o.value as o.name for o in ttlList" required>
+							<option value="">Select</option>
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required">First Name</span> 
+							<input type="text" placeholder="First Name*" name="RNLFName" ng-model="data.RNLFName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+							<span class="errorMessage"  ng-show="estateBookPropForm.RNLFName.$error.pattern">Please Enter Valid First Number</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Middle Name</span> 
+							<input type="text" placeholder="Middle Name" name="RNLMName" ng-model="data.RNLMName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+							<span class="errorMessage" ng-show="estateBookPropForm.RNLMName.$error.pattern">Please Enter Valid Middle Number</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required">Last Name</span> 
+							<input type="text" placeholder="Last Name*" name="RNLLName" ng-model="data.RNLLName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+							<span class="errorMessage" ng-show="estateBookPropForm.RNLLName.$error.pattern">Please Enter Valid Last Number</span>
+						</label>
+					    <label class="input-label padding-left-15 required" translate="SELECT_GEN"></label>
+							<select class="select-dropdown" name="RNLgender" ng-model="data.RNLGender" id="RNLgender" ng-options="o.value as o.name for o in genList" required>
+							<option value="">Select</option>
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required">Mobile Number</span> 
+							<input type="tel" placeholder="Mobile Number*" name="RNLMobile" ng-model="data.RNLMobile" ng-trim="false" ng-pattern="/^[0-9]{10,10}$/" required/>
+							<span class="errorMessage" ng-show="estateBookPropForm.RNLMobile.$error.pattern">Please Enter Valid Mobile Number</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Email ID</span> 
+							<input type="email" placeholder="Email ID" name="RNLEmail" ng-model="data.RNLEmail" ng-trim="false" ng-pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/"/>
+							<span class="errorMessage" ng-show="estateBookPropForm.RNLEmail.$error.pattern">Please Enter Valid Email ID</span>
+						</label>
+					    <label class="item item-input item-floating-label">
+							<span class="input-label">Aadhar Number</span> 
+							<input type="tel" placeholder="Aadhar Number" name="RNLAadhar" ng-model="data.RNLAadhar" ng-trim="false" ng-pattern="/^[0-9]{12,12}$/"/>
+							<span class="errorMessage" ng-show="estateBookPropForm.RNLAadhar.$error.pattern">Please Enter Valid Aadhar Number</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Pan Number</span> 
+							<input type="text" placeholder="Pan Number" name="RNLPan" ng-model="data.RNLPan" ng-trim="false" ng-pattern="/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/"/>
+							<span class="errorMessage" ng-show="estateBookPropForm.RNLPan.$error.pattern">Please Enter Valid Pan Number</span>
+						</label>
+					</div>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Address Details">
+					<div class="padding-left-15 customBgColor">All fields marked asterisk(<span class="required"></span>) are mandatory</div>
+					<div class="list">
+						<!-- Address Details Start-->
+							<label class="item item-input item-floating-label">
+								<span class="input-label ">Flat No. / Building No.</span> 
+								<input type="text" placeholder="Flat No. / Building No." name="RNLFlatNo" ng-model="data.RNLFlatNo" ng-trim="false" ng-pattern="^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$"/>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLFlatNo.$error.pattern">Please Enter Flat No. / Building No.</span>
+							</label>
+							<label class="item item-input item-floating-label">
+								<span class="input-label ">Building Name</span> 
+								<input type="text" placeholder="Building Name" name="RNLBuilding" ng-model="data.RNLBuilding" ng-trim="false" ng-pattern="^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$"/>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLBuilding.$error.pattern">Please Enter Valid Building Name</span>
+							</label>
+							<label class="item item-input item-floating-label">
+								<span class="input-label ">Road Name</span> 
+								<input type="text" placeholder="Road Name" name="RNLRoad" ng-model="data.RNLRoad" ng-trim="false" ng-pattern="^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$"/>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLRoad.$error.pattern">Please Enter Valid Road Name</span>
+							</label>
+							<label class="item item-input item-floating-label">
+								<span class="input-label ">Block Name</span> 
+								<input type="text" placeholder="Block Name" name="RNLBlock" ng-model="data.RNLBlock" ng-trim="false" ng-pattern="^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$"/>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLBlock.$error.pattern">Please Enter Valid Block Name</span>
+							</label>
+							<label class="item item-input item-floating-label">
+								<span class="input-label required">Area Name</span> 
+								<input type="text" placeholder="Area Name*" name="RNLArea" ng-model="data.RNLArea" ng-trim="false" ng-pattern="^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$" required/>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLArea.$error.pattern">Please Enter Valid Area Name</span>
+							</label>
+							<label class="item item-input item-floating-label">
+								<span class="input-label required">Village/Town/City</span> 
+								<input type="text" placeholder="Village/Town/City*" name="RNLVillage" ng-model="data.RNLVillage" ng-trim="false" ng-pattern="^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$" required/>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLVillage.$error.pattern">Please Enter Valid Village/Town/City</span>
+							</label>
+							<label class="item item-input item-floating-label">
+								<span class="input-label required">Pin Code</span> 
+								<input type="tel" placeholder="Pin Code*" name="RNLPinCode" ng-model="data.RNLPinCode" ng-trim="false" ng-pattern="/^[0-9]{6,6}$/" required>
+								<span class="errorMessage" ng-show="estateBookPropForm.RNLPinCode.$error.pattern">Please Enter Valid Pin Code</span>
+							</label>
+						<!-- Address Details End -->
+					</div>
+				</ion-slide>
+				<ion-slide ion-slide-tab-label="Booking Details">
+					<div class="padding-left-15 customBgColor">All fields marked asterisk(<span class="required"></span>) are mandatory</div>
+					<div class="list">
+						<label class="input-label padding-left-15 required" translate="FROM_DATE"></label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required">From Date</span>
+							<input type="text" placeholder="{{'FRDATE'|translate}}*" ng-blur="changeDateAttr($event,data.fromDate,'From Date(DD/MM/YYYY)*')" id="fromDate" name="fromDate" ng-model="data.fromDate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="datepicker" ng-change="getShifts('from')" required readonly />
+							<span class="errorMessage" ng-show="estateBookPropForm.fromDate.$error.pattern">Please Enter Valid Date</span>
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required">To Date</span>
+							<input type="text" placeholder="{{'TO_DATE'|translate}}*" ng-blur="changeDateAttr($event,data.toDate,'{{'TODATE'|translate}}*)')" id="toDate" name="toDate" ng-model="data.toDate" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="datepicker" ng-change="getShifts('to')" required readonly />
+							<span class="errorMessage" ng-show="estateBookPropForm.toDate.$error.pattern">Please Enter Valid Date</span>
+						</label>
+						<label class="input-label padding-left-15 required" translate="SHIFT"></label>
+						<select class="select-dropdown" name="RNLShift" ng-model="data.RNLShift" ng-options="o.value as o.name for o in shfList" required>
+							<option value="">Select</option>
+						</select>
+						<label class="item item-input item-floating-label">
+							<span class="input-label required">Purpose Of Booking</span>
+							<input type="text" placeholder="Purpose Of Booking*" name="RNLPurpose" ng-model="data.RNLPurpose" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required >
+							<span class="errorMessage" ng-show="estateBookPropForm.bookingpurpose.$error.pattern">Please Enter Valid Purpose Of Booking</span>
+						</label>
+						<div class="padding">
+							<button ng-disabled="estateBookPropForm.$invalid" class="button button-block button-positive customBgColor">
+								<span translate="SUBMIT"></span>
+							</button>
+						</div>
+					</div>
+				</ion-slide>
+			</ion-slide-box>
+		</form>
+    </ion-content>
+    <!-- <ion-footer-bar align-title="center">All fields marked asterik(<span class="required"></span>) are mandatory</ion-footer-bar> -->
+</ion-view>
+<style>
+.slider{
+	height: 477px;
+}
+</style>

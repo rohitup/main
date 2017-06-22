@@ -1,0 +1,38 @@
+<ion-view>
+  
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="ChangeofUsageCTRL" class="animated zoomIn">
+	
+<form name="ChangeofuasgesearchForm">		
+	<h3 class="heading" translate="CHANGE_OF_USAGE"> </h3>
+	<div class="list ">
+		
+		 <label class="item item-input item-floating-label"> 
+			<span class="input-label required" translate="CONNECTION_NUMBER"></span>
+			<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}*" name="changeusages" ng-model="changeusages" id="connectionNosearch"
+		     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required/>
+			<span class="errorMessage" ng-show="ChangeofuasgesearchForm.changeusages.$error.pattern">Please Enter Valid Connection Number</span>
+	   </label>
+
+		 <div class="padding"> 
+			<button ng-disabled="!ChangeofuasgesearchForm.$valid" ng-click="searchchangeusages()" class="button button-block button-positive customBgColor"><i class="icon ion-search fonth3"></i>
+			<span translate="SEARCH"></span></button>
+	 	</div>
+		   
+	</div>
+</form>
+	
+
+</ion-content>
+ 
+</ion-view>

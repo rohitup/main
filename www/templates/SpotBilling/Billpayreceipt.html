@@ -1,0 +1,57 @@
+
+<ion-view>
+  
+    
+     <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="BillpayReceiptCtrl" class="animated zoomIn">
+	<h3 class="heading" translate="PAYRECEIPT">Payment Receipt</h3>
+	<form name="BillPayReceiptForm">
+		 <div class="list" >
+		
+			<table class="gridtable" >
+				<tr>
+					<th translate="CONNECTION_NUMBER"></th>
+					<td>{{ connNumber }}</td> 
+				</tr>
+				<tr>
+					<th translate="RECETNO"></th>
+					<td>{{ ReceiptNo }}</td>
+				</tr>
+				<tr>
+					<th translate="COSNAME"> </th>
+					<td>{{ ConnName }}</td>
+				</tr>
+				<tr>
+					<th translate="PAIDAMT"> </th>
+					<td>{{ Payamount }}</td>
+				</tr>
+				<tr>
+					<th translate="PAYMODE"></th>
+					<td>{{ PaymentMode }}</td>
+				</tr>
+				<tr>
+					<th translate="TRANSTION"></th>
+					<td>{{ transtatus }}</td> 
+				</tr>
+			</table>
+
+<div class="padding">
+		<button  ng-click="homepage()" class="button button-block button-positive" >
+		<span translate="HOME"></span></button>
+	</div>
+</div>
+
+</form>	
+    </ion-content>
+</ion-view>
+

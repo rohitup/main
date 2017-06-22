@@ -1,0 +1,127 @@
+<ion-view>
+
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="waterReconnectionCTRL" class="animated zoomIn">
+<h3 class="heading">Reconnection Details</h3>
+	<!-- <table class="gridtable" style="background-color: rgba(81, 81, 81, 0.1);">
+		<tr>
+			<th>Connection No</th>
+			<th>Owner Name</th>
+			<th>Select</th>
+		</tr>
+		<tr ng-repeat = "subject in docsitems" >
+			<td>{{ subject.connectionNo }}</td>
+			<td>{{ subject.consumerName }}</td>
+			<td><input type="checkbox" /></td>
+		</tr>
+	</table> -->
+	
+<div class="card list" ng-repeat = "subject in docsitems" 
+	ng-click="setSelected(subject.connectionNo)" >
+	<div class="item item-divider " style="background-color: #c5e9eb;">
+		<p class="applNocss">{{ 'CONNECTION_NUMBER' | translate  }}: {{ subject.connectionNo }}</p>
+	</div>
+	<div class="item item-text-wrap"> 
+		<p>{{ 'CONSNAME' | translate  }}: {{ subject.consumerName }}</p>
+	</div>
+</div> 
+
+	</ion-content>
+</ion-view>  
+
+      
+<!-- <form name="ReconnNoForm">
+	<div class="list">
+      <label class="item item-input item-floating-label"> 
+		<span class="input-label required" translate="CONNECTION_NUMBER"></span>
+		<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}*" name="connectionNosearch" ng-model="connectionNosearch" id="connectionNosearch"
+	     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required/>
+		<span class="errorMessage" ng-show="ReconnNoForm.connectionNosearch.$error.pattern">Please Enter Valid Connection Number</span>
+	 </label>
+
+	 <div class="padding"> 
+		<button ng-disabled="!ReconnNoForm.$valid" ng-click="reConnNosearch()" 
+		class="button button-block button-positive customBgColor">
+		<i class="icon ion-search fonth3"></i>
+		<span translate="">Search</span></button>
+ 	</div> 
+  </div>
+</form>         
+   
+<form name="ReconnectionForm" ng-if="reconnNoSearchDetails">
+	<div class="list">
+		 <label class="item item-input"></label> 
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Consumer Name</span> 
+			<input type="text" placeholder="Consumer Name" name="disConsumerName" ng-model="disConsumerName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConsumerName.$error.pattern">Please Enter Valid Consumer Name</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label ">Tariff Category</span> 
+			<input type="text" placeholder="Tariff Category" name="disAreaName" ng-model="disAreaName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disAreaName.$error.pattern">Please Enter Valid Area Name</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Premise Type</span> 
+			<input type="text" placeholder="Premise Type" name="disConnReason" ng-model="disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>	
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Connection Size</span> 
+			<input type="text" placeholder="Connection Size" name="disConnReason" ng-model="disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Disconnection Method</span> 
+			<input type="text" placeholder="Disconnection Method" name="disConnReason" ng-model="disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Disconnection Date</span> 
+			<input type="text" placeholder="Disconnection Date" name="disConnReason" ng-model="disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Disconnection Type</span> 
+			<input type="text" placeholder="Disconnection Type" name="disConnReason" ng-model="disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label required">Remarks </span> 
+			<input type="text" placeholder="Remarks" name="disConnReason" ng-model="disConnReason" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/>
+			<span class="errorMessage" ng-show="ReconnectionForm.disConnReason.$error.pattern">Please Enter Valid Disconnection Reason</span>
+		</label>
+		
+	   <label class="input-label padding-left-15 required" translate="Plumber_Details"></label>
+		<select class="select-dropdown" name="disPlumberDetail" ng-model="disPlumberDetail" required>
+			<option value="">Select</option>
+			<option value="UR">ULB Registered</option>
+			<option value="NUR">Not ULB Registered</option>
+		</select>	
+		<div ng-if="disPlumberDetail == 'NUR'">
+			<label class="item item-input item-floating-label">
+				<span class="input-label required ">Plumber License No</span> 
+				<input type="text" placeholder="Plumber License No*" name="WNCMiddlename" ng-model="WNCMiddlename" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"/ reuired>
+			<span class="errorMessage" ng-show="ReconnectionForm.WNCMiddlename.$error.pattern">Please Enter Valid Plumber License No</span>
+		</label>
+		</div>
+	
+		<div class="padding">
+			<button ng-disabled="!ReconnectionForm.$valid" ng-click="()" class="button button-block button-positive customBgColor">
+			<span translate="CONFIRM"></span></button>
+		</div>
+	</div>
+</form>
+ -->
+  
+

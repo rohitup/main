@@ -1,0 +1,66 @@
+<ion-view>
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="COUOldNewCTRL" class="animated zoomIn">
+<form name="COUolddetailsdiv">
+<h3 class="heading" translate="OLDDET"></h3>
+  	<div class="list">
+	  	 <label class="item item-input item-floating-label">
+				<span class="input-label" translate="CONSNAME"></span> 
+				<input type="text" placeholder="{{'CONSNAME' | translate}}*" name="COUconnName" ng-model="COUconnName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" disabled/>
+				<span class="errorMessage" ng-show="COUolddetailsdiv.COUconnName.$error.pattern">Please Enter Valid Consumer Name<</span>
+		</label> 
+		<label class="input-label padding-left-15" translate="SELECT_CONSIZE"></label>
+			<select class="select-dropdown" name="COUconnSize" ng-model="COUconnSize" id="COUconnSize"
+				ng-options="o.cszid as o.cszname for o in cszoptions" disabled>
+				<option value="" class="disabled-class" >Select Connection Size</option>
+			</select>
+		<label class="input-label padding-left-15" translate="SELECT_TARIF"> </label>
+			<select class="select-dropdown disabled-classselect" name="COUtarifCate" ng-model="COUtarifCate" id="COUtarifCate"
+				ng-options="o.trfid as o.trfname for o in trfoptions" disabled>
+				<option value="">Select Tariff Category</option>
+			</select>
+		<label class="input-label padding-left-15" translate="SELECT_PERMISE"> </label>
+			<select class="select-dropdown disabled-classselect" name="COUpermiseType" ng-model="COUpermiseType" id="COUpermiseType"
+				ng-options="o.permiseid as o.permisename for o in permiseoptions" disabled>
+				<option value="">Select Permise Type</option>
+			</select>
+		
+		<h3 class="heading" translate="NEWDET"></h3><div class="spacer" style="height: 7px;"></div>
+		
+		<label class="input-label padding-left-15 required" translate="SELECT_TARIF"> </label>
+			<select class="select-dropdown" name="newCOUtarifnew" ng-model="newCOUtarifnew" ng-click="" ng-change="selectAction()" 
+				ng-options="o.trfid as o.trfname for o in trfoptions" id="NCOutarif" required>
+				<option value="">Select</option>
+			</select>
+		<label class="input-label padding-left-15 required" translate="SELECT_PERMISE"></label>
+			<select class="select-dropdown" ng-disabled="!permiseoptions1" ng-model="newCOUpermise" 
+				ng-options ="o.permiseid1 as o.permisename1 for o in permiseoptions1" id="NCOUpermise" required>
+				<option value="">Select</option>
+			</select>
+		<label class="item item-input item-floating-label">
+			<span class="input-label" translate="REMARKS"></span> 
+			<input type="text" placeholder="{{'REMARKS' | translate}}*" name="COURemarks" ng-model="COURemarks" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+			<span class="errorMessage" ng-show="COUolddetailsdiv.COURemarks.$error.pattern">Please Enter Valid Remarks</span>
+		</label>
+			
+		    <div class="padding">
+		        <button ng-disabled="!COUolddetailsdiv.$valid" ng-click="confrmproceed()" class="button button-block button-positive customBgColor">
+		        <span translate="CMF_PROCEED"></span></button>
+		    </div>
+	</div>
+</form>
+
+
+</ion-content>
+</ion-view>
+

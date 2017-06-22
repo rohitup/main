@@ -1,0 +1,56 @@
+<ion-view class="home-page">
+	<ion-nav-title>
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content scroll="true" ng-controller="AccVendorBillRecordsCtrl" class="animated zoomIn">
+		<label class="item item-input item-floating-label">
+			<span class="input-label">{{'SEARCH' | translate}}</span>
+			<input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="search" />
+		</label>
+		<ion-list>
+			<ion-item class="listTableItem" ng-repeat="item in billRecordsResponse | filter:search track by $index">
+				<table class="gridtable noBorderGridTable">
+					<tr>
+						<th>{{'BILL_NO' | translate}}</th>
+						<td>{{item.billNo}}</td>
+					</tr>
+					<tr>
+						<th>{{'BILL_DATE' | translate}}</th>
+						<td>{{item.billEntryDate}}</td>
+					</tr>
+					<tr>
+						<th>{{'VENDOR_NAME' | translate}}</th>
+						<td>{{item.vendorDesc}}</td>
+					</tr>
+					<tr>
+						<th>{{'BILL_AMOUNT' | translate}}</th>
+						<td>{{item.billAmount | currency : ""}}</td>
+					</tr>
+					<tr>
+						<th>{{'DEDUCTION' | translate}}</th>
+						<td>{{item.deductions | currency : ""}}</td>
+					</tr>
+					<tr>
+						<th>{{'NET_PAYABLE' | translate}}</th>
+						<td>{{item.netPayables | currency : ""}}</td>
+					</tr>
+					<tr>
+						<th>{{'ACTION' | translate}}</th>
+						<td><button class="customButtonSmall" ng-click="authorizeBillRecord(item.id)">{{'AUTHORIZE' | translate}}</button></td>
+					</tr>
+				</table>
+			</ion-item>
+		</ion-list>
+    </ion-content>
+</ion-view>
+<style>
+/* .noBorderGridTable td{
+	text-align: right;
+} */
+</style>

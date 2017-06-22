@@ -1,0 +1,116 @@
+<ion-view>
+<ion-side-menus>
+    
+    <ion-side-menu-content>
+         <ion-nav-bar class="bar-dark " align-title="center">
+         	<ion-nav-back-button></ion-nav-back-button>
+         </ion-nav-bar> 
+   		  <ion-nav-view name="menuContent"></ion-nav-view>
+
+      </ion-side-menu-content>
+   
+<ion-side-menu side="left" class="left-menu">
+ <!--  <ion-header-bar style="background-color: #444; color: #ffffff;" class="bar-header">
+	<h1 class="title">Menu</h1>
+  </ion-header-bar> -->
+  
+<ion-header-bar class="bar-profile" style="background: url(img/images.jpg) center; background-size: cover;">
+    <div class="profile">
+        <a ng-click="ShowPictures()" ui-sref-active="active" menu-close="">
+        	<img class="profile-picture" src="../www/img/mcfly.jpg" />
+        
+       <!--  <img src="ImageURI" id="smallimage">
+        <input type="text" ng-model="ImageURI" size="30"/> -->
+        </a>
+         <h3 style="color: #ffffff;">{{loginName}}</h3>
+    </div>
+</ion-header-bar>
+  
+   <ion-content style="background: url(img/images1.jpg) center; background-size: cover;">
+      <div ng-switch on="selection" class="slide-right-left" ng-class="{reverse: submenu}">
+  	    <div class="list menu-sidebar" ng-if="!data.currentUser.user" ng-switch-default>
+			<!-- <a class="item item-icon-left" style="z-index: 2000">
+				<i class="icon ion-ios-chatboxes-outline"></i>
+				<span class="labelcss" translate="LANGUAGE">
+				</span><select-language class="pull-right">
+					<option value="en">English</option>
+	  				<option value="mr">Marathi</option>
+				</select-language>
+			</a>  -->
+					
+			<a class="item item-icon-left" ui-sref='app.home({"index":"home"})' ui-sref-active="active" menu-close="">
+				<i class="icon ion-ios-home-outline"></i>
+				<span class="labelcss" translate="HOME"></span>
+			</a>
+					
+			<a class="item item-icon-left" ui-sref='app.AboutUs({"index":"AboutUs"})' ui-sref-active="active" menu-close="">
+				<i class="icon  ion-ios-information-outline"></i>
+				<span class="labelcss" translate="ABOUTUS"></span>
+			</a>
+					
+			<a class="item item-icon-left" ui-sref='app.faq({"index":"faq"})' ui-sref-active="active" menu-close="">
+				<i class="icon ion-information"></i>
+				<span class="labelcss" translate="FAQ"></span>
+			</a>
+					
+			<a class="item item-icon-left" ui-sref='app.contactus({"index":"contactus"})' ui-sref-active="active" menu-close="">
+				<i class="icon ion-ios-telephone-outline"></i>
+				<span class="labelcss" translate="CONTACT_US"></span>
+			</a>
+					
+			<a class="item item-icon-left" ng-click="logout()"  ui-sref-active="active" menu-close="">
+				<i class="icon ion-log-out"></i>
+				<span class="labelcss" translate="LOG_OUT"></span>
+			</a>
+		</div>
+				<!-- <div class="list menu-sidebar" ng-switch-when="sub">ui-sref='app.LoginPage({"index":"LoginPage"})'
+					<a class="item item-icon-left" ui-sref="app.dashboard" ui-sref-active="active" menu-close="">
+						<i class="icon mdi mdi-file-document"></i>
+						<span translate="WATER_BILL_PAYMENT"></span>
+					</a>
+					<a class="item item-icon-left" ui-sref="app.newWaterconn" ui-sref-active="active" menu-close="">
+						<i class="icon mdi mdi-water-pump"></i>
+						<span translate="NEW_WATER_CONNECTION"></span>
+					</a>
+				</div> -->
+			</div>
+       </ion-content>
+  </ion-side-menu>
+ 
+</ion-side-menus>
+</ion-view>
+
+  <style>
+.bar.bar-profile {
+    background-color: #444;
+    height: 170px;
+}
+
+.bar .profile {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.profile .name {
+    color: #FFFFFF;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.profile-picture {
+    border-radius: 50%;
+}
+
+.menu .has-header
+{
+    top: 169px;
+}
+</style>  

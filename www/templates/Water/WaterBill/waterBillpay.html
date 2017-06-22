@@ -1,0 +1,97 @@
+<ion-view>
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+<ion-nav-buttons side="left">
+ <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content ng-controller="waterBillPayCtrl" class="animated zoomIn backgroundimage" >
+  <h3 class="heading"  translate="WATER_BILL_PAYMENT"></h3>
+  <form name="waterBillPay">
+	<div class="list">
+		
+      <label class="item item-input item-floating-label"> 
+		<span class="input-label required" translate="CONNECTION_NUMBER"></span>
+		<input type="number" placeholder="{{'CONNECTION_NUMBER' | translate}}*" name="search" ng-model="search" id="connectionNosearch"
+	     ng-keyup="eighteendigit()" ng-trim="false" ng-pattern="/^[0-9]{9,9}$/" required/>
+		<span class="errorMessage" ng-show="waterBillPay.search.$error.pattern">Please Enter Valid Connection Number</span>
+	 </label>
+
+	 <div class="padding"> 
+		<button ng-disabled="!waterBillPay.$valid" ng-click="searchWaterBill()" id="btn1"
+		 class="button button-block button-positive customBgColor"><i class="icon ion-search fonth3"></i>
+		<span translate="SEARCH"></span></button>
+ 	</div> 
+  </div>
+</form>       
+		
+<!-- <form name="waterBillForm" ng-if="waterBillSearch"  class="animated zoomIn">
+      <div class="list">
+        <h1 class="heading" translate="PAYABLEDETAILS"></h1> 
+           <table class="gridtable" ng-if="table1">
+			<tr>
+			   <th translate="TAXDESC">Tax Description</th>
+			   <th translate="ARREAR">Arrears Amount</th>
+			   <th translate="TAXAMT">Tax Amount</th>
+			   <th translate="TOTAL_AMOUNT">Total Amount</th>
+			</tr>
+			<tr ng-repeat = "subject in docsitems">
+				<td>{{ subject.taxdesc }}</td>
+				<td>{{ subject.arrear }}</td>
+				<td>{{ subject.taxamt }}</td>
+				<td>{{ subject.total }}</td>
+			</tr>
+		  </table>
+			<table class="gridtable" ng-if="table2">
+				<tr>
+				   <th style="width: 50%;" translate="TOTAL_AMOUNT">Adjustment Entry</th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+				<tr>
+				   <th style="width: 50%;" translate="TOTAL_AMOUNT">Adjusted Amount</th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+				<tr>
+				   <th style="width: 50%;" translate="TOTAL_AMOUNT">Balance Excess Amount</th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+				<tr>
+				   <th style="width: 50%;" translate="TOTAL_AMOUNT">Rebate</th>
+				   <td>{{ subject.taxdesc }}</td>
+				</tr>
+			</table> 
+          
+            <label class="item item-input item-floating-label"> 
+				<span class="input-label" translate="TOTAL_AMOUNT"> </span>
+				<input type="text" placeholder="{{'TOTAL_AMOUNT' | translate}}" name="totalPayableAmount" ng-model="totalPayableAmount" 
+				 ng-trim="false" ng-pattern="/^[0-9.]{1,50}$/" disabled/>
+			</label>
+			
+			<label class="item item-input item-floating-label"> 
+				<span class="input-label required" translate="ENTAMT"></span>
+				<input type="number" placeholder="{{'ENTAMT' | translate}}*" name="data_.payingAmount" ng-model="data_.payingAmount" id="pincodelim"
+				ng-keyup="onlyNumericSixLimitInput()" ng-trim="false" ng-pattern="/^[0-9.]{1,10}$/" required/>
+				<span class="errorMessage" ng-show="waterBillForm.data_.payingAmount.$error.pattern">Please Enter Valid Payable Amount</span>
+			</label>
+			
+            <label class="input-label padding-left-15 required" translate="PAYGATEWAY"></label>
+				<select class="select-dropdown" name="data_.paymentGateway" data-ng-model="data_.paymentGateway" 
+					ng-options="o.id as o.name for o in options" required>
+					<option value="">Select</option>
+				</select>  
+				
+			<a ui-sref="app.taxdetail" class="rightcss"><b>Tax Details</b></a>
+			<div class="padding">
+               <button class="button button-block button-positive customBgColor" ng-disabled="!waterBillForm.$valid"
+                ng-click="payWaterBill()">
+               <span translate="PAY"></span></button>
+            </div>  
+        </div>
+   </form>     
+         -->
+    </ion-content>
+</ion-view>

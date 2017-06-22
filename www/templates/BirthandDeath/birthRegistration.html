@@ -1,0 +1,61 @@
+<ion-view class="home-page">
+	<!--<ion-header-bar title="center" class="bar-stable">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+		<h1 class="title logo-app"><span ng-if="store.product._id">Product</span> <span ng-if="!store.product._id">Add category</span>
+		</h1>
+	</ion-header-bar>-->
+	<ion-nav-title>
+		<!-- <span translate="NEW_WATER_CONNECTION"></span> -->
+		<div class="bar bar-header headercolor">
+			<h1 class="title">MaiNet<sup>&reg;</sup></h1>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-content ng-controller="BirthRegistrationCtrl" class="animated zoomIn">
+		<form name="birthRegistrationForm" ng-submit="viewBirthRegistration()">
+			<div class="list">
+				<label class="input-label padding-left-15 required">Gender*</label>
+				<select class="select-dropdown" name="birthGenderSelect" id="birthGenderSelect" ng-model="sex" required>
+					<option value="" selected="true" disabled="disabled" style="display:none;">Select Gender*</option>
+					<option value="M">Male</option>
+					<option value="F">Female</option>
+					<option value="T">Transgender</option>
+				</select>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Child Name</span>
+					<input type="text" placeholder="Child Name" name="childName" ng-model="childName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/">
+					<span class="errorMessage" ng-show="birthRegistrationForm.childName.$error.pattern">Please Enter Valid Child Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Father Name</span>
+					<input type="text" placeholder="Father Name" name="fatherName" ng-model="fatherName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/">
+					<span class="errorMessage" ng-show="birthRegistrationForm.fatherName.$error.pattern">Please Enter Valid Father Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Mother Name</span>
+					<input type="text" placeholder="Mother Name" name="motherName" ng-model="motherName" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/">
+					<span class="errorMessage" ng-show="birthRegistrationForm.motherName.$error.pattern">Please Enter Valid Mother Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Birth Place</span>
+					<input type="text" placeholder="Birth Place" name="hospName" ng-model="hospName" ng-trim="false" ng-pattern="/^[A-Za-z']+( [A-Za-z']+)*$|^(?:\S.{4,100}\S)?$/">
+					<span class="errorMessage" ng-show="birthRegistrationForm.hospName.$error.pattern">Please Enter Valid Hospital Name</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Date of Birth</span>
+					<input type="date" placeholder="Date of Birth(DD/MM/YYYY)" ng-blur="changeAttr($event)" name="dateOfBirth" ng-model="dateOfBirth" ng-trim="false" ng-pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"/>
+					<span class="errorMessage" ng-show="birthRegistrationForm.dateOfBirth.$error.pattern">Please Enter Valid Date</span>
+				</label>
+				<div class="padding">
+					<button ng-disabled="birthRegistrationForm.$invalid" class="button button-block button-positive customBgColor">
+						<span translate="SUBMIT"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+    </ion-content>
+</ion-view>

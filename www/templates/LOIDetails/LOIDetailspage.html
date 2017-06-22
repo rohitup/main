@@ -1,0 +1,62 @@
+<ion-view>
+ 
+ <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+    
+<ion-content  class="backgroundimage" ng-controller="LOIDetailspageCTRL">
+<h1 class="heading">LOI Details</h1>
+  
+<div class="row margin-0" >
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="loiDetailForm('TP','Town Planning')">
+		<img src="../www/img/loi-town-planning48x48.png" width="55px" height="55px">
+		<h5>Town Planning</h5></a>
+		</div>
+	</div>
+	<div class="col col-50 animated fadeInRight">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="loiDetailForm('TNL','Trade & License')">
+		<img src="../www/img/loi-trade-license48x48.png" width="55px" height="55px">
+		<h5>Trade & License</h5></a>
+		</div>
+	</div>
+</div>
+	
+  
+<div class="row margin-0" >
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="loiDetailForm('RTI','Right to Information')">
+		<img src="../www/img/rti-entry48x48.png" width="55px" height="55px">
+		<h5>Right To Information</h5></a>
+		</div>
+	</div>
+	<div class="col col-50 animated fadeInRight">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="loiDetailForm('RNL','Rent & Lease')">
+		<img src="../www/img/loi-rent-lease48X48.png" width="55px" height="55px">
+		<h5>Rent & Lease</h5></a>
+		</div>
+	</div>
+</div>
+<div class="row margin-0" >
+	<div class="col col-50 animated fadeInLeft">
+		<div class="list text-center">
+		<a class="item gridnopadding" ng-click="loiDetailForm('ADH','Advertisement & Hoarding Setup')">
+		<img src="../www/img/loi-adh48x48.png" width="55px" height="55px">
+		<h5>Advertisement & Hoarding Setup</h5></a>
+		</div>
+	</div>
+</div>
+			
+    
+ </ion-content>
+</ion-view>

@@ -1,0 +1,101 @@
+<ion-view>
+ 
+<ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+     
+<ion-nav-buttons side="left">
+<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons> 
+    
+<ion-content class="" ng-controller="RTIform1Ctrl" class="animated zoomIn">
+<h1 class="heading">RTI Application Form</h1>
+
+<form name="RTIform1" ng-submit="RTIformpage()">
+	<div class="list">
+	
+	<label class="input-label padding-left-15 required">Application Type</label>
+	<select class="select-dropdown" name="RTIType" ng-model="RTIappltype" required>
+		<option value="">Select Application Type</option>
+		<option value="1">Individual</option>
+		<option value="2">Organisation</option>
+	</select>
+	
+	<div id="org" ng-if="RTIappltype == '2'">
+		<label class="item item-input item-floating-label"> 
+		<span class="input-label">Organisation Name:*</span>
+		<input type="text" placeholder="Organisation Name:*" name="RTIorgname" ng-model="RTIorgname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+		<span class="errorMessage" ng-show="RTIform1.RTIorgname.$error.pattern">Please Enter Valid Organisation Name</span>
+		</label>
+	</div>
+	
+	<label class="input-label padding-left-15 required">Title</label>
+	<select class="select-dropdown" name="RTtitle" data-ng-model="RTItitle" required>
+		<option value="">Select Title</option>
+		<option value="180">Mr.</option>
+		<option value="181">Ms.</option>
+		<option value="182">Mrs.</option>
+		<option value="86558">Other</option>
+	</select>
+	
+	<label class="item item-input item-floating-label">
+		<span class="input-label required">Name</span> 
+		<input type="text" placeholder="Name:*"  name="RTIaplname" ng-model="RTIaplname" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required/>
+		<span class="errorMessage" ng-show="RTIform1.RTIaplname.$error.pattern">Please Enter Valid Name</span>
+	</label>
+	 
+	<label class="item item-input item-floating-label">
+		<span class="input-label required">Address</span> 
+		<input type="text"  placeholder="Address:*" name="RTIappladdress" ng-model="RTIappladdress" ng-trim="false" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]{1,50}$/" required/>
+		<span class="errorMessage" ng-show="RTIform1.RTIappladdress.$error.pattern">Please Enter Valid Address</span>
+	</label>
+	
+	<label class="item item-input item-floating-label"> 
+		<span class="input-label required">Pincode</span>
+		<input type="number" placeholder="Pincode:*" name="RTIapplpincode" ng-model="RTIapplpincode" id="pincodelim"
+		ng-keyup="onlyNumericSixLimitInput()" ng-trim="false" ng-pattern="/^[0-9]{6,6}$/" required/>
+		<span class="errorMessage" ng-show="RTIform1.RTIapplpincode.$error.pattern">Please Enter Valid Pincode</span>
+	</label>
+	
+	<label class="input-label padding-left-15 required">Below Poverty Line</label>
+	<select class="select-dropdown" name="type" ng-model="RTIBpl" required>
+		<option value="">Select BPL*</option>
+		<option value="1">Yes</option>
+		<option value="2">No.</option>
+	</select>
+	
+	<div id="org" ng-if="RTIBpl == '1'">
+	
+	<label class="item item-input item-floating-label"> 
+		<span class="input-label required">BPL NO*</span>
+		<input type="number" id="BPLno" placeholder="BPL No:*" name="RTIbplNo" ng-model="RTIbplNo" ng-trim="false" 
+		ng-keyup="tenLimitInputBpl()" ng-pattern="/^[0-9]{1,10}$/" required/>
+		<span class="errorMessage" ng-show="RTIform1.RTIbplNo.$error.pattern">Please Enter Valid BPL Number</span>
+	</label>
+	
+	<label class="item item-input item-floating-label"> 
+		<span class="input-label required">BPL File:</span>
+		<input type="file" placeholder="Upload:*" name="RTIbplNofile" ng-model="RTIbplNofile" required/>
+		<span class="errorMessage" ng-show="RTIform1.RTIbplNofile.$error.pattern">Upload BPL file</span>
+	</label>
+	
+	</div>	
+	
+	<label class="item item-input item-floating-label"> 
+		<span class="input-label">Aadhar No(optional)</span> 
+		<input type="number" id="adharno" placeholder="Aadhar No(optional)" name="RTIAadharno" ng-model="RTIAadharno" ng-trim="false"
+		ng-keyup="onlyNumeric12LimitInput()" ng-pattern="/^[0-9]{12,12}$/" />
+		<span class="errorMessage" ng-show="RTIform1.RTIAadharno.$error.pattern">Please Enter Valid Aadhar Number</span>
+	</label>
+	
+	<div class="padding">
+		<button ng-disabled="!RTIform1.$valid" ng-click="" class="button button-block button-positive customBgColor">
+		<span translate="">NEXT</span></button>
+	</div>
+	
+	</div>
+</form>
+ </ion-content>
+</ion-view>

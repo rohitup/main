@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<script>
+function getQueryVariable(variable)
+                {
+                       var hash = window.location.hash;
+                       var query = hash.slice(hash.indexOf('#') + 1);
+                       var vars = query.split("&");
+                       console.log("hash ::: "+hash);
+                       console.log("vars ::: "+vars);
+                       for (var i=0;i<vars.length;i++) {
+                               var pair = vars[i].split("=");
+                               if(pair[0] == variable){
+                            	   return pair[1];
+                            	   }
+                       }
+                       return(false);
+                }
+				
+				
+function setFormData(){
+	/* languageId = window.localStorage.getItem('LanguageId');
+	orgId = window.localStorage.getItem('ORG_ID');
+	vUser_id = window.localStorage.getItem('USER_ID'); */
+	
+	//alert("hai");
+	var form = document.forms.payuForm;
+	var baseUrl = getQueryVariable('action1');
+	var action1 = baseUrl;//"https://"+parameters.action1;
+	/* form.msg.value=getQueryVariable('msg');//parameters.key; */ 
+ 	//alert(action1);
+	form.setAttribute('action',action1); 
+	//form.msg.value=getQueryVariable('msg');//parameters.key;
+	//form.bankUrl.value=getQueryVariable('bankUrl');
+	
+	/* form.payuUrl.value=getQueryVariable('payuUrl'); */
+//	form.orgId.value=getQueryVariable('orgId');
+//	form.tokenNo.value=getQueryVariable('tokenNo');
+ 	form.key.value=getQueryVariable('key');//parameters.key;
+ 	form.hash.value=getQueryVariable('hash');//parameters.hash;
+ 	form.txnid.value=getQueryVariable('txnid');//parameters.txnid;
+ 	
+ 	var su=getQueryVariable('surl');
+ 	var fu=getQueryVariable('furl');
+ 	var cu=getQueryVariable('curl');
+ 	var pg=getQueryVariable('pg');
+ 	
+ 	form.surl.value=su;//"http://"+parameters.surl;
+ 	form.furl.value=fu;//"http://"+parameters.furl;
+ 	form.furl.value=cu;
+ 	form.furl.value=pg;
+ 	
+ 	form.udf1.value=getQueryVariable('udf1');
+ 	form.udf2.value=getQueryVariable('udf2');
+ 	form.udf3.value=getQueryVariable('udf3');
+ 	form.udf4.value=getQueryVariable('udf4');
+ 	form.udf5.value=getQueryVariable('udf5');
+ 	form.udf6.value=getQueryVariable('udf6');
+ 	form.udf7.value=getQueryVariable('udf7');
+ 	form.udf8.value=getQueryVariable('udf8');
+ 	form.udf9.value=getQueryVariable('udf9');
+ 	form.udf10.value=getQueryVariable('udf10');
+ 	
+ 	form.amount.value=getQueryVariable('amount');//parameters.amount;
+ 	form.firstname.value=getQueryVariable('firstname');//parameters.firstname;
+ 	form.email.value=getQueryVariable('email');//parameters.email;
+ 	form.phone.value=getQueryVariable('phone');//parameters.phone;
+ 	form.productinfo.value=getQueryVariable('productinfo');//parameters.productinfo;
+	
+	form.submit();
+   // console.log("haiiiiiiiiii ::: "+JSON.stringify(arguments));
+    //console.log("SU ::: "+su);
+    console.log("action1 ::: "+action1);
+    //console.log("fu ::: "+fu);
+} 
+/*var params = getSearchParameters();
+
+alert(params.firstname+" "+params.email);
+*/
+
+</script>
+
+</head>
+<body onLoad="setFormData();">
+<div><h1>Please Wait...</h1></div>
+
+		<form action="http://www.google.com" id="payuForm" name="payuForm" method="post">
+				<input type="hidden" name="key" value="" />
+				<input type="hidden" name="hash" value=""/>
+				<input type="hidden" name="txnid" value="" />
+			    <input type="hidden" name="surl" value="" size="64" />
+				<input type="hidden" name="furl" value="" size="64" />	
+				<input type="hidden" name="curl" value=""/>				    
+				<input type="hidden" name="pg" value=""/>
+				<input type="hidden" name="udf1" value=""/>
+				<input type="hidden" name="udf2" value=""/>
+				<input type="hidden" name="udf3" value=""/>
+				<input type="hidden" name="udf4" value=""/>
+				<input type="hidden" name="udf5" value=""/>
+				<input type="hidden" name="udf6" value=""/>
+				<input type="hidden" name="udf7" value=""/>
+				<input type="hidden" name="udf8" value=""/>
+				<input type="hidden" name="udf9" value=""/>
+				<input type="hidden" name="udf10" value=""/> 
+				<input type="hidden" name="firstname" value="" />
+				<input type="hidden" name="email" value="" />
+				<input type="hidden" name="phone" value="" />
+				<input type="hidden" name="amount" value="" />
+				<input type="hidden" name="productinfo" value="" />
+	</form>	
+
+</body>
+</html>
+

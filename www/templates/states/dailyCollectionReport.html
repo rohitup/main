@@ -1,0 +1,66 @@
+<ion-view>
+   
+   <!--  <ion-nav-title>
+        <span translate="WATER_BILL_PAYMENT"></span>
+    </ion-nav-title> -->
+    
+     <ion-nav-title>
+  <div class="bar bar-header headercolor">
+ 	 <h1 class="title">MaiNet</h1>
+ </div>
+</ion-nav-title>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    
+<ion-content ng-controller="propertyTaxReceiptCtrl" class="">
+    <h3 class="heading">Property Receipt Details</h3>
+	
+		
+ <form>
+					<table class="gridtable">
+						<tr><th style="width: 40%;">Property No</th>
+							<td>{{proreceiptpNo}}</td>
+						</tr>
+						<tr><th style="width: 40%;">Receipt No</th>
+							<td>{{iPropreceiptno}}</td>
+						</tr>
+						<tr><th style="width: 40%;">Receipt Date</th>
+							<td>{{iPropreceiptDate}}</td>
+						</tr>
+						<!-- <tr><th>Property ID</th>
+							<td><span id="propreceiptPropId"></span></td>
+						</tr>-->
+						<tr><th>Owner Name</th>
+							<td>{{propReceiptOwnerName}}</td>
+						</tr>
+						<tr><th>Phone No.</th>
+							<td>{{propReceiptOwnerPhNo}}</td>
+						</tr>
+						
+						<tr><th>Paid Amount</th>
+							<td>{{propReceiptPayAmo}}</td>
+						</tr>
+						<tr><th>Tax Amount</th>
+							<td>{{propReceiptpaidamo}}</td>
+						</tr>
+						<tr><th>Outstanding Amount</th>
+							<td>{{propReceiptoutsamo}}</td>
+						</tr>
+						  <tr><th>Advance Amount</th>
+							<td>{{propReceiptadvaamo}}</td>
+						</tr>
+						<tr><th>Payment Mode</th>
+							<td>{{propReceiptpaymode}}</td>
+						</tr>
+					</table>
+					 
+		       </form>
+			   <div class="padding">
+					 <button  class="button button-block button-positive" ng-click="propprintDetail()">
+					 <span translate="">Print</span></button>
+				</div>
+    </ion-content>
+</ion-view>
